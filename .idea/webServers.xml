@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="da35c3b6-1042-4858-8c70-84a1539879fd" name="MAMP Apache" url="http://localhost:8080">
+        <fileTransfer port="0" mountedRoot="/Volumes/Storage/goinfre/ibohun/MAMP/apache2/htdocs" accessType="MOUNT" />
+      </webServer>
+    </option>
+  </component>
+</project>
