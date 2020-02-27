@@ -13,8 +13,6 @@ class Router {
 		foreach ($arr as $key => $val) {
 			$this->add($key, $val);
 		}
-
-		// debug($arr);
 	}
 
 	public function add($route, $params) {
@@ -35,12 +33,6 @@ class Router {
 
 	public function run() {
 		if ($this->match()) {
-			/*
-			 * echo '<h5>Page is found</h5>';
-			 * echo 'controller: '.$this->params['controller'].'<br>';
-			 * echo 'action: '.$this->params['action'].'<br>';
-			 */
-
 			$path = 'app\controllers\\'.ucfirst($this->params['controller']).'Controller';
 			if (class_exists($path)) {
 				$action = $this->params['action'].'Action';

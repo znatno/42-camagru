@@ -11,8 +11,17 @@ class MainController extends Controller{
 	public function indexAction() {
 
 		$db = new Db;
-		$data = $db->row('SELECT name FROM users');
-		//debug($data);
+
+		//$form = '2; '
+
+		/*
+		$params = [
+			'id' => 3,
+		];
+
+		$data = $db->column('SELECT name FROM users WHERE id = :id', $params);
+		debug($data);
+		*/
 
 		$this->view->render('Main Page');
 	}

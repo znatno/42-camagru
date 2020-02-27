@@ -1318,7 +1318,7 @@
     </view>
     <column id="347" parent="279" name="id">
       <Position>1</Position>
-      <DataType>smallint(5) unsigned|0s</DataType>
+      <DataType>smallint(6)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
