@@ -40,12 +40,15 @@ class Router {
 					$controller = new $path($this->params);
 					$controller->$action();
 				} else {
+					echo "no such method: ".$action."<br>";
 					View::errorCode(404);
 				}
 			} else {
+				echo "no such class: ".$path."<br>";
 				View::errorCode(404);
 			}
 		} else {
+			echo "no such route<br>";
 			View::errorCode(404);
 		}
 	}

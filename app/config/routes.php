@@ -20,6 +20,20 @@ return [
 	'news/show' => [
 		'controller' => 'news',
 		'action' => 'show'
-	]
+	],
 
+	'account/forms' => [
+		'controller' => 'account',
+		'action' => 'forms'
+	],
+
+	'account/form1' => [
+		'controller' => 'account',
+		'action' => 'form1'
+	],
+
+	'account/form2' => [
+		'controller' => 'account',
+		'action' => 'form2'
+	],
 ];

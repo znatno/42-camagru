@@ -15,4 +15,16 @@ class AccountController extends Controller{
 		$this->view->render('Register');
 	}
 
+	// - ONLY for AJAX tests
+	// TODO: RM this
+	public function formsAction() {
+		$this->view->render('Forms Test');
+	}
+	public function form1Action() {
+		$this->view->render('Forms Test');
+	}
+	public function form2Action() {
+		$this->view->render('Forms Test');
+	}
+
 }
