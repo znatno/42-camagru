@@ -5,7 +5,7 @@ CREATE TABLE users
     id SMALLINT AUTO_INCREMENT PRIMARY KEY NOT NULL,
     name varchar(20) not null
 );
-INSERT INTO users ( id, name )
+INSERT INTO users (id, name)
 VALUES (null, 'Alex'),
        (null, 'John'),
        (null, 'Vlad'),
@@ -13,3 +13,4 @@ VALUES (null, 'Alex'),
        (null, 'Arkadiy'),
        (null, 'Jay'),
        (null, 'Nataly');
+
