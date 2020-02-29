@@ -2,15 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f5d783a5-c1e1-495f-a4fd-2852365bc1d1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/pub/scripts/form.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/camagru.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/camagru.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/ea897cc7-a2e1-4d5b-8a7b-bb681b55dcc9.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/ea897cc7-a2e1-4d5b-8a7b-bb681b55dcc9.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/account/form1.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/account/form1.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/layout/default.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/layout/default.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/misc/create-db.sql" beforeDir="false" afterPath="$PROJECT_DIR$/misc/create-db.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/misc/form.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/account/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/account/login.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

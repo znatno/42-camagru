@@ -7,7 +7,9 @@ use app\core\Controller;
 class AccountController extends Controller{
 
 	public function loginAction() {
-		// $this->view->redirect('/');
+		if (!empty($_POST)) {
+
+		}
 		$this->view->render('Login');
 	}
 
