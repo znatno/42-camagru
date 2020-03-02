@@ -4,11 +4,11 @@ namespace app\controllers;
 
 use app\core\Controller;
 
-class AccountController extends Controller{
+class AccountController extends Controller {
 
 	public function loginAction() {
 		if (!empty($_POST)) {
-
+			$this->view->location('/');
 		}
 		$this->view->render('Login');
 	}

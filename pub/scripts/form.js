@@ -4,6 +4,8 @@ $(document).ready(function() {
 
     $('form').submit(function (event) {
 
+        var json;
+
         event.preventDefault();
 
         $.ajax({
@@ -15,7 +17,12 @@ $(document).ready(function() {
             processData: false,
 
             success: function(result) {
-                alert(result);
+                json = jQuery.parseJSON(result);
+                if (json.url) {
+                    window.location.href = json.url;
+                } else {
+                    alert(json.status + ' - ' + json.message);
+                }
             }
         })
 
