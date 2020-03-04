@@ -9,8 +9,9 @@ class Db {
 	protected $db;
 
 	public function __construct() {
-		$config = require 'app/config/db.php';
-		$this->db = new PDO('mysql:host='.$config['host'].';dbname='.$config['name'].'', $config['user'], $config['password']);
+		// $config = require 'app/config/db.php';
+		// $this->db = new PDO('mysql:host='.$config['host'].';dbname='.$config['name'].'', $config['user'], $config['password']);
+		 $this->db = require 'app/config/setup.php';
 	}
 
 	public function query($sql, $params = []) {
@@ -22,8 +23,6 @@ class Db {
 			}
 		}
 		$stmt->execute();
-
-		//$query = $this->db->query($sql);
 
 		return $stmt;
 	}
