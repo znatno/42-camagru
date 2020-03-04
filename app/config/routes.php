@@ -17,11 +17,14 @@ return [
 		'action' => 'register'
 	],
 
-	'news/show' => [
-		'controller' => 'news',
-		'action' => 'show'
+	'create/new' => [
+		'controller' => 'create',
+		'action' => 'new'
 	],
 
+	//
+	// only for test purposes TODO: delete this
+	//
 	'account/forms' => [
 		'controller' => 'account',
 		'action' => 'forms'
@@ -36,4 +39,8 @@ return [
 		'controller' => 'account',
 		'action' => 'form2'
 	],
+	//
+	// -----------------------------------------
+	//
+
 ];

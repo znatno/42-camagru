@@ -24,7 +24,7 @@ class View {
 			$content = ob_get_clean();
 			require 'app/views/layout/'.$this->layout.'.php';
 		} else {
-			echo 'Not Found: '.$this->path;
+			echo 'Not Found View: '.$this->path;
 		}
 	}
 

@@ -1,5 +1,7 @@
-<p> Main Page </p>
 
+
+<p> Main Page </p>
+<br>
 
 <?php foreach ($news as $val): ?>
     <h4><?=$val['title']?></h4>
