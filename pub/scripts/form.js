@@ -1,12 +1,13 @@
 // kek
 
-$(document).ready(function() {
+document.addEventListener('DOMContentLoaded', function() {
 
     $('form').submit(function (event) {
 
         var json;
 
         event.preventDefault();
+
 
         $.ajax({
             type: $(this).attr('method'),

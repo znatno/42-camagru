@@ -26,6 +26,7 @@ class View {
 		} else {
 			echo 'Not Found View: '.$this->path;
 		}
+		debug($vars);
 	}
 
 	public function redirect($url) {

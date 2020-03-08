@@ -2,11 +2,13 @@
 
 return [
 
+	// Main Controller
 	'' => [
 		'controller' => 'main',
 		'action' => 'index'
 	],
 
+	// Account Controller
 	'account/login' => [
 		'controller' => 'account',
 		'action' => 'login'
@@ -17,30 +19,10 @@ return [
 		'action' => 'register'
 	],
 
+	// Create Controller
 	'create/new' => [
 		'controller' => 'create',
 		'action' => 'new'
 	],
-
-	//
-	// only for test purposes TODO: delete this
-	//
-	'account/forms' => [
-		'controller' => 'account',
-		'action' => 'forms'
-	],
-
-	'account/form1' => [
-		'controller' => 'account',
-		'action' => 'form1'
-	],
-
-	'account/form2' => [
-		'controller' => 'account',
-		'action' => 'form2'
-	],
-	//
-	// -----------------------------------------
-	//
 
 ];
