@@ -2,22 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f5d783a5-c1e1-495f-a4fd-2852365bc1d1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/ea897cc7-a2e1-4d5b-8a7b-bb681b55dcc9.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/ea897cc7-a2e1-4d5b-8a7b-bb681b55dcc9.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/models/Account.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/views/account/forgot.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/acl/account.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/acl/account.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/config/routes.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/config/routes.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/controllers/AccountController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/AccountController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/core/View.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/core/View.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/lib/Db.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/lib/Db.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/account/form1.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/account/form2.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/account/forms.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/account/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/account/login.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/account/register.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/account/register.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/layout/default.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/layout/default.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/misc/create-db.sql" beforeDir="false" afterPath="$PROJECT_DIR$/misc/create-db.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pub/scripts/form.js" beforeDir="false" afterPath="$PROJECT_DIR$/pub/scripts/form.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -99,12 +92,12 @@
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/app/views/account" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/pub/scripts" />
       <recent name="$PROJECT_DIR$" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/views/account" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -153,7 +146,7 @@
       <workItem from="1582822570523" duration="12490000" />
       <workItem from="1583262179952" duration="6075000" />
       <workItem from="1583515190432" duration="624000" />
-      <workItem from="1583675095301" duration="5775000" />
+      <workItem from="1583675095301" duration="9755000" />
     </task>
     <servers />
   </component>

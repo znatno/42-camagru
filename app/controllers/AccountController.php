@@ -15,19 +15,18 @@ class AccountController extends Controller {
 	}
 
 	public function registerAction() {
+		if (!empty($_POST)) {
+			if (!$this->model->validate(['username', 'email', 'password'], $_POST)) {
+				$this->view->message('error', $this->model->error);
+			}
+
+		}
 		$this->view->render('Register');
 	}
 
-	// - ONLY for AJAX tests
-	// TODO: RM this
-	public function formsAction() {
-		$this->view->render('Forms Test');
+	public function forgotAction() {
+		$this->view->render('Forgot Password');
 	}
-	public function form1Action() {
-		$this->view->render('Forms Test');
-	}
-	public function form2Action() {
-		$this->view->render('Forms Test');
-	}
+
 
 }
