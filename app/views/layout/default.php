@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<title><?php echo $title; ?></title>
-	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-    <script type="text/javascript" src="/pub/scripts/jquery.js"></script>
-    <script type="text/javascript" src="/pub/scripts/form.js"></script>
+<head>
+    <title><?php echo $title; ?></title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <!-- JS -->
+    <!--    <script type="text/javascript" src="/pub/scripts/jquery.js"></script>-->
+    <!--    <script type="text/javascript" src="/pub/scripts/form.js"></script>-->
+
 </head>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+<nav class="navbar navbar-expand navbar-dark bg-dark">
     <a class="navbar-brand" href="/">Camagru</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -30,16 +34,13 @@
                 <a class="nav-link" href="/account/login">Login</a>
             </li>
         </ul>
-<!--        SEARCH BAR -->
-<!--        <form class="form-inline my-2 my-lg-0">-->
-<!--            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">-->
-<!--            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>-->
-<!--        </form>-->
     </div>
 </nav>
+
 <body>
-	<?php echo $content; ?>
+    <?php echo $content; ?>
 </body>
+
 </html>
 
 

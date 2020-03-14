@@ -2,7 +2,7 @@
     <h1 class="mt-4 mb-3">Login</h1>
     <div class="row">
         <div class="col-lg-8 mb-4">
-            <form action="/account/login">
+            <form action="/account/login" method="post">
                 <div class="control-group form-group">
                     <div class="controls">
                         <label for="username">Username:</label>

@@ -2,15 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f5d783a5-c1e1-495f-a4fd-2852365bc1d1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/models/Account.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/account/forgot.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/views/error/400.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pub/scripts/validate.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/acl/account.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/acl/account.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/config/routes.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/config/routes.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/config/setup.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/config/setup.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/controllers/AccountController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/AccountController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/core/View.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/core/View.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/MainController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/MainController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/lib/dev.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/lib/dev.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/Account.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/Account.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/account/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/account/login.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/account/register.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/account/register.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/error/403.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/error/403.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/error/404.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/error/404.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/layout/default.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/layout/default.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/main/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/main/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pub/scripts/form.js" beforeDir="false" afterPath="$PROJECT_DIR$/pub/scripts/form.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -61,14 +67,6 @@
       </list>
     </option>
   </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>xdebuh</find>
-      <find>xd</find>
-      <find>xdebug</find>
-      <find>SMTP</find>
-    </findStrings>
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -92,12 +90,12 @@
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/views/account" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/pub/scripts" />
       <recent name="$PROJECT_DIR$" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/app/views/account" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -146,7 +144,8 @@
       <workItem from="1582822570523" duration="12490000" />
       <workItem from="1583262179952" duration="6075000" />
       <workItem from="1583515190432" duration="624000" />
-      <workItem from="1583675095301" duration="9755000" />
+      <workItem from="1583675095301" duration="10915000" />
+      <workItem from="1583850094949" duration="11826000" />
     </task>
     <servers />
   </component>
