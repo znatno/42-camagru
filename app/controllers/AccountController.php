@@ -6,6 +6,7 @@ use app\core\Controller;
 
 class AccountController extends Controller {
 
+	// todo: AJAXify [Log in / out]
 	public function loginAction() {
 		if (!empty($_POST)) {
 			$username = $_POST['username'];
@@ -25,16 +26,19 @@ class AccountController extends Controller {
 					'confirm' => $user[0]['confirm']
 				];
 			}
-
-			//$this->view->redirect('/');
+			$this->view->redirect('/');
 		}
 		$this->view->render('Login');
 	}
 
+	public function logoutAction() {
+		unset($_SESSION['user']);
+		session_destroy();
+		$this->view->redirect('/');
+	}
+
+	// todo: AJAXify [Sign Up]
 	public function registerAction() {
-
-		// todo: AJAXify [Sign Up]
-
 		if (!empty($_POST)) {
 			if (!$this->model->validate(['username', 'email', 'password'], $_POST)) {
 				$this->view->message('error', $this->model->error);

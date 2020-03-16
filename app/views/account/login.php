@@ -23,25 +23,3 @@
         </div>
     </div>
 </div>
-
-<!-- OLD FORM
-<div style="margin: 20px">
-    <h2>Sign In</h2>
-    <br>
-    <form action="/account/login" method="post">
-        <label>Username
-            <br>
-            <input type="text" name="username">
-        </label>
-        <br>
-        <label>Password
-            <br>
-            <input type="text" name="password">
-        </label>
-        <br>
-        <button type="submit" name="enter">Login</button></b>
-    </form>
-</div>
--->
-
-<?php

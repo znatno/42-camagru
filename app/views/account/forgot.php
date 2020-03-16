@@ -14,5 +14,3 @@
             <b><button style="margin-top: 10px" type="submit" value="Submit">Sign Up</button></b>
     </form>
 </div>
-
-<?php
