@@ -24,8 +24,23 @@ class AccountController extends Controller {
 				$this->view->message('error', $this->model->error);
 				// $this->view->errorCode(400);
 
+			} else {
+				// Getting POST values
+				$id = 0;
+				$username = $_POST['username'];
+				$email = $_POST['email'];
+				$password = $_POST['password'];
+				$confirm = 0;
+
+				// Adding into Db
+				$this->model->db->query(
+					'INSERT INTO `users` (id, username, email, password, confirm) VALUE (:id, :username, :email, :password, :confirm)',
+					['id' => $id, 'username' => $username, 'email' => $email, 'password' => $password, 'confirm' => $confirm]);
+
+				// Showing result
+				$this->view->message('success', 'form passed validation');
 			}
-			$this->view->message('success', 'form passed validation');
+
 		}
 		$this->view->render('Register');
 	}

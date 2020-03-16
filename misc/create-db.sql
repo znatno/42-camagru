@@ -6,7 +6,8 @@ CREATE TABLE users
     id SMALLINT AUTO_INCREMENT PRIMARY KEY NOT NULL,
     username VARCHAR(30) NOT NULL,
     email VARCHAR(1000) NOT NULL,
-    password VARCHAR(1000) NOT NULL
+    password VARCHAR(1000) NOT NULL,
+    confirm BOOL NOT NULL DEFAULT 0
 );
 
 # INSERT INTO users (id, username)
@@ -17,4 +18,7 @@ CREATE TABLE users
 #        (null, 'Arkadiy'),
 #        (null, 'Jay'),
 #        (null, 'Nataly');
+
+
+
 

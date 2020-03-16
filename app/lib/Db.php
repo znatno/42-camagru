@@ -12,9 +12,18 @@ class Db {
 		$this->db = require 'app/config/setup.php';
 	}
 
+	public function isConnected() {
+		if ($this->db instanceof PDO) {
+			return 'DB is connected';
+		} else {
+			return 'DB does not exist';
+		}
+	}
+
 	public function query($sql, $params = []) {
 		$stmt = $this->db->prepare($sql);
 
+		debug($params);
 		if (!empty($params)) {
 			foreach ($params as $key => $val) {
 				if (is_int($val)) {
@@ -22,9 +31,14 @@ class Db {
 				} else {
 					$type = PDO::PARAM_STR;
 				}
+				debug(':'.$key);
 				$stmt->bindValue(':'.$key, $val, $type);
 			}
 		}
+		// debug($stmt);
+
+		print_r($stmt);
+
 		$stmt->execute();
 
 		return $stmt;
