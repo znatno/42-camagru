@@ -33,6 +33,40 @@ class Account extends Model {
 			$this->error = $rules['email']['message'];
 			return false;
 		}
+
+		$stmt = $this->db->query(
+			'SELECT username FROM db_ibohun.users WHERE username = :username', ['username' => $post['username']]);
+		if ($stmt->rowCount() > 0) {
+			$this->error = 'Username exists';
+			return false;
+		}
+
+		$stmt = $this->db->query(
+			'SELECT email FROM db_ibohun.users WHERE email = :email', ['email' => $post['email']]);
+		if ($stmt->rowCount() > 0) {
+			$this->error = 'Email is already in use';
+			return false;
+		}
+
+		return true;
+	}
+
+	public function checkUser($user, $pass) {
+
+		$stmt = $this->db->query(
+			'SELECT username FROM db_ibohun.users WHERE username = :username', ['username' => $user]);
+		if ($stmt->rowCount() == 0) {
+			$this->error = 'User does not exist';
+			return false;
+		}
+
+		$stmt = $this->db->query(
+			'SELECT username FROM db_ibohun.users WHERE username = :username AND password = :password', ['username' => $user, 'password' => $pass]);
+		if ($stmt->rowCount() != 1) {
+			$this->error = 'Wrong password';
+			return false;
+		}
+
 		return true;
 	}
 

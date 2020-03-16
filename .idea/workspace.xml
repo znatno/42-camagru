@@ -2,12 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f5d783a5-c1e1-495f-a4fd-2852365bc1d1" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/ea897cc7-a2e1-4d5b-8a7b-bb681b55dcc9.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/ea897cc7-a2e1-4d5b-8a7b-bb681b55dcc9.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/controllers/AccountController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/AccountController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/lib/Db.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/lib/Db.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/misc/create-db.sql" beforeDir="false" afterPath="$PROJECT_DIR$/misc/create-db.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/Account.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/Account.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/layout/default.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/layout/default.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -148,7 +148,7 @@
       <workItem from="1583262179952" duration="6075000" />
       <workItem from="1583515190432" duration="624000" />
       <workItem from="1583675095301" duration="10915000" />
-      <workItem from="1583850094949" duration="17183000" />
+      <workItem from="1583850094949" duration="19861000" />
     </task>
     <servers />
   </component>
@@ -167,5 +167,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XPathView.XPathProjectComponent">
+    <history />
+    <find-history />
   </component>
 </project>

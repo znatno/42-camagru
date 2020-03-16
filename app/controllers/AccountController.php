@@ -8,8 +8,25 @@ class AccountController extends Controller {
 
 	public function loginAction() {
 		if (!empty($_POST)) {
-			$this->view->redirect('/');
+			$username = $_POST['username'];
+			$password = hash('whirlpool', $_POST['password']);
 
+			if (!$this->model->checkUser($username, $password)) {
+				$this->view->message('error', $this->model->error);
+			} else {
+				$user = $this->model->db->row(
+					'SELECT * FROM db_ibohun.users WHERE username = :username AND password = :password',
+					['username' => $username, 'password' => $password]);
+
+				$_SESSION['user'] = [
+					'id' => $user[0]['id'],
+					'username' => $user[0]['username'],
+					'email' => $user[0]['email'],
+					'confirm' => $user[0]['confirm']
+				];
+			}
+
+			//$this->view->redirect('/');
 		}
 		$this->view->render('Login');
 	}
@@ -17,7 +34,6 @@ class AccountController extends Controller {
 	public function registerAction() {
 
 		// todo: AJAXify [Sign Up]
-		// поки що обходжуся провіркою впритик
 
 		if (!empty($_POST)) {
 			if (!$this->model->validate(['username', 'email', 'password'], $_POST)) {
@@ -29,7 +45,7 @@ class AccountController extends Controller {
 				$id = 0;
 				$username = $_POST['username'];
 				$email = $_POST['email'];
-				$password = $_POST['password'];
+				$password = hash('whirlpool', $_POST['password']);
 				$confirm = 0;
 
 				// Adding into Db

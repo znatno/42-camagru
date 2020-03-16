@@ -1,3 +1,5 @@
+<?php //debug($_SESSION); ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -27,12 +29,17 @@
             </li>
         </ul>
         <ul class="navbar-nav my-2 my-lg-0">
-            <li class="nav-item">
-                <a class="nav-link" href="/account/register">Sign Up</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/account/login">Login</a>
-            </li>
+			<?php
+			if (isset($_SESSION['user'])) {
+				echo
+				'<li class="nav-item"><a class="nav-link" href="/account/profile">'.$_SESSION['user']['username'].'</a></li>';
+			} else {
+			    echo
+                '<li class="nav-item"><a class="nav-link" href="/account/register">Sign Up</a></li>
+                 <li class="nav-item"><a class="nav-link" href="/account/login">Login</a></li>';
+            }
+			?>
+
         </ul>
     </div>
 </nav>
