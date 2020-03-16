@@ -1,16 +1,18 @@
-<div style="margin: 20px">
-    <h2>Forgot Password</h2>
-    <br>
-    <form action="/account/register" method="post">
-        <label>Username</label>
-        <p><input type="text" placeholder="Choose username" name="username">
-        <label>Email</label>
-        <p><input type="text" placeholder="Enter email" name="email">
-        <label>Password</label>
-        <p><input type="text" placeholder="Choose password" name="password">
-        <label>Re-Password</label>
-        <p><input type="text" placeholder="Repeat password" name="repassword">
-            <br />
-            <b><button style="margin-top: 10px" type="submit" value="Submit">Sign Up</button></b>
-    </form>
+<div class="container">
+    <h1 class="mt-4 mb-3">Forgot Password</h1>
+    <div class="row">
+        <div class="col-lg-8 mb-4">
+            <form action="/account/forgot" method="post" name="forgot">
+                <div class="control-group form-group">
+                    <div class="controls">
+                        <label for="email">Email:</label>
+                        <input type="email" class="form-control" name="email" id="email">
+                        <p class="help-block"></p>
+                    </div>
+                </div>
+                <div id="success"></div>
+                <button type="submit" class="btn btn-primary">Reset Password</button>
+            </form>
+        </div>
+    </div>
 </div>

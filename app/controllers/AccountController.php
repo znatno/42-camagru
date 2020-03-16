@@ -37,13 +37,11 @@ class AccountController extends Controller {
 		$this->view->redirect('/');
 	}
 
-	// todo: AJAXify [Sign Up]
 	public function registerAction() {
 		if (!empty($_POST)) {
 			if (!$this->model->validate(['username', 'email', 'password'], $_POST)) {
+				// Showing Error message, no Sign Up
 				$this->view->message('error', $this->model->error);
-				// $this->view->errorCode(400);
-
 			} else {
 				// Getting POST values
 				$id = 0;
@@ -57,16 +55,19 @@ class AccountController extends Controller {
 					'INSERT INTO `users` (id, username, email, password, confirm) VALUE (:id, :username, :email, :password, :confirm)',
 					['id' => $id, 'username' => $username, 'email' => $email, 'password' => $password, 'confirm' => $confirm]);
 
-				// Showing result
-				$this->view->message('success', 'form passed validation');
+				// Showing result after Sign Up
+				$this->view->message('success', 'You are registered. Check your email for confirmation');
 			}
-
 		}
 		$this->view->render('Register');
 	}
 
 	public function forgotAction() {
 		$this->view->render('Forgot Password');
+	}
+
+	public function confirmAction() {
+		$this->view->render('Confirm');
 	}
 
 

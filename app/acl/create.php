@@ -3,11 +3,11 @@
 return [
 
 	'all' => [
-		'new',
+
 	],
 
 	'authorize' => [
-
+		'new',
 	],
 
 	'guest' => [

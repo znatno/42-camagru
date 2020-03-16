@@ -25,6 +25,10 @@ return [
 		'controller' => 'account',
 		'action' => 'forgot'
 	],
+	'account/confirm' => [
+		'controller' => 'account',
+		'action' => 'confirm'
+	],
 
 	// Create Controller
 	'create/new' => [

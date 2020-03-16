@@ -3,18 +3,18 @@
 return [
 
 	'all' => [
-		'login',
-		'logout',
-		'register',
-		'forgot',
+
 	],
 
 	'authorize' => [
-
+		'logout',
 	],
 
 	'guest' => [
-
+		'login',
+		'register',
+		'forgot',
+		'confirm',
 	],
 
 	'admin' => [
