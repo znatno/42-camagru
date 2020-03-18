@@ -2,7 +2,7 @@
     <h1 class="mt-4 mb-5">Sign Up</h1>
     <div class="row">
         <div class="col-lg-8 mb-4">
-            <form onsubmit="return signUpHandler();" action="/account/confirm" method="post" name="register">
+            <form onsubmit="return signUpHandler();" action="/account/confirm" method="post" name="register" id="signUpForm">
                 <div class="control-group form-group">
                     <div class="controls">
                         <label for="username">Username:</label>

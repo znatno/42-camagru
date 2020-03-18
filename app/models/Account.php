@@ -70,4 +70,32 @@ class Account extends Model {
 		return true;
 	}
 
+	public function createUser($username, $email, $password) {
+		$id = 0;
+		$confirm = 0;
+		$password = hash('whirlpool', $password);
+
+		$this->db->query(
+			'INSERT INTO `db_ibohun`.`users` (id, username, email, password, confirm) VALUE (:id, :username, :email, :password, :confirm)',
+			['id' => $id, 'username' => $username, 'email' => $email, 'password' => $password, 'confirm' => $confirm]);
+
+	}
+
+	public function sendConfirmEmail($email) {
+		$title = '42 Camagru: Sign Up Confirmation';
+
+		$secret = $this->getSecret($email);
+		$port = $_SERVER['SERVER_PORT'];
+		$host = $_SERVER['HTTP_HOST'];
+		$link = "http://$host:$port/account/activate?email=$email&secret=$secret";
+		$message = "Please, click on the following link to confirm your registration:\r\n\r\n$link";
+
+		sendMail($email, $title, $message);
+	}
+
+	public function getSecret($var) {
+		$salt = 'Boritesia-Poborete!';
+		return hash('whirlpool', $var . $salt);
+	}
+
 }

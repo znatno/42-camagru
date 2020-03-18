@@ -7,8 +7,12 @@ use app\core\Controller;
 class AccountController extends Controller {
 
 	// todo: AJAXify [Log in / out]
+
 	public function loginAction() {
 		if (!empty($_POST)) {
+
+			// todo: create model method
+
 			$username = $_POST['username'];
 			$password = hash('whirlpool', $_POST['password']);
 
@@ -43,31 +47,37 @@ class AccountController extends Controller {
 				// Showing Error message, no Sign Up
 				$this->view->message('error', $this->model->error);
 			} else {
-				// Getting POST values
-				$id = 0;
-				$username = $_POST['username'];
-				$email = $_POST['email'];
-				$password = hash('whirlpool', $_POST['password']);
-				$confirm = 0;
-
-				// Adding into Db
-				$this->model->db->query(
-					'INSERT INTO `users` (id, username, email, password, confirm) VALUE (:id, :username, :email, :password, :confirm)',
-					['id' => $id, 'username' => $username, 'email' => $email, 'password' => $password, 'confirm' => $confirm]);
-
-				// Showing result after Sign Up
-				$this->view->message('success', 'You are registered. Check your email for confirmation');
+				$this->model->createUser($_POST['username'], $_POST['email'], $_POST['password']);
+				$this->view->message('success', 'Check your email for confirmation to continue your registration');
 			}
 		}
 		$this->view->render('Register');
 	}
 
 	public function forgotAction() {
+		// todo: create forgot password
+
 		$this->view->render('Forgot Password');
 	}
 
 	public function confirmAction() {
-		$this->view->render('Confirm');
+		if (!empty($_POST)) {
+			require 'app/lib/mail.php';
+
+			$this->model->sendConfirmEmail($_POST['email']);
+			$this->view->render('Confirm');
+		} else {
+			debug($_POST);
+			debug($_SESSION);
+		}
+	}
+
+	public function activateAction() {
+		if (!empty($_GET)) {
+
+			// todo: create activation
+
+		}
 	}
 
 

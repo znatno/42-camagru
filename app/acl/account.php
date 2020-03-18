@@ -8,6 +8,7 @@ return [
 
 	'authorize' => [
 		'logout',
+		'profile',
 	],
 
 	'guest' => [
@@ -15,6 +16,7 @@ return [
 		'register',
 		'forgot',
 		'confirm',
+		'activate',
 	],
 
 	'admin' => [
