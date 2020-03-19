@@ -2,7 +2,7 @@
     <h1 class="mt-4 mb-3">Reset Password</h1>
     <div class="row">
         <div class="col-lg-8 mb-4">
-            <form onsubmit="return resetHandler();" action="/account/reset-password-done" method="post" name="reset" id="resetForm">
+            <form onsubmit="return resetPasswordHandler();" action="/account/reset-password-done" method="post" name="reset" id="resetForm">
                 <div class="control-group form-group">
                     <div class="controls">
                         <label for="password">New Password:</label>

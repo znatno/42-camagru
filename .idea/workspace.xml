@@ -2,17 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f5d783a5-c1e1-495f-a4fd-2852365bc1d1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/views/account/forgotSent.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/account/resetPassword.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/account/resetPasswordSuccess.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pub/scripts/cookie.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/acl/account.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/acl/account.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/config/routes.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/config/routes.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/controllers/AccountController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/AccountController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/core/Router.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/core/Router.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/Account.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/Account.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/account/forgot.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/account/forgot.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/error/403.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/error/403.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/account/resetPassword.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/account/resetPassword.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pub/scripts/handlers.js" beforeDir="false" afterPath="$PROJECT_DIR$/pub/scripts/handlers.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -89,6 +82,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="database.console.LAST_STATE" value="false" />
+    <property name="jsx.switch.disabled" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/app/views/account" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
@@ -162,7 +156,7 @@
       <workItem from="1583850094949" duration="60931000" />
       <workItem from="1584622433277" duration="147000" />
       <workItem from="1584622598202" duration="262000" />
-      <workItem from="1584622864856" duration="4521000" />
+      <workItem from="1584622864856" duration="8323000" />
     </task>
     <servers />
   </component>

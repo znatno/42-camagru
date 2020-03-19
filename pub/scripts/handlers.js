@@ -38,6 +38,22 @@ function resetHandler() {
     return submitFormHandler('/account/reset-password-change', 'resetForm');
 }
 
+function resetPasswordHandler() {
+    import('cookie.js');
+
+    let username = "";
+    let email = decodeURI(getCookie());
+    let secret = "";
+
+    console.log(email);
+
+    ajax('/account/reset-password-change', `username=${username}&email=${email}&secret=${secret}`, (json) => {
+
+    });
+
+    return false;
+}
+
 function submitFormHandler(action, formId) {
     ajaxFormData(action, formId, (json) => {
         console.log(action);

@@ -82,7 +82,8 @@ class AccountController extends Controller {
 		if ($email) {
 			if ($this->model->checkIsEmailConfirmed($email)) {
 				if ($secret == $this->model->getSecret('reset'.$email.'password')) {
-//					$this->model->logInUserByEmail($email);
+					setcookie("UserEmail", htmlspecialchars($email), time() + 3600);
+					setcookie("UserSecretResetPass", htmlspecialchars($secret), time() + 3600);
 					$this->view->render('Create New Password');
 				} else {
 					echo "<h3>Invalid secret key.</h3><br>Contact email:support@camagru.com<br>";
