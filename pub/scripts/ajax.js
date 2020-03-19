@@ -1,4 +1,4 @@
-function ajaxForForm(relativeUrl, formId, onLoadEnd) {
+function ajaxFormData(relativeUrl, formId, onLoadEnd) {
     let request = new XMLHttpRequest();
     let formData = new FormData(document.getElementById(formId));
 

@@ -1,5 +1,7 @@
 <?php
     // Check auth
+//    debug($_SESSION);
+
     if (isset($_SESSION['user'])) {
         $check_login = '<li class="nav-item"><a class="nav-link" href="/account/profile">' . $_SESSION['user']['username'] . '</a></li><li class="nav-item"><a class="nav-link" href="/account/logout">Log Out</a></li>';
     } else {

@@ -1,5 +1,5 @@
 function signUpHandler() {
-    ajaxForForm('/account/register', 'signUpForm', (json) => {
+    ajaxFormData('/account/register', 'signUpForm', (json) => {
         if (json.status === 'success') {
             document.forms['signUpForm'].submit()
         } else {
@@ -11,9 +11,9 @@ function signUpHandler() {
 }
 
 function logInHandler() {
-    ajaxForForm('/account/login', 'logInForm', (json) => {
-        if (json.status === 'success') {
-            document.forms['logInForm'].submit()
+    ajaxFormData('/account/login', 'logInForm', (json) => {
+        if (json.url) {
+            window.location.href = json.url
         } else {
             alert(json.status + ': ' + json.message)
         }
@@ -23,7 +23,7 @@ function logInHandler() {
 }
 
 function forgotHandler() {
-    ajaxForForm('/account/forgot', 'forgotForm', (json) => {
+    ajaxFormData('/account/forgot', 'forgotForm', (json) => {
         if (json.status === 'success') {
             document.forms['forgotForm'].submit()
         } else {
@@ -35,7 +35,7 @@ function forgotHandler() {
 }
 
 function submitFormHandler(action, formId) {
-    ajaxForForm(action, formId, (json) => {
+    ajaxFormData(action, formId, (json) => {
         if (json.status === 'success') {
             document.forms[formId].submit()
         } else {

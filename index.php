@@ -16,13 +16,9 @@ spl_autoload_register('autoloader');
 session_start();
 
 // debug($_SERVER);
-// debug($_GET);
 
 $r = new Router();
 $r->run();
-
-
-
 
 ?>
 <br>

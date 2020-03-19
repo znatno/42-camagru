@@ -8,7 +8,7 @@ use app\core\Model;
 
 class Account extends Model {
 
-	public function validate($input, $post) {
+	public function validateRegistrationData($input, $post) {
 		$rules = [
 			'username' => [
 				 'pattern' => '/[A-Za-z0-9]{3,15}$/',
@@ -33,40 +33,35 @@ class Account extends Model {
 			$this->error = $rules['email']['message'];
 			return false;
 		}
-
-		$stmt = $this->db->query(
-			'SELECT username FROM db_ibohun.users WHERE username = :username', ['username' => $post['username']]);
+		$stmt = $this->db->query('SELECT username FROM db_ibohun.users WHERE username = :username', ['username' => $post['username']]);
 		if ($stmt->rowCount() > 0) {
 			$this->error = 'Username exists';
 			return false;
 		}
-
-		$stmt = $this->db->query(
-			'SELECT email FROM db_ibohun.users WHERE email = :email', ['email' => $post['email']]);
+		$stmt = $this->db->query('SELECT email FROM db_ibohun.users WHERE email = :email', ['email' => $post['email']]);
 		if ($stmt->rowCount() > 0) {
 			$this->error = 'Email is already in use';
 			return false;
 		}
-
 		return true;
 	}
 
-	public function checkUser($user, $pass) {
-
-		$stmt = $this->db->query(
-			'SELECT username FROM db_ibohun.users WHERE username = :username', ['username' => $user]);
+	public function checkUserPassword($user, $pass) {
+		$stmt = $this->db->query('SELECT username FROM db_ibohun.users WHERE username = :username', ['username' => $user]);
 		if ($stmt->rowCount() == 0) {
 			$this->error = 'User does not exist';
 			return false;
 		}
-
-		$stmt = $this->db->query(
-			'SELECT username FROM db_ibohun.users WHERE username = :username AND password = :password', ['username' => $user, 'password' => $pass]);
+		$stmt = $this->db->query('SELECT username FROM db_ibohun.users WHERE username = :username AND password = :password', ['username' => $user, 'password' => $pass]);
 		if ($stmt->rowCount() != 1) {
 			$this->error = 'Wrong password';
 			return false;
 		}
-
+		$stmt = $this->db->query('SELECT username FROM db_ibohun.users WHERE username = :username AND confirm = :confirm', ['username' => $user, 'confirm' => true]);
+		if ($stmt->rowCount() != 1) {
+			$this->error = 'Account isn\'t confirmed. Please, check your email for confirmational link. After confirming try again';
+			return false;
+		}
 		return true;
 	}
 
@@ -78,7 +73,29 @@ class Account extends Model {
 		$this->db->query(
 			'INSERT INTO `db_ibohun`.`users` (id, username, email, password, confirm) VALUE (:id, :username, :email, :password, :confirm)',
 			['id' => $id, 'username' => $username, 'email' => $email, 'password' => $password, 'confirm' => $confirm]);
+	}
 
+	public function logInUser($username, $password) {
+		$user = $this->db->row(
+			'SELECT * FROM db_ibohun.users WHERE username = :username AND password = :password',
+			['username' => $username, 'password' => $password]);
+
+		$_SESSION['user'] = [
+			'id' => $user[0]['id'],
+			'username' => $user[0]['username'],
+			'email' => $user[0]['email'],
+			'confirm' => $user[0]['confirm']
+		];
+	}
+
+	public function logOutUser() {
+		unset($_SESSION['user']);
+		session_destroy();
+	}
+
+	public function getSecret($var) {
+		$salt = 'Boritesia-Poborete!';
+		return hash('md5', $var . $salt);
 	}
 
 	public function sendConfirmEmail($email) {
@@ -88,14 +105,20 @@ class Account extends Model {
 		$port = $_SERVER['SERVER_PORT'];
 		$host = $_SERVER['HTTP_HOST'];
 		$link = "http://$host:$port/account/activate?email=$email&secret=$secret";
-		$message = "Please, click on the following link to confirm your registration:\r\n\r\n$link";
+		$message = wordwrap("Please, click on the following link to confirm your registration:\r\n\r\n <a href=\"$link\">$link</a>");
 
 		sendMail($email, $title, $message);
 	}
 
-	public function getSecret($var) {
-		$salt = 'Boritesia-Poborete!';
-		return hash('whirlpool', $var . $salt);
+	public function confirmEmail($email) {
+		$secret = $this->getSecret($email);
+		if ($secret == $_GET['secret']) {
+			$this->db->query('UPDATE db_ibohun.users SET confirm = 1 WHERE email = :email;', ['email' => $email]);
+		}
+	}
+
+	public function checkIsEmailConfirmed($email) {
+		return $this->db->column('SELECT confirm FROM db_ibohun.users WHERE email = :email', ['email' => $email]);
 	}
 
 }

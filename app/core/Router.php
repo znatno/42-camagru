@@ -22,12 +22,19 @@ class Router {
 
 	public function match() {
 		$url = trim($_SERVER['REQUEST_URI'], '/');
+
+		if (!empty($_GET)) {
+			$url = strstr($url, '?', true);
+		}
+
 		foreach ($this->routes as $route => $params) {
 			if (preg_match($route, $url, $matches)) {
 				$this->params = $params;
+
 				return true;
 			}
 		}
+
 		return false;
 	}
 

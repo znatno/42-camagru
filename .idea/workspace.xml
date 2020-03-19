@@ -2,20 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f5d783a5-c1e1-495f-a4fd-2852365bc1d1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/lib/mail.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/views/error/401.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/acl/account.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/acl/account.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/config/routes.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/config/routes.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/controllers/AccountController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/AccountController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/lib/dev.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/lib/dev.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/Router.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/core/Router.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/models/Account.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/Account.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/Main.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/Main.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/account/confirm.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/account/confirm.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/account/register.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/account/register.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/account/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/account/login.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/layout/default.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/layout/default.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pub/scripts/ajax.js" beforeDir="false" afterPath="$PROJECT_DIR$/pub/scripts/ajax.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pub/scripts/handlers.js" beforeDir="false" afterPath="$PROJECT_DIR$/pub/scripts/handlers.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pub/scripts/validate.js" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -156,7 +153,7 @@
       <workItem from="1583262179952" duration="6075000" />
       <workItem from="1583515190432" duration="624000" />
       <workItem from="1583675095301" duration="10915000" />
-      <workItem from="1583850094949" duration="45949000" />
+      <workItem from="1583850094949" duration="56593000" />
     </task>
     <servers />
   </component>
