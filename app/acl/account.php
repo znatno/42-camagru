@@ -17,6 +17,10 @@ return [
 		'forgot',
 		'confirm',
 		'activate',
+		'forgotSent',
+		'resetPassword',
+		'resetPasswordChange',
+		'resetPasswordDone',
 	],
 
 	'admin' => [

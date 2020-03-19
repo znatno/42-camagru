@@ -39,17 +39,8 @@ class AccountController extends Controller {
 		$this->view->render('Register');
 	}
 
-	public function forgotAction() {
-
-		// todo: create forgot password
-
-		$this->view->render('Forgot Password');
-	}
-
 	public function confirmAction() {
 		if (!empty($_POST)) {
-			require 'app/lib/mail.php';
-
 			$this->model->sendConfirmEmail($_POST['email']);
 			$this->view->render('Confirm');
 		} else {
@@ -67,6 +58,51 @@ class AccountController extends Controller {
 			View::errorCode(400);
 		}
 
+	}
+
+	public function forgotAction() {
+		if (!empty($_POST['email'])) {
+			if (!$this->model->checkEmail($_POST['email'])) {
+				$this->model->sendResetEmail($_POST['email']);
+				$this->view->message('success', 'Reset password email was sent');
+			} else {
+				$this->view->message('error', $this->model->error);
+			}
+		}
+		$this->view->render('Forgot Password');
+	}
+
+	public function forgotSentAction() {
+		$this->view->render('Reset link was sent');
+	}
+
+	public function resetPasswordAction() {
+		$email = $_GET['email'];
+		$secret = $_GET['secret'];
+		if ($email) {
+			if ($this->model->checkIsEmailConfirmed($email)) {
+				if ($secret == $this->model->getSecret('reset'.$email.'password')) {
+//					$this->model->logInUserByEmail($email);
+					$this->view->render('Create New Password');
+				} else {
+					echo "<h3>Invalid secret key.</h3><br>Contact email:support@camagru.com<br>";
+					View::errorCode(400);
+				}
+			} else {
+				echo "<h3>Email is not confirmed.</h3><br>Please, confirm your email firstly<br>";
+				View::errorCode(401);
+			}
+		} else {
+			View::errorCode(403);
+		}
+	}
+
+	public function resetPasswordChangeAction() {
+		$this->view->message('session', debug($_SESSION));
+	}
+
+	public function resetPasswordDoneAction() {
+		$this->view->render('Password has been changed');
 	}
 
 }

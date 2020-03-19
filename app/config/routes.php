@@ -21,10 +21,6 @@ return [
 		'controller' => 'account',
 		'action' => 'register'
 	],
-	'account/forgot' => [
-		'controller' => 'account',
-		'action' => 'forgot'
-	],
 	'account/confirm' => [
 		'controller' => 'account',
 		'action' => 'confirm'
@@ -32,6 +28,26 @@ return [
 	'account/activate' => [
 		'controller' => 'account',
 		'action' => 'activate'
+	],
+	'account/forgot' => [
+		'controller' => 'account',
+		'action' => 'forgot'
+	],
+	'account/forgot-sent' => [
+		'controller' => 'account',
+		'action' => 'forgotSent'
+	],
+	'account/reset-password' => [
+		'controller' => 'account',
+		'action' => 'resetPassword'
+	],
+	'account/reset-password-change' => [
+		'controller' => 'account',
+		'action' => 'resetPasswordChange'
+	],
+	'account/reset-password-done' => [
+		'controller' => 'account',
+		'action' => 'resetPasswordDone'
 	],
 
 	// Create Controller

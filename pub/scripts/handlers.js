@@ -34,12 +34,25 @@ function forgotHandler() {
     return false;
 }
 
+function resetHandler() {
+    return submitFormHandler('/account/reset-password-change', 'resetForm');
+}
+
 function submitFormHandler(action, formId) {
     ajaxFormData(action, formId, (json) => {
-        if (json.status === 'success') {
-            document.forms[formId].submit()
+        console.log(action);
+        console.log(formId);
+        console.log(json);
+        if (json != null) {
+            if (json.url != null) {
+                window.location.href = json.url
+            } else if (json.status === 'success') {
+                document.forms[formId].submit()
+            } else {
+                alert(json.status + ': ' + json.message)
+            }
         } else {
-            alert(json.status + ': ' + json.message)
+            alert('no json');
         }
     });
 

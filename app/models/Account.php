@@ -65,6 +65,16 @@ class Account extends Model {
 		return true;
 	}
 
+	public function checkEmail($email) {
+		$stmt = $this->db->query('SELECT email FROM db_ibohun.users WHERE email = :email', ['email' => $email]);
+		if ($stmt->rowCount() > 0) {
+			$this->error = 'Email is already in use';
+			return false;
+		}
+		$this->error = 'User with such email is not found';
+		return true;
+	}
+
 	public function createUser($username, $email, $password) {
 		$id = 0;
 		$confirm = 0;
@@ -79,6 +89,19 @@ class Account extends Model {
 		$user = $this->db->row(
 			'SELECT * FROM db_ibohun.users WHERE username = :username AND password = :password',
 			['username' => $username, 'password' => $password]);
+
+		$_SESSION['user'] = [
+			'id' => $user[0]['id'],
+			'username' => $user[0]['username'],
+			'email' => $user[0]['email'],
+			'confirm' => $user[0]['confirm']
+		];
+	}
+
+	public function logInUserByEmail($email) {
+		$user = $this->db->row(
+			'SELECT * FROM db_ibohun.users WHERE email = :email',
+			['email' => $email]);
 
 		$_SESSION['user'] = [
 			'id' => $user[0]['id'],
@@ -107,6 +130,7 @@ class Account extends Model {
 		$link = "http://$host:$port/account/activate?email=$email&secret=$secret";
 		$message = wordwrap("Please, click on the following link to confirm your registration:\r\n\r\n <a href=\"$link\">$link</a>");
 
+		require 'app/lib/mail.php';
 		sendMail($email, $title, $message);
 	}
 
@@ -119,6 +143,23 @@ class Account extends Model {
 
 	public function checkIsEmailConfirmed($email) {
 		return $this->db->column('SELECT confirm FROM db_ibohun.users WHERE email = :email', ['email' => $email]);
+	}
+
+	public function sendResetEmail($email) {
+		$title = '42 Camagru: Reset Password';
+
+		$secret = $this->getSecret('reset' . $email . 'password');
+		$port = $_SERVER['SERVER_PORT'];
+		$host = $_SERVER['HTTP_HOST'];
+		$link = "http://$host:$port/account/reset-password?email=$email&secret=$secret";
+		$message = wordwrap("Please, click on the following link to reset your password:\r\n\r\n <a href=\"$link\">$link</a>");
+
+		require 'app/lib/mail.php';
+		sendMail($email, $title, $message);
+	}
+
+	public function confirmResetPassword($email) {
+
 	}
 
 }
