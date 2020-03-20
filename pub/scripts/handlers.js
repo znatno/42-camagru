@@ -39,15 +39,12 @@ function resetHandler() {
 }
 
 function resetPasswordHandler() {
-    import('cookie.js');
+    let email = getCookie('email');
+    let secret = getCookie('secret');
 
-    let username = "";
-    let email = decodeURI(getCookie());
-    let secret = "";
+    console.log(email + ' ' + secret);
 
-    console.log(email);
-
-    ajax('/account/reset-password-change', `username=${username}&email=${email}&secret=${secret}`, (json) => {
+    ajax('/account/reset-password-change', `email=${email}&secret=${secret}`, (json) => {
 
     });
 
