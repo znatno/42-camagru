@@ -24,7 +24,7 @@ class Account extends Model {
 			],
 		];
 		foreach ($input as $val) {
-			if (!isset($post[$val]) or empty($post[$val]) or !preg_match($rules[$val]['pattern'], $post[$val])) {
+			if (!isset($post[$val]) || empty($post[$val]) || !preg_match($rules[$val]['pattern'], $post[$val])) {
 				$this->error = $rules[$val]['message'];
 				return false;
 			}
@@ -160,6 +160,17 @@ class Account extends Model {
 
 	public function confirmResetPassword($email) {
 
+	}
+
+	public function validateAndSetPassword($password, $email) {
+		$pattern = '/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/';
+		$msg = 'Password must consist at least 1 lowercase and 1 uppercase letters, 1 number, 1 special symbol, and be 8 characters or longer';
+		if (!isset($password) || empty($password) || !preg_match($pattern, $password) || !isset($email) || empty($email)) {
+			$this->error = $msg;
+			return false;
+		}
+		$this->db->query('UPDATE db_ibohun.users SET password = :password WHERE email = :email;', ['password' => $password, 'email' => $email]);
+		return true;
 	}
 
 }

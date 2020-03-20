@@ -14,6 +14,7 @@ class MainController extends Controller {
 //			'news' => $news,
 //		];
 //		$this->view->render('Main Page', $vars);
+
 		$this->view->render('Main Page');
 	}
 

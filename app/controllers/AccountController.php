@@ -13,7 +13,7 @@ class AccountController extends Controller {
 			$password = hash('whirlpool', $_POST['password']);
 
 			if (!$this->model->checkUserPassword($username, $password)) {
-				$this->view->message('error', $this->model->error);
+				$this->view->message('Error', $this->model->error);
 			} else {
 				$this->model->logInUser($username, $password);
 				$this->view->location('/');
@@ -30,10 +30,10 @@ class AccountController extends Controller {
 	public function registerAction() {
 		if (!empty($_POST)) {
 			if (!$this->model->validateRegistrationData(['username', 'email', 'password'], $_POST)) {
-				$this->view->message('error', $this->model->error);
+				$this->view->message('Error', $this->model->error);
 			} else {
 				$this->model->createUser($_POST['username'], $_POST['email'], $_POST['password']);
-				$this->view->message('success', 'Check your email for confirmation to continue your registration');
+				$this->view->message('Success', 'Check your email for confirmation to continue your registration');
 			}
 		}
 		$this->view->render('Register');
@@ -64,9 +64,9 @@ class AccountController extends Controller {
 		if (!empty($_POST['email'])) {
 			if (!$this->model->checkEmail($_POST['email'])) {
 				$this->model->sendResetEmail($_POST['email']);
-				$this->view->message('success', 'Reset password email was sent');
+				$this->view->message('Success', 'Reset password email was sent');
 			} else {
-				$this->view->message('error', $this->model->error);
+				$this->view->message('Error', $this->model->error);
 			}
 		}
 		$this->view->render('Forgot Password');
@@ -79,27 +79,37 @@ class AccountController extends Controller {
 	public function resetPasswordAction() {
 		$email = $_GET['email'];
 		$secret = $_GET['secret'];
-		if ($email) {
+		if ($email && !$this->model->checkEmail($email)) {
 			if ($this->model->checkIsEmailConfirmed($email)) {
 				if ($secret == $this->model->getSecret('reset'.$email.'password')) {
 					setcookie("UserEmail", htmlspecialchars($email), time() + 3600);
-					setcookie("UserSecretResetPass", htmlspecialchars($secret), time() + 3600);
 					$this->view->render('Create New Password');
 				} else {
-					echo "<h3>Invalid secret key.</h3><br>Contact email:support@camagru.com<br>";
+					echo "<h3>Invalid secret key</h3>Contact email: support@camagru.com<br />";
 					View::errorCode(400);
 				}
 			} else {
-				echo "<h3>Email is not confirmed.</h3><br>Please, confirm your email firstly<br>";
+				echo "<h3>Email is not confirmed</h3>Please, confirm your email firstly.<br />";
 				View::errorCode(401);
 			}
 		} else {
+			echo "<h3>User with such does not exist</h3>Please, sign up firstly.<br />";
 			View::errorCode(403);
 		}
 	}
 
 	public function resetPasswordChangeAction() {
-		$this->view->message('session', debug($_SESSION));
+		$email = $_POST['email'];
+		$password = $_POST['password'];
+
+		if (!$this->model->validateAndSetPassword($password)) {
+			$this->view->message('Error', $this->model->error);
+		}
+		// find user by email
+		// set new passwd
+
+		unset($_COOKIE['UserEmail']);
+		$this->view->message('status', 'message');
 	}
 
 	public function resetPasswordDoneAction() {

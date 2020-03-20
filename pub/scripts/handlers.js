@@ -34,40 +34,17 @@ function forgotHandler() {
     return false;
 }
 
-function resetHandler() {
-    return submitFormHandler('/account/reset-password-change', 'resetForm');
-}
-
 function resetPasswordHandler() {
-    let email = getCookie('email');
-    let secret = getCookie('secret');
+    let email = getCookie('UserEmail');
+    let secret = getCookie('UserSecretResetPass');
+    let password = document.forms['resetForm']['password'].value;
 
-    console.log(email + ' ' + secret);
+    ajax('/account/reset-password-change', `email=${email}&secret=${secret}&password=${password}`, (json) => {
 
-    ajax('/account/reset-password-change', `email=${email}&secret=${secret}`, (json) => {
 
+        alert(json.status + ': ' + json.message)
     });
 
     return false;
 }
 
-function submitFormHandler(action, formId) {
-    ajaxFormData(action, formId, (json) => {
-        console.log(action);
-        console.log(formId);
-        console.log(json);
-        if (json != null) {
-            if (json.url != null) {
-                window.location.href = json.url
-            } else if (json.status === 'success') {
-                document.forms[formId].submit()
-            } else {
-                alert(json.status + ': ' + json.message)
-            }
-        } else {
-            alert('no json');
-        }
-    });
-
-    return false;
-}
