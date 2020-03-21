@@ -1,6 +1,6 @@
 function signUpHandler() {
     ajaxFormData('/account/register', 'signUpForm', (json) => {
-        if (json.status === 'success') {
+        if (json.status === 'Success') {
             document.forms['signUpForm'].submit()
         } else {
             alert(json.status + ': ' + json.message)
@@ -24,7 +24,7 @@ function logInHandler() {
 
 function forgotHandler() {
     ajaxFormData('/account/forgot', 'forgotForm', (json) => {
-        if (json.status === 'success') {
+        if (json.status === 'Success') {
             document.forms['forgotForm'].submit()
         } else {
             alert(json.status + ': ' + json.message)
@@ -46,5 +46,17 @@ function resetPasswordHandler() {
     });
 
     return false;
+}
+
+function editUsernameHandler() {
+
+}
+
+function editEmailHandler() {
+
+}
+
+function editPasswordHandler() {
+
 }
 

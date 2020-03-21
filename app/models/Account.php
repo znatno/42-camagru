@@ -57,7 +57,7 @@ class Account extends Model {
 			$this->error = 'Wrong password';
 			return false;
 		}
-		$stmt = $this->db->query('SELECT username FROM db_ibohun.users WHERE username = :username AND confirm = :confirm', ['username' => $user, 'confirm' => true]);
+		$stmt = $this->db->query('SELECT username FROM db_ibohun.users WHERE username = :username AND confirmed = :confirm', ['username' => $user, 'confirm' => true]);
 		if ($stmt->rowCount() != 1) {
 			$this->error = 'Account isn\'t confirmed. Please, check your email for confirmational link. After confirming try again';
 			return false;
@@ -81,7 +81,7 @@ class Account extends Model {
 		$password = hash('whirlpool', $password);
 
 		$this->db->query(
-			'INSERT INTO `db_ibohun`.`users` (id, username, email, password, confirm) VALUE (:id, :username, :email, :password, :confirm)',
+			'INSERT INTO `db_ibohun`.`users` (id, username, email, password, confirmed) VALUE (:id, :username, :email, :password, :confirm)',
 			['id' => $id, 'username' => $username, 'email' => $email, 'password' => $password, 'confirm' => $confirm]);
 	}
 
@@ -137,12 +137,12 @@ class Account extends Model {
 	public function confirmEmail($email) {
 		$secret = $this->getSecret($email);
 		if ($secret == $_GET['secret']) {
-			$this->db->query('UPDATE db_ibohun.users SET confirm = 1 WHERE email = :email;', ['email' => $email]);
+			$this->db->query('UPDATE db_ibohun.users SET confirmed = 1 WHERE email = :email;', ['email' => $email]);
 		}
 	}
 
 	public function checkIsEmailConfirmed($email) {
-		return $this->db->column('SELECT confirm FROM db_ibohun.users WHERE email = :email', ['email' => $email]);
+		return $this->db->column('SELECT confirmed FROM db_ibohun.users WHERE email = :email', ['email' => $email]);
 	}
 
 	public function sendResetEmail($email) {
@@ -156,10 +156,6 @@ class Account extends Model {
 
 		require 'app/lib/mail.php';
 		sendMail($email, $title, $message);
-	}
-
-	public function confirmResetPassword($email) {
-
 	}
 
 	public function validateAndSetPassword($password, $email) {

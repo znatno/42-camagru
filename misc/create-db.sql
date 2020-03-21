@@ -10,6 +10,12 @@ CREATE TABLE users
     confirm BOOL NOT NULL DEFAULT 0
 );
 
+ALTER TABLE db_ibohun.users ADD notifications BOOL NOT NULL
+    AFTER email;
+
+ALTER TABLE db_ibohun.users CHANGE `confirm` `confirmed` BOOL NOT NULL DEFAULT 0;
+ALTER TABLE db_ibohun.users CHANGE `notifications` `notifications` BOOL NOT NULL DEFAULT 0;
+
 # INSERT INTO users (id, username)
 # VALUES (null, 'Alex'),
 #        (null, 'John'),

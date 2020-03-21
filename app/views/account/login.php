@@ -6,14 +6,14 @@
                 <div class="control-group form-group">
                     <div class="controls">
                         <label for="username">Username:</label>
-                        <input placeholder="" type="text" class="form-control" name="username" id="username" minlength="3" required>
+                        <input placeholder="" type="text" class="form-control" name="username" id="username" minlength="3" autocomplete="username" required>
                         <p class="help-block"></p>
                     </div>
                 </div>
                 <div class="control-group form-group">
                     <div class="controls">
                         <label for="password">Password:</label>
-                        <input placeholder="" type="password" class="form-control" name="password" id="password" minlength="8" required>
+                        <input placeholder="" type="password" class="form-control" name="password" id="password" minlength="8" autocomplete="current-password" required>
                         <p class="help-block"></p>
                     </div>
                 </div>

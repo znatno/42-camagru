@@ -27,6 +27,7 @@ class AccountController extends Controller {
 		$this->view->redirect('/');
 	}
 
+	/*------- Sign Up Flow -------*/
 	public function registerAction() {
 		if (!empty($_POST)) {
 			if (!$this->model->validateRegistrationData(['username', 'email', 'password'], $_POST)) {
@@ -59,7 +60,9 @@ class AccountController extends Controller {
 		}
 
 	}
+	/*----------------------------*/
 
+	/*------ Reset Password ------*/
 	public function forgotAction() {
 		if (!empty($_POST['email'])) {
 			if (!$this->model->checkEmail($_POST['email'])) {
@@ -115,5 +118,21 @@ class AccountController extends Controller {
 	public function resetPasswordDoneAction() {
 		$this->view->render('Password has been changed');
 	}
+	/*----------------------------*/
 
+	/*------- Profile Flow -------*/
+
+	public function showProfileAction() {
+		$this->view->render('Profile');
+	}
+
+	public function showProfileSaveChangesAction() {
+
+		// перевірити чи були змінені поля
+		// перевірити чи різняться значення полів
+
+		$this->view->render('Profile');
+	}
+
+	/*----------------------------*/
 }

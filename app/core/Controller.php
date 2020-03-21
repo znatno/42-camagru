@@ -34,13 +34,13 @@ abstract class Controller {
 		if ($this->isAcl('all')) {
 			return true;
 		}
-		elseif (isset($_SESSION['user']['id']) and $this->isAcl('authorize')) {
+		elseif (isset($_SESSION['user']['id']) && $this->isAcl('authorize')) {
 			return true;
 		}
-		elseif (!isset($_SESSION['user']['id']) and $this->isAcl('guest')) {
+		elseif (!isset($_SESSION['user']['id']) && $this->isAcl('guest')) {
 			return true;
 		}
-		elseif (isset($_SESSION['admin']) and $this->isAcl('admin')) {
+		elseif (isset($_SESSION['admin']) && $this->isAcl('admin')) {
 			return true;
 		}
 		return false;

@@ -1,5 +1,7 @@
 <?php
 
+// write Action names, not routes
+
 return [
 
 	'all' => [
@@ -8,7 +10,8 @@ return [
 
 	'authorize' => [
 		'logout',
-		'profile',
+		'showProfile',
+		'showProfileSaveChanges',
 	],
 
 	'guest' => [

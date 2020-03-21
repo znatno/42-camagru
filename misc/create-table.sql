@@ -8,3 +8,4 @@ CREATE TABLE news
 INSERT INTO news ( id, title, text )
 VALUES (null, 'News 1', 'Lorem Ipsum'),
        (null, 'News 2', 'Dolor Set Amet');
+

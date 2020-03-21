@@ -17,6 +17,7 @@ return [
 		'controller' => 'account',
 		'action' => 'logout'
 	],
+	// - Sign Up Flow
 	'account/register' => [
 		'controller' => 'account',
 		'action' => 'register'
@@ -29,6 +30,7 @@ return [
 		'controller' => 'account',
 		'action' => 'activate'
 	],
+	// - Reset Password Flow
 	'account/forgot' => [
 		'controller' => 'account',
 		'action' => 'forgot'
@@ -48,6 +50,15 @@ return [
 	'account/reset-password-done' => [
 		'controller' => 'account',
 		'action' => 'resetPasswordDone'
+	],
+	// - Profile Flow
+	'account/profile' => [
+		'controller' => 'account',
+		'action' => 'showProfile'
+	],
+	'account/profile-save' => [
+		'controller' => 'account',
+		'action' => 'showProfileSaveChanges'
 	],
 
 	// Create Controller
