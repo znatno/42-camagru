@@ -46,6 +46,16 @@ class Account extends Model {
 		return true;
 	}
 
+	public function checkUsername($username) {
+		$stmt = $this->db->query('SELECT username FROM db_ibohun.users WHERE username = :username', ['username' => $username]);
+		if ($stmt->rowCount() == 0) {
+			$this->error = 'User does not exist';
+			return false;
+		}
+		$this->error = 'User exist';
+		return true;
+	}
+
 	public function checkUserPassword($user, $pass) {
 		$stmt = $this->db->query('SELECT username FROM db_ibohun.users WHERE username = :username', ['username' => $user]);
 		if ($stmt->rowCount() == 0) {

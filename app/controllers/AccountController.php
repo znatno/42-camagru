@@ -85,7 +85,8 @@ class AccountController extends Controller {
 		if ($email && !$this->model->checkEmail($email)) {
 			if ($this->model->checkIsEmailConfirmed($email)) {
 				if ($secret == $this->model->getSecret('reset'.$email.'password')) {
-					setcookie("UserEmail", htmlspecialchars($email), time() + 3600);
+					// setcookie("UserEmail", htmlspecialchars($email), time() + 3600);
+					$_SESSION['resetPassword']['email'] = $email;
 					$this->view->render('Create New Password');
 				} else {
 					echo "<h3>Invalid secret key</h3>Contact email: support@camagru.com<br />";
@@ -102,15 +103,12 @@ class AccountController extends Controller {
 	}
 
 	public function resetPasswordChangeAction() {
-		$email = $_POST['email'];
+		$email = $_SESSION['resetPassword']['email'];
 		$password = $_POST['password'];
 
-		if (!$this->model->validateAndSetPassword($password)) {
+		if (!$this->model->validateAndSetPassword($password, $email)) {
 			$this->view->message('Error', $this->model->error);
 		}
-		// find user by email
-		// set new passwd
-
 		unset($_COOKIE['UserEmail']);
 		$this->view->message('status', 'message');
 	}
@@ -126,10 +124,33 @@ class AccountController extends Controller {
 		$this->view->render('Profile');
 	}
 
-	public function showProfileSaveChangesAction() {
+	public function showProfileCheckChangesAction() {
+		$username = $_POST['username'];
+		$password = $_POST['password'];
 
 		// перевірити чи були змінені поля
+		$this->model->checkIsChanged();
+
+		// чи інше від сесії
+		if ($_SESSION['user']['username'] != $_POST['username'] && $this->model->checkUsername($_POST['username'])) {
+			$username = $_POST['username'];
+		}
+
+		if (isset($_POST['email']) && !empty($_POST['email']) && $this->model->checkEmail($_POST['email'])) {
+			$email = $_POST['email'];
+		}
+
+
+
+		if (isset($_POST['email']) && !empty($_POST['email']) && $this->model->checkEmail($_POST['email'])) {
+			$email = $_POST['email'];
+		}
+
 		// перевірити чи різняться значення полів
+
+		// змінити значення на нові
+
+
 
 		$this->view->render('Profile');
 	}

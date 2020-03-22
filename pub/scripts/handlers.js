@@ -35,28 +35,34 @@ function forgotHandler() {
 }
 
 function resetPasswordHandler() {
-    let email = getCookie('UserEmail');
-    let secret = getCookie('UserSecretResetPass');
+
+    // todo: check for working and rm comments
+
+    // let email = getCookie('UserEmail');
+    // let secret = getCookie('UserSecretResetPass');
     let password = document.forms['resetForm']['password'].value;
 
-    ajax('/account/reset-password-change', `email=${email}&secret=${secret}&password=${password}`, (json) => {
-
-
+    // ajax('/account/reset-password-change', `email=${email}&secret=${secret}&password=${password}`, (json) => {
+    ajax('/account/reset-password-change', `password=${password}`, (json) => {
         alert(json.status + ': ' + json.message)
     });
 
     return false;
 }
 
-function editUsernameHandler() {
+function editProfileHandler() {
+    // let username;
+    // let email;
+    // let password;
+    // let notification;
 
-}
+    // ajax('/account/showProfileSaveChanges',
+    //     `username=${username}&email=${email}&password=${password}&notification=${notification}`, (json) => {
+    // });
 
-function editEmailHandler() {
-
-}
-
-function editPasswordHandler() {
+    ajaxFormData('/account/showProfileSaveChanges', 'editProfileForm', (json) => {
+        alert(json.status);
+    });
 
 }
 
