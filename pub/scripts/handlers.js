@@ -6,7 +6,6 @@ function signUpHandler() {
             alert(json.status + ': ' + json.message)
         }
     });
-
     return false;
 }
 
@@ -18,7 +17,6 @@ function logInHandler() {
             alert(json.status + ': ' + json.message);
         }
     });
-
     return false;
 }
 
@@ -30,7 +28,6 @@ function forgotHandler() {
             alert(json.status + ': ' + json.message)
         }
     });
-
     return false;
 }
 
@@ -42,23 +39,21 @@ function resetPasswordHandler() {
             alert(json.status + ': ' + json.message)
         }
     });
-
     return false;
 }
-
 function editProfileHandler() {
-    // let username;
-    // let email;
-    // let password;
-    // let notification;
 
-    // ajax('/account/showProfileSaveChanges',
-    //     `username=${username}&email=${email}&password=${password}&notification=${notification}`, (json) => {
-    // });
-
-    ajaxFormData('/account/showProfileSaveChanges', 'editProfileForm', (json) => {
-        alert(json.status);
+    ajaxFormData('/account/profile-save', 'editProfileForm', (json) => {
+        if (json) {
+            console.log(json);
+            if (json.status === 'Success') {
+                alert(json.status + ': ' + json.message)
+            } else {
+                alert(json.status + ': ' + json.message)
+            }
+        }
     });
+    return false;
+
 
 }
-

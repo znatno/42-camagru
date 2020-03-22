@@ -2,7 +2,7 @@
     <h1 class="mt-4 mb-3">Edit Profile</h1>
     <div class="row">
         <div class="col-lg-8 mb-4">
-            <form class="mt-2 mb-4" onsubmit="return editProfileHandler();" action="/account/profile-save" method="post" name="edit-username" id="editProfileForm">
+            <form class="mt-2 mb-4" onsubmit="return editProfileHandler();" action="/account/profile" method="post" name="edit-profile" id="editProfileForm">
                 <div class="form-group">
                     <label for="username">Username:</label>
                     <input value="<?=$_SESSION['user']['username']?>" type="text" class="form-control" name="username" id="username" minlength="3" autocomplete="username" required>

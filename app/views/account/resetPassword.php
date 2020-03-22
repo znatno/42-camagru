@@ -4,8 +4,8 @@
         <div class="col-lg-8 mb-4">
             <form onsubmit="return resetPasswordHandler();" action="/account/reset-password-success" method="post" name="reset" id="resetForm">
                 <div class="form-group">
-                    <label for="username">Email:</label>
-                    <input name=username" id="username" type="text" class="form-control" value="<?=$_GET['email']?>" autocomplete="" readonly>
+                    <label for="username">Username:</label>
+                    <input name=username" id="username" type="text" class="form-control" value="<?=$_SESSION['resetPassword']['username']?>" autocomplete="" readonly>
                 </div>
                 <div class="form-group">
                         <label for="password">New Password:</label>

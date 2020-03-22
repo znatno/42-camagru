@@ -158,8 +158,26 @@ class Account extends Model {
 		if (!$this->validatePassword($password)) {
 			return false;
 		}
+		$password = hash('whirlpool', $password);
 		$this->db->query('UPDATE db_ibohun.users SET password = :password WHERE email = :email;', ['password' => $password, 'email' => $email]);
 		return true;
+	}
+
+	public function updateUserProfile($changed = []) {
+		$id = $_SESSION['user']['id'];
+
+		if (isset($changed['username']) && !empty($changed['username'])) {
+			$this->db->query('UPDATE db_ibohun.users SET username = :username WHERE id = :id;', ['username' => $changed['username'], 'id' => $id]);
+			$_SESSION['user']['username'] = $changed['username'];
+		}
+		if (isset($changed['email']) && !empty($changed['email'])) {
+			$this->db->query('UPDATE db_ibohun.users SET email = :email WHERE id = :id;', ['email' => $changed['email'], 'id' => $id]);
+			$_SESSION['user']['email'] = $changed['email'];
+		}
+		if (isset($changed['password']) && !empty($changed['password'])) {
+			$password = hash('whirlpool', $changed['password']);
+			$this->db->query('UPDATE db_ibohun.users SET password = :password WHERE id = :id;', ['password' => $password, 'id' => $id]);
+		}
 	}
 
 }

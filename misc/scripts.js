@@ -1,21 +1,21 @@
-function ajaxFormData(relativeUrl, formId, onLoadEnd) {
-    let request = new XMLHttpRequest();
+function _ajaxFormData(relativeUrl, formId, onLoadEnd) {
+    let _request = new XMLHttpRequest();
     let formData = new FormData(document.getElementById(formId));
 
-    request.open('POST', getHostname() + relativeUrl);
-    request.responseType = 'json';
-    request.onloadend = function() { onLoadEnd(request.response) };
-    request.send(formData)
+    _request.open('POST', getHostname() + relativeUrl);
+    _request.responseType = 'json';
+    _request.onloadend = function() { onLoadEnd(_request.response) };
+    _request.send(formData)
 }
 
-function ajax(relativeUrl, params, onLoadEnd) {
-    let request = new XMLHttpRequest();
+function _ajax(relativeUrl, params, onLoadEnd) {
+    let _request = new XMLHttpRequest();
 
-    request.open('POST', getHostname() + relativeUrl);
-    request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
-    request.responseType = 'json';
-    request.onloadend = function() { onLoadEnd(request.response) };
-    request.send(params)
+    _request.open('POST', getHostname() + relativeUrl);
+    _request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+    _request.responseType = 'json';
+    _request.onloadend = function() { onLoadEnd(_request.response) };
+    _request.send(params)
 }
 
 function getHostname() {

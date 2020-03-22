@@ -4,8 +4,10 @@
 
     if (isset($_SESSION['user'])) {
         $check_login = '<li class="nav-item"><a class="nav-link" href="/account/profile">' . $_SESSION['user']['username'] . '</a></li><li class="nav-item"><a class="nav-link" href="/account/logout">Log Out</a></li>';
+        $check_post = '<li class="nav-item"><a class="nav-link" href="/create/new">New Post</a></li>';
     } else {
         $check_login = '<li class="nav-item"><a class="nav-link" href="/account/register">Sign Up</a></li><li class="nav-item"><a class="nav-link" href="/account/login">Log In</a></li>';
+		$check_post = '';
     }
 ?>
 
@@ -31,9 +33,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="/">Gallery</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/create/new">New Post</a>
-            </li>
+            <?= $check_post ?>
         </ul>
         <ul class="navbar-nav my-2 my-lg-0">
 			<?= $check_login ?>

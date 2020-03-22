@@ -77,6 +77,11 @@ class AccountController extends Controller {
 			if (!$this->model->validateEmail($_POST['email'])) {
 				$this->model->sendResetEmail($_POST['email']);
 				$_SESSION['resetPassword']['secret'] = $this->model->getSecret('send-reset'.$_POST['email']);
+
+				// todo: make sure that is work correctly
+
+				$_SESSION['resetPassword']['username'] = $this->model->db->column('SELECT username FROM db_ibohun.users WHERE email = :email',
+					['email' => $_POST['email']]);
 				$this->view->message('Success', 'Reset password email was sent');
 			} else {
 				$this->view->message('Error', $this->model->error);
@@ -102,6 +107,7 @@ class AccountController extends Controller {
 					$_SESSION['resetPassword']['email'] = $email;
 					unset($_SESSION['resetPassword']['secret']);
 					$this->view->render('Create New Password');
+					unset($_SESSION['resetPassword']['username']);
 
 				} else {
 					echo "<h3>Expired secret key</h3>Please, try again<br />";
@@ -119,10 +125,7 @@ class AccountController extends Controller {
 	}
 
 	public function resetPasswordChangeAction() {
-		$email = $_SESSION['resetPassword']['email'];
-		$password = $_POST['password'];
-
-		if (!$this->model->validateAndSetPassword($password, $email)) {
+		if (!$this->model->validateAndSetPassword($_POST['password'], $_SESSION['resetPassword']['email'])) {
 			$this->view->message('Error', $this->model->error);
 		}
 		unset($_SESSION['resetPassword']['email']);
@@ -140,35 +143,33 @@ class AccountController extends Controller {
 		$this->view->render('Profile');
 	}
 
-	public function showProfileCheckChangesAction() {
-		$password = $_POST['password'];
-
-		// перевірити чи були змінені поля
-		$this->model->checkIsChanged();
-
-		// чи інше від сесії
-		if ($_SESSION['user']['username'] != $_POST['username'] && $this->model->validateUsername($_POST['username'])) {
-			$username = $_POST['username'];
+	public function showProfileSaveChangesAction() {
+		$changed = [];
+		if ($_SESSION['user']['username'] != $_POST['username']) {
+			if ($this->model->validateUsername($_POST['username'])) {
+				$changed['username'] = $_POST['username'];
+			} else {
+				$this->view->message('Error user', $this->model->error);
+			}
 		}
-		if ($_SESSION['user']['email'] != $_POST['email'] && $this->model->validateEmail($_POST['email'])) {
-			$email = $_POST['email'];
+		if ($_SESSION['user']['email'] != $_POST['email']) {
+			if ($this->model->validateEmail($_POST['email'])) {
+				$changed['email'] = $_POST['email'];
+			} else {
+				$this->view->message('Error email', $this->model->error);
+			}
 		}
-		if ($this->model->validatePassword($_POST['password']))
-
-
-
-
-		if (isset($_POST['email']) && !empty($_POST['email']) && $this->model->checkEmail($_POST['email'])) {
-			$email = $_POST['email'];
+		if (isset($_POST['password']) && !empty($_POST['password'])) {
+			if ($this->model->validatePassword($_POST['password'])) {
+				$changed['password'] = $_POST['password'];
+			} else {
+				$this->view->message('Error pass', $this->model->error.' '.$_POST['password']);
+			}
 		}
-
-		// перевірити чи різняться значення полів
-
-		// змінити значення на нові
-
-
-
-		$this->view->render('Profile');
+		if (!empty($changed)) {
+			$this->model->updateUserProfile($changed);
+			$this->view->message('Success', 'Your profile has been updated');
+		}
 	}
 
 	/*----------------------------*/
