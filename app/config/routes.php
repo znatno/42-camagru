@@ -13,6 +13,10 @@ return [
 		'controller' => 'account',
 		'action' => 'login'
 	],
+	'account/login-validate' => [
+		'controller' => 'account',
+		'action' => 'loginValidate'
+	],
 	'account/logout' => [
 		'controller' => 'account',
 		'action' => 'logout'
@@ -47,9 +51,9 @@ return [
 		'controller' => 'account',
 		'action' => 'resetPasswordChange'
 	],
-	'account/reset-password-done' => [
+	'account/reset-password-success' => [
 		'controller' => 'account',
-		'action' => 'resetPasswordDone'
+		'action' => 'resetPasswordSuccess'
 	],
 	// - Profile Flow
 	'account/profile' => [

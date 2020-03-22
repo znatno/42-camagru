@@ -7,7 +7,7 @@ use app\core\View;
 
 class AccountController extends Controller {
 
-	public function loginAction() {
+	public function loginValidateAction() {
 		if (!empty($_POST)) {
 			$username = $_POST['username'];
 			$password = hash('whirlpool', $_POST['password']);
@@ -15,9 +15,18 @@ class AccountController extends Controller {
 			if (!$this->model->checkUserPassword($username, $password)) {
 				$this->view->message('Error', $this->model->error);
 			} else {
-				$this->model->logInUser($username, $password);
-				$this->view->location('/');
+				$this->view->message('Success', 'You are successfully logged in');
 			}
+		}
+	}
+
+	public function loginAction() {
+		if (!empty($_POST)) {
+			$username = $_POST['username'];
+			$password = hash('whirlpool', $_POST['password']);
+
+			$this->model->logInUser($username, $password);
+			$this->view->redirect('/');
 		}
 		$this->view->render('Login');
 	}
@@ -30,7 +39,7 @@ class AccountController extends Controller {
 	/*------- Sign Up Flow -------*/
 	public function registerAction() {
 		if (!empty($_POST)) {
-			if (!$this->model->validateRegistrationData(['username', 'email', 'password'], $_POST)) {
+			if (!$this->model->validateRegistrationData($_POST)) {
 				$this->view->message('Error', $this->model->error);
 			} else {
 				$this->model->createUser($_POST['username'], $_POST['email'], $_POST['password']);
@@ -65,8 +74,9 @@ class AccountController extends Controller {
 	/*------ Reset Password ------*/
 	public function forgotAction() {
 		if (!empty($_POST['email'])) {
-			if (!$this->model->checkEmail($_POST['email'])) {
+			if (!$this->model->validateEmail($_POST['email'])) {
 				$this->model->sendResetEmail($_POST['email']);
+				$_SESSION['resetPassword']['secret'] = $this->model->getSecret('send-reset'.$_POST['email']);
 				$this->view->message('Success', 'Reset password email was sent');
 			} else {
 				$this->view->message('Error', $this->model->error);
@@ -82,15 +92,21 @@ class AccountController extends Controller {
 	public function resetPasswordAction() {
 		$email = $_GET['email'];
 		$secret = $_GET['secret'];
-		if ($email && !$this->model->checkEmail($email)) {
+		if ($email && !$this->model->validateEmail($email)) {
 			if ($this->model->checkIsEmailConfirmed($email)) {
-				if ($secret == $this->model->getSecret('reset'.$email.'password')) {
-					// setcookie("UserEmail", htmlspecialchars($email), time() + 3600);
+
+				if ($secret == $this->model->getSecret('reset'.$email.'password')
+					&& isset($_SESSION['resetPassword']['secret'])
+					&& $_SESSION['resetPassword']['secret'] == $this->model->getSecret('send-reset'.$email)) {
+
 					$_SESSION['resetPassword']['email'] = $email;
+					unset($_SESSION['resetPassword']['secret']);
 					$this->view->render('Create New Password');
+
 				} else {
-					echo "<h3>Invalid secret key</h3>Contact email: support@camagru.com<br />";
+					echo "<h3>Expired secret key</h3>Please, try again<br />";
 					View::errorCode(400);
+
 				}
 			} else {
 				echo "<h3>Email is not confirmed</h3>Please, confirm your email firstly.<br />";
@@ -109,11 +125,11 @@ class AccountController extends Controller {
 		if (!$this->model->validateAndSetPassword($password, $email)) {
 			$this->view->message('Error', $this->model->error);
 		}
-		unset($_COOKIE['UserEmail']);
-		$this->view->message('status', 'message');
+		unset($_SESSION['resetPassword']['email']);
+		$this->view->message('Success', 'Password has been changed successfully');
 	}
 
-	public function resetPasswordDoneAction() {
+	public function resetPasswordSuccessAction() {
 		$this->view->render('Password has been changed');
 	}
 	/*----------------------------*/
@@ -125,20 +141,20 @@ class AccountController extends Controller {
 	}
 
 	public function showProfileCheckChangesAction() {
-		$username = $_POST['username'];
 		$password = $_POST['password'];
 
 		// перевірити чи були змінені поля
 		$this->model->checkIsChanged();
 
 		// чи інше від сесії
-		if ($_SESSION['user']['username'] != $_POST['username'] && $this->model->checkUsername($_POST['username'])) {
+		if ($_SESSION['user']['username'] != $_POST['username'] && $this->model->validateUsername($_POST['username'])) {
 			$username = $_POST['username'];
 		}
-
-		if (isset($_POST['email']) && !empty($_POST['email']) && $this->model->checkEmail($_POST['email'])) {
+		if ($_SESSION['user']['email'] != $_POST['email'] && $this->model->validateEmail($_POST['email'])) {
 			$email = $_POST['email'];
 		}
+		if ($this->model->validatePassword($_POST['password']))
+
 
 
 

@@ -11,11 +11,11 @@ function signUpHandler() {
 }
 
 function logInHandler() {
-    ajaxFormData('/account/login', 'logInForm', (json) => {
-        if (json.url) {
-            window.location.href = json.url
+    ajaxFormData('/account/login-validate', 'logInForm', (json) => {
+        if (json.status === 'Success') {
+            document.forms['logInForm'].submit();
         } else {
-            alert(json.status + ': ' + json.message)
+            alert(json.status + ': ' + json.message);
         }
     });
 
@@ -35,16 +35,12 @@ function forgotHandler() {
 }
 
 function resetPasswordHandler() {
-
-    // todo: check for working and rm comments
-
-    // let email = getCookie('UserEmail');
-    // let secret = getCookie('UserSecretResetPass');
-    let password = document.forms['resetForm']['password'].value;
-
-    // ajax('/account/reset-password-change', `email=${email}&secret=${secret}&password=${password}`, (json) => {
-    ajax('/account/reset-password-change', `password=${password}`, (json) => {
-        alert(json.status + ': ' + json.message)
+    ajaxFormData('/account/reset-password-change', 'resetForm', (json) => {
+        if (json.status === 'Success') {
+            document.forms['resetForm'].submit()
+        } else {
+            alert(json.status + ': ' + json.message)
+        }
     });
 
     return false;

@@ -16,6 +16,7 @@ return [
 
 	'guest' => [
 		'login',
+		'loginValidate',
 		'register',
 		'forgot',
 		'confirm',
@@ -23,7 +24,7 @@ return [
 		'forgotSent',
 		'resetPassword',
 		'resetPasswordChange',
-		'resetPasswordDone',
+		'resetPasswordSuccess',
 	],
 
 	'admin' => [

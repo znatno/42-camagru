@@ -8,51 +8,48 @@ use app\core\Model;
 
 class Account extends Model {
 
-	public function validateRegistrationData($input, $post) {
-		$rules = [
-			'username' => [
-				 'pattern' => '/[A-Za-z0-9]{3,15}$/',
-				'message' => 'Username can consist only numbers and latin letters (min. 3 symbols)',
-			],
-			'email' => [
-				'pattern' => '/[-0-9a-zA-Z.+_]+@[-0-9a-zA-Z.+_]+.[a-zA-Z]{2,4}/',
-				'message' => 'Invalid email address',
-			],
-			'password' => [
-				'pattern' => '/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/',
-				'message' => 'Password must consist at least 1 lowercase and 1 uppercase letters, 1 number, 1 special symbol, and be 8 characters or longer',
-			],
-		];
-		foreach ($input as $val) {
-			if (!isset($post[$val]) || empty($post[$val]) || !preg_match($rules[$val]['pattern'], $post[$val])) {
-				$this->error = $rules[$val]['message'];
-				return false;
-			}
-		}
-		if (!filter_var($post['email'], FILTER_VALIDATE_EMAIL)) {
-			$this->error = $rules['email']['message'];
+	public function validateRegistrationData($post) {
+		return $this->validateUsername($post['username'])
+			&& $this->validateEmail($post['email'])
+			&& $this->validatePassword($post['password']);
+	}
+
+	public function validateUsername($username) {
+		$pattern = '/[A-Za-z0-9]{3,15}$/';
+		if (!isset($username) || empty($username) || !preg_match($pattern, $username)) {
+			$this->error = 'Username can consist only numbers and latin letters (min. 3 symbols)';
 			return false;
 		}
-		$stmt = $this->db->query('SELECT username FROM db_ibohun.users WHERE username = :username', ['username' => $post['username']]);
+		$stmt = $this->db->query('SELECT username FROM db_ibohun.users WHERE username = :username', ['username' => $username]);
 		if ($stmt->rowCount() > 0) {
-			$this->error = 'Username exists';
+			$this->error = 'User exist';
 			return false;
 		}
-		$stmt = $this->db->query('SELECT email FROM db_ibohun.users WHERE email = :email', ['email' => $post['email']]);
+		$this->error = 'User does not exist';
+		return true;
+	}
+
+	public function validateEmail($email) {
+		$pattern = '/[-0-9a-zA-Z.+_]+@[-0-9a-zA-Z.+_]+.[a-zA-Z]{2,4}/';
+		if (!isset($email) || empty($email) || !preg_match($pattern, $email) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+			$this->error = 'Invalid email address';
+			return false;
+		}
+		$stmt = $this->db->query('SELECT email FROM db_ibohun.users WHERE email = :email', ['email' => $email]);
 		if ($stmt->rowCount() > 0) {
 			$this->error = 'Email is already in use';
 			return false;
 		}
+		$this->error = 'User with such email is not found';
 		return true;
 	}
 
-	public function checkUsername($username) {
-		$stmt = $this->db->query('SELECT username FROM db_ibohun.users WHERE username = :username', ['username' => $username]);
-		if ($stmt->rowCount() == 0) {
-			$this->error = 'User does not exist';
+	public function validatePassword($password) {
+		$pattern = '/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/';
+		if (!isset($password) || empty($password) || !preg_match($pattern, $password)) {
+			$this->error = 'Password must consist at least 1 lowercase and 1 uppercase letters, 1 number, 1 special symbol, and be 8 characters or longer';
 			return false;
 		}
-		$this->error = 'User exist';
 		return true;
 	}
 
@@ -75,21 +72,10 @@ class Account extends Model {
 		return true;
 	}
 
-	public function checkEmail($email) {
-		$stmt = $this->db->query('SELECT email FROM db_ibohun.users WHERE email = :email', ['email' => $email]);
-		if ($stmt->rowCount() > 0) {
-			$this->error = 'Email is already in use';
-			return false;
-		}
-		$this->error = 'User with such email is not found';
-		return true;
-	}
-
 	public function createUser($username, $email, $password) {
 		$id = 0;
 		$confirm = 0;
 		$password = hash('whirlpool', $password);
-
 		$this->db->query(
 			'INSERT INTO `db_ibohun`.`users` (id, username, email, password, confirmed) VALUE (:id, :username, :email, :password, :confirm)',
 			['id' => $id, 'username' => $username, 'email' => $email, 'password' => $password, 'confirm' => $confirm]);
@@ -169,10 +155,7 @@ class Account extends Model {
 	}
 
 	public function validateAndSetPassword($password, $email) {
-		$pattern = '/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/';
-		$msg = 'Password must consist at least 1 lowercase and 1 uppercase letters, 1 number, 1 special symbol, and be 8 characters or longer';
-		if (!isset($password) || empty($password) || !preg_match($pattern, $password) || !isset($email) || empty($email)) {
-			$this->error = $msg;
+		if (!$this->validatePassword($password)) {
 			return false;
 		}
 		$this->db->query('UPDATE db_ibohun.users SET password = :password WHERE email = :email;', ['password' => $password, 'email' => $email]);
