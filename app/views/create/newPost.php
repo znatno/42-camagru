@@ -1,13 +1,13 @@
 
 <div class="container">
-    <h1 class="mt-4 mb-3">New Post</h1>
+    <h1 class="mt-4 mb-3">Create New Post</h1>
     <div class="row">
         <div class="col-lg-8 mb-4">
-            <p class="">here will be create photo</p>
-
+            <p>Main Section</p>
             <div class="form-group" id="snap-new-photo">
-                <video id="video" width="640" height="480" autoplay></video>
+                <video style="background-color: #666" id="video" width="640" height="480" autoplay></video>
                 <button id="snap">Snap Photo</button>
+                <button id="upload">Upload Photo</button>
             </div>
             <div class="form-group" style="display: none" id="new-photo-taken">
                 <canvas id="canvas" width="640" height="480"></canvas>
@@ -18,8 +18,6 @@
 
 
             <script type="text/javascript">
-
-
                 // Put event listeners into place
                 window.addEventListener("DOMContentLoaded", () => {
                     // Grab elements, create settings, etc.
@@ -44,7 +42,6 @@
                             video.play();
                         },
                         function(err) {
-                            // TODO: show that user need to enable camera
                             snapButton.disabled = true;
                         }
                     );
@@ -67,7 +64,11 @@
 
                 }, false);
             </script>
+
+
+        </div>
+        <div class="col-lg-4">
+            <p>Side Menu</p>
         </div>
     </div>
 </div>
-

@@ -68,7 +68,7 @@ return [
 	// Create Controller
 	'create/new' => [
 		'controller' => 'create',
-		'action' => 'new'
+		'action' => 'newPost'
 	],
 
 ];

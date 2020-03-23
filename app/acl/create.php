@@ -7,7 +7,7 @@ return [
 	],
 
 	'authorize' => [
-		'new',
+		'newPost',
 	],
 
 	'guest' => [
