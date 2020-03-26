@@ -8,6 +8,7 @@ return [
 
 	'authorize' => [
 		'newPost',
+		'uploadFile',
 	],
 
 	'guest' => [

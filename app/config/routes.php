@@ -70,5 +70,9 @@ return [
 		'controller' => 'create',
 		'action' => 'newPost'
 	],
+	'create/new-upload' => [
+		'controller' => 'create',
+		'action' => 'uploadFile'
+	],
 
 ];

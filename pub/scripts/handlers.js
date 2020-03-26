@@ -41,8 +41,8 @@ function resetPasswordHandler() {
     });
     return false;
 }
-function editProfileHandler() {
 
+function editProfileHandler() {
     ajaxFormData('/account/profile-save', 'editProfileForm', (json) => {
         if (json) {
             console.log(json);
@@ -54,6 +54,4 @@ function editProfileHandler() {
         }
     });
     return false;
-
-
 }
