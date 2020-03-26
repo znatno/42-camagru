@@ -1,0 +1,94 @@
+@import url("https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css");
+
+/*--- newPost.php ---*/
+
+#video {
+    background-color: #666;
+    display: block;
+}
+
+#canvas {
+    display: none;
+}
+
+#buttons-taken {
+    display: none;
+}
+
+/*--> Image Selection for Superposing */
+
+.superpose--select-list {
+    list-style-type: none;
+}
+
+.superpose--select-list-element {
+    display: inline-block;
+}
+
+.superpose--select-list-input {
+    display: none;
+}
+
+.superpose--select-list-label {
+    border: 1px solid #fff;
+    padding: 10px;
+    display: block;
+    position: relative;
+    margin: 10px;
+    cursor: pointer;
+}
+
+.superpose--select-list-label:before {
+    background-color: white;
+    color: white;
+    content: " ";
+    display: block;
+    border-radius: 50%;
+    border: 1px solid grey;
+    position: absolute;
+    top: -12px;
+    left: -12px;
+    width: 25px;
+    height: 25px;
+    text-align: center;
+    line-height: 24px;
+    transition-duration: 0.4s;
+    transform: scale(0);
+}
+
+.superpose--select-list-label img {
+    height: 100px;
+    width: 100px;
+    transition-duration: 0.2s;
+    transform-origin: 50% 50%;
+}
+
+:checked + .superpose--select-list-label,
+:hover + .superpose--select-list-label {
+    border-color: #ddd;
+    border-radius: 4px;
+}
+
+:checked + .superpose--select-list-label:before {
+    content: "✓";
+    background-color: #28a745;
+    border: 1px solid #28a745;
+    transform: scale(1);
+}
+
+:checked + .superpose--select-list-label img {
+    transform: scale(0.9);
+    z-index: -1;
+}
+
+.superpose--select-list-empty {
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.superpose--select-list-empty img {
+    position: relative;
+}

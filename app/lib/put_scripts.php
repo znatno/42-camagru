@@ -9,5 +9,5 @@ unset($files[1]);
 
 // Put all files from directory
 foreach ($files as $file) {
-	echo '<script type="text/javascript" src="/pub/scripts/'.$file.'"></script>';
+	echo '<script src="/pub/scripts/'.$file.'"></script>';
 }
