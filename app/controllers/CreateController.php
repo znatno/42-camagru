@@ -13,6 +13,11 @@ class CreateController extends Controller {
 
 	// Upload to the /pub/photos
 	public function uploadFileAction() {
+
+		// TODO: superpose Mask & Image
+
+
+
 		if (isset($_POST['image'])) {
 			$imgBase64 = $_POST['image'];
 
@@ -24,7 +29,7 @@ class CreateController extends Controller {
 			$success = file_put_contents($filePath, $imgData);
 
 			if ($success !== false) {
-				$this->view->message("Success", "Image is uploaded");
+				$this->view->message("Success", "Image is saved");
 			} else {
 				$this->view->message("Error", "Please, try again");
 			}

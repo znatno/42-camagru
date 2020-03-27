@@ -1,11 +1,11 @@
 function convertCanvasToImage(canvas) {
-    let image = new Image();
+    const image = new Image();
     image.src = canvas.toDataURL("image/png");
     return image;
 }
 
 function convertImageToCanvas(image) {
-    let canvas = document.createElement("canvas");
+    const canvas = document.createElement("canvas");
     canvas.width = image.width;
     canvas.height = image.height;
     canvas.getContext("2d").drawImage(image, 0, 0);
@@ -93,17 +93,33 @@ window.addEventListener("DOMContentLoaded", () => {
 
     saveSnapBtn.addEventListener('click', () => {
         let imageBase64 = convertCanvasToImage(canvas).src;
+        let masks = document.getElementsByClassName('superpose--select-list-label');
+        let maskId;
 
-        ajax('/create/new-upload', `image=${imageBase64}`, (json) => {
+        // Get mask ID
+        for (let key in masks) {
+            if (window.getComputedStyle(masks[key], ':before').transform === 'matrix(1, 0, 0, 1, 0, 0)') {
+                maskId = key;
+                break;
+            }
+        }
+
+        if (maskId === '0') {
+            alert('Error: no mask selected');
+            return;
+        }
+
+        // Process uploading
+        ajax('/create/new-upload', `image=${imageBase64}&maskId=${maskId}`, (json) => {
             if (json) {
                 if (json.status === 'Success') {
                     alert(json.status + ': ' + json.message)
                 } else {
                     alert(json.status + ': ' + json.message)
                 }
-
             }
         })
+
     });
 
 });
