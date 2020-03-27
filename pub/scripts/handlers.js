@@ -45,7 +45,6 @@ function resetPasswordHandler() {
 function editProfileHandler() {
     ajaxFormData('/account/profile-save', 'editProfileForm', (json) => {
         if (json) {
-            console.log(json);
             if (json.status === 'Success') {
                 alert(json.status + ': ' + json.message)
             } else {

@@ -13,33 +13,37 @@ function convertImageToCanvas(image) {
     return canvas;
 }
 
-window.addEventListener("DOMContentLoaded", () => {
-    // ImageLoader: Grab elements, create settings, etc.
-    const imageLoader = document.getElementById('imageLoader');
-    imageLoader.addEventListener('change', handleImage, false);
-    const canvas = document.getElementById('canvas');
-    const ctx = canvas.getContext('2d');
+// TODO: make adding .js on page if needed only
 
-    // Camera: Grab elements, create settings, etc.
-    const context = canvas.getContext('2d');
+window.addEventListener("DOMContentLoaded", () => {
+
+    // Grab elements, create settings, etc.
     const video = document.getElementById('video');
-    const snapButton = document.getElementById('snap');
+    const canvas = document.getElementById('canvas');
+    const context = canvas.getContext('2d');
+    const snapBtn = document.getElementById('snap');
+    const newSnapBtn = document.getElementById('new-snap');
+    const saveSnapBtn = document.getElementById('save-snap');
+    const btnsStart = document.getElementById('buttons-start');
+    const btnsTaken = document.getElementById('buttons-taken');
+    const imageLoader = document.getElementById('imageLoader');
 
     // Get image from upload
     function handleImage(e) {
         const reader = new FileReader();
         reader.onload = (event) => {
             const img = new Image();
-            img.onload = () => { ctx.drawImage(img, 0, 0); };
+            img.onload = () => { context.drawImage(img, 0, 0); };
             img.src = event.target.result;
         };
         reader.readAsDataURL(e.target.files[0]);
-        document.getElementById('video').style.display = 'none';
-        document.getElementById('canvas').style.display = 'block';
+        video.style.display = 'none';
+        canvas.style.display = 'block';
     }
+    imageLoader.addEventListener('change', handleImage, false);
 
     // Show file name in the input
-    document.getElementById('imageLoader').addEventListener('change', function (e) {
+    imageLoader.addEventListener('change', function (e) {
         let fileName = document.getElementById('imageLoader').files[0].name;
         let nextSibling = e.target.nextElementSibling;
         nextSibling.innerText = fileName
@@ -55,26 +59,57 @@ window.addEventListener("DOMContentLoaded", () => {
         })
         .catch(function(err) {
             /* handle the error */
-            snapButton.disabled = true;
+            snapBtn.disabled = true;
         });
 
     // Trigger photo take
-    document.getElementById('snap').addEventListener('click', () => {
-        context.drawImage(video, 0, 0, 640, 480);
-        document.getElementById('video').style.display = 'none';
-        document.getElementById('canvas').style.display = 'block';
-        document.getElementById('buttons-start').style.display = 'none';
-        document.getElementById('buttons-taken').style.display = 'flex';
-    });
-    document.getElementById('newSnap').addEventListener('click', () => {
-        document.getElementById('video').style.display = 'block';
-        document.getElementById('canvas').style.display = 'none';
-        document.getElementById('buttons-start').style.display = 'flex';
-        document.getElementById('buttons-taken').style.display = 'none';
+    snapBtn.addEventListener('click', () => {
+        let videoDisplayStyle = window.getComputedStyle(video).display;
+
+        if (videoDisplayStyle === 'block') {
+            context.drawImage(video, 0, 0, 640, 480);
+
+            // TODO: add mask on canvas
+
+            video.style.display = 'none';
+            canvas.style.display = 'block';
+            btnsStart.style.display = 'none';
+            btnsTaken.style.display = 'flex';
+        } else if (videoDisplayStyle === 'none') {
+
+            // TODO: add mask on canvas
+
+            btnsStart.style.display = 'none';
+            btnsTaken.style.display = 'flex';
+        }
     });
 
-    document.getElementById('saveSnap').addEventListener('click', () => {
-        // save photo
+    newSnapBtn.addEventListener('click', () => {
+        video.style.display = 'block';
+        canvas.style.display = 'none';
+        btnsStart.style.display = 'flex';
+        btnsTaken.style.display = 'none';
+    });
+
+    saveSnapBtn.addEventListener('click', () => {
+        let image = convertCanvasToImage(canvas).src;
+        console.log(image);
+
+        ajax('/create/new-upload', `image=${image}`, (json) => {
+            // TODO: say something about uploading
+
+            console.log('done');
+            console.log(json);
+
+            if (json) {
+                if (json.status === 'Success') {
+                    alert(json.status + ': ' + json.message)
+                } else {
+                    alert(json.status + ': ' + json.message)
+                }
+
+            }
+        })
     });
 
 });

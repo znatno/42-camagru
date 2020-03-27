@@ -1,7 +1,5 @@
 <div class="container">
-
   <h1 class="mt-5 mb-4">New Post</h1>
-
   <div class="row">
     <div class="col-lg-8 mb-4">
       <div class="row mb-2">
@@ -10,7 +8,6 @@
           <canvas id="canvas" width="640" height="480"></canvas>
         </div>
       </div>
-
       <div class="row mb-4" id="buttons-start">
         <div class="col-sm-2 pr-0">
           <button type="button" class="btn btn-primary btn-md btn-block" id="snap">Snap photo</button>
@@ -24,15 +21,13 @@
       </div>
       <div class="row mb-4" id="buttons-taken">
         <div class="col-sm-2 pr-0">
-          <button type="button" class="btn btn-success btn-md btn-block" id="saveSnap">Save photo </button>
+          <button type="button" class="btn btn-success btn-md btn-block" id="save-snap">Save photo </button>
         </div>
         <div class="col-sm-2 pr-0 pl-2">
-          <button type="button" class="btn btn-secondary btn-md btn-block" id="newSnap">Take new </button>
+          <button type="button" class="btn btn-secondary btn-md btn-block" id="new-snap">Take new </button>
         </div>
       </div>
-
       <hr>
-
       <h6 class="mt-4">Select mask menu</h6>
       <ul class="superpose--select-list p-0">
         <li class="superpose--select-list-element">
@@ -100,18 +95,17 @@
         </li>
       </ul>
     </div>
-
     <div class="col-lg-4">
-      <h6>Previous Pictures</h6>
-
-
+      <h6 class="mb-4">Previous Pictures</h6>
+      <div class="col-lg-12 mb-2 prev-taken-img" id="prev-img-1">
+        First
+      </div>
+      <div class="col-lg-12 mb-2 prev-taken-img" id="prev-img-2">
+        Second
+      </div>
+      <div class="col-lg-12 mb-2 prev-taken-img" id="prev-img-3">
+        Third
+      </div>
     </div>
-
   </div>
 </div>
-
-<script>
-
-</script>
-
-

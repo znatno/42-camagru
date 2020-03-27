@@ -77,9 +77,6 @@ class AccountController extends Controller {
 			if (!$this->model->validateEmail($_POST['email'])) {
 				$this->model->sendResetEmail($_POST['email']);
 				$_SESSION['resetPassword']['secret'] = $this->model->getSecret('send-reset'.$_POST['email']);
-
-				// todo: make sure that is work correctly
-
 				$_SESSION['resetPassword']['username'] = $this->model->db->column('SELECT username FROM db_ibohun.users WHERE email = :email',
 					['email' => $_POST['email']]);
 				$this->view->message('Success', 'Reset password email was sent');

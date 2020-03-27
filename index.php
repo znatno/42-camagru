@@ -1,5 +1,8 @@
 <?php
 
+date_default_timezone_set('Europe/Kiev');
+setlocale(LC_ALL, "en_US.UTF-8");
+
 require 'app/lib/dev.php';
 
 use app\core\Router;

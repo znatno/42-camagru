@@ -92,3 +92,13 @@
 .superpose--select-list-empty img {
     position: relative;
 }
+
+/*--> Previous Images */
+
+.prev-taken-img {
+    background-color: #eee;
+    padding: 64px;
+    width: 65%;
+    text-align: center;
+    color: #999;
+}
