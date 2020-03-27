@@ -92,15 +92,9 @@ window.addEventListener("DOMContentLoaded", () => {
     });
 
     saveSnapBtn.addEventListener('click', () => {
-        let image = convertCanvasToImage(canvas).src;
-        console.log(image);
+        let imageBase64 = convertCanvasToImage(canvas).src;
 
-        ajax('/create/new-upload', `image=${image}`, (json) => {
-            // TODO: say something about uploading
-
-            console.log('done');
-            console.log(json);
-
+        ajax('/create/new-upload', `image=${imageBase64}`, (json) => {
             if (json) {
                 if (json.status === 'Success') {
                     alert(json.status + ': ' + json.message)

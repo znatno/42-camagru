@@ -19,24 +19,19 @@ class CreateController extends Controller {
 			$imgBase64 = str_replace('data:image/png;base64,', '', $imgBase64);
 			$imgBase64 = str_replace(' ', '+', $imgBase64);
 			$imgData = base64_decode($imgBase64);
-			$fileName = uniqid() . '.png';
+			$fileName = uniqid('', true) . '.png';
 			$filePath = 'pub/photos/' . $fileName;
 			$success = file_put_contents($filePath, $imgData);
 
 			if ($success !== false) {
-				$this->view->message("Success", "done: ");
+				$this->view->message("Success", "Image is uploaded");
 			} else {
-				$this->view->message("Error", "bad");
+				$this->view->message("Error", "Please, try again");
 			}
 		} else {
-			$this->view->message("Error", "No submit ");
+			$this->view->message("Error", "No submitted data");
 		}
-
-
 	}
-
-
-
 
 	// select an image to superpose
 
