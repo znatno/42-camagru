@@ -3,6 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="f5d783a5-c1e1-495f-a4fd-2852365bc1d1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/lib/put_scripts.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/lib/put_scripts.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pub/scripts/image.js" beforeDir="false" afterPath="$PROJECT_DIR$/pub/scripts/image.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -90,6 +92,7 @@
       <recent name="$PROJECT_DIR$/app/views/account" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/pub/res" />
       <recent name="$PROJECT_DIR$/pub/scripts" />
       <recent name="$PROJECT_DIR$" />
     </key>
@@ -151,7 +154,7 @@
       <workItem from="1584622433277" duration="147000" />
       <workItem from="1584622598202" duration="262000" />
       <workItem from="1584622864856" duration="17050000" />
-      <workItem from="1584717050453" duration="76210000" />
+      <workItem from="1584717050453" duration="77526000" />
     </task>
     <servers />
   </component>

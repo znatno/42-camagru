@@ -109,6 +109,8 @@ window.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
+        // TODO: add mask and show it before saving + upload
+
         // Process uploading
         ajax('/create/new-upload', `image=${imageBase64}&maskId=${maskId}`, (json) => {
             if (json) {
