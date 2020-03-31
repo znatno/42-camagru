@@ -40,25 +40,25 @@
         <li class="superpose--select-list-element">
           <input class="superpose--select-list-input" id="superpose-img-1" type="radio" name="superpose-img-select" />
           <label class="superpose--select-list-label" for="superpose-img-1">
-            <img src="https://source.unsplash.com/100x100/?people" alt="No image"/>
+            <img src="/pub/res/masks/view/42.jpg" alt="No image"/>
           </label>
         </li>
         <li class="superpose--select-list-element">
           <input class="superpose--select-list-input" id="superpose-img-2" type="radio" name="superpose-img-select" />
           <label class="superpose--select-list-label" for="superpose-img-2">
-            <img src="https://source.unsplash.com/100x100/?nature" alt="No image"/>
+            <img src="/pub/res/masks/view/anime.jpg" alt="No image"/>
           </label>
         </li>
         <li class="superpose--select-list-element">
           <input class="superpose--select-list-input" id="superpose-img-3" type="radio" name="superpose-img-select" />
           <label class="superpose--select-list-label" for="superpose-img-3">
-            <img src="https://source.unsplash.com/100x100/?technology" alt="No image"/>
+            <img src="/pub/res/masks/view/brazzers.jpg" alt="No image"/>
           </label>
         </li>
         <li class="superpose--select-list-element">
           <input class="superpose--select-list-input" id="superpose-img-4" type="radio" name="superpose-img-select" />
           <label class="superpose--select-list-label" for="superpose-img-4">
-            <img src="https://source.unsplash.com/100x100/?business" alt="No image"/>
+            <img src="/pub/res/masks/view/covid.jpg" alt="No image"/>
           </label>
         </li>
       </ul>
@@ -66,31 +66,31 @@
         <li class="superpose--select-list-element">
           <input class="superpose--select-list-input" id="superpose-img-5" type="radio" name="superpose-img-select" />
           <label class="superpose--select-list-label" for="superpose-img-5">
-            <img src="https://source.unsplash.com/100x100/?tech" alt="No image"/>
+            <img src="/pub/res/masks/view/cowboy.jpg" alt="No image"/>
           </label>
         </li>
         <li class="superpose--select-list-element">
           <input class="superpose--select-list-input" id="superpose-img-6" type="radio" name="superpose-img-select" />
           <label class="superpose--select-list-label" for="superpose-img-6">
-            <img src="https://source.unsplash.com/100x100/?it" alt="No image"/>
+            <img src="/pub/res/masks/view/gun.jpg" alt="No image"/>
           </label>
         </li>
         <li class="superpose--select-list-element">
           <input class="superpose--select-list-input" id="superpose-img-7" type="radio" name="superpose-img-select" />
           <label class="superpose--select-list-label" for="superpose-img-7">
-            <img src="https://source.unsplash.com/100x100/?office" alt="No image"/>
+            <img src="/pub/res/masks/view/jesus.jpg" alt="No image"/>
           </label>
         </li>
         <li class="superpose--select-list-element">
           <input class="superpose--select-list-input" id="superpose-img-8" type="radio" name="superpose-img-select" />
           <label class="superpose--select-list-label" for="superpose-img-8">
-            <img src="https://source.unsplash.com/100x100/?wow" alt="No image"/>
+            <img src="/pub/res/masks/view/kitty.jpg" alt="No image"/>
           </label>
         </li>
         <li class="superpose--select-list-element">
           <input class="superpose--select-list-input" id="superpose-img-9" type="radio" name="superpose-img-select" />
           <label class="superpose--select-list-label" for="superpose-img-9">
-            <img src="https://source.unsplash.com/100x100/?sexy" alt="No image"/>
+            <img src="/pub/res/masks/view/mask.jpg" alt="No image"/>
           </label>
         </li>
       </ul>

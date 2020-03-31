@@ -11,35 +11,20 @@ class CreateController extends Controller {
 		$this->view->render('New Post', []);
 	}
 
-	// Upload to the /pub/photos
 	public function uploadFileAction() {
 
-		// TODO: superpose Mask & Image
-
-
-
-		if (isset($_POST['image'])) {
+		if (isset($_POST['image']) && isset($_POST['maskId'])) {
 			$imgBase64 = $_POST['image'];
+			$maskId = $_POST['maskId'];
 
-			$imgBase64 = str_replace('data:image/png;base64,', '', $imgBase64);
-			$imgBase64 = str_replace(' ', '+', $imgBase64);
-			$imgData = base64_decode($imgBase64);
-			$fileName = uniqid('', true) . '.png';
-			$filePath = 'pub/photos/' . $fileName;
-			$success = file_put_contents($filePath, $imgData);
-
-			if ($success !== false) {
+			if ($this->model->createImage($imgBase64, $maskId)) {
 				$this->view->message("Success", "Image is saved");
 			} else {
-				$this->view->message("Error", "Please, try again");
+				$this->view->message("Error", (isset($this->model->error) ? $this->model->error : "Please, try again"));
 			}
 		} else {
 			$this->view->message("Error", "No submitted data");
 		}
 	}
-
-	// select an image to superpose
-
-	// show taken/uploaded photo with superposed image
 
 }
