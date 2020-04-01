@@ -30,32 +30,32 @@
       <hr>
       <h6 class="mt-4">Select mask menu</h6>
       <ul class="superpose--select-list p-0">
-        <li class="superpose--select-list-element" onclick="maskId = '0'; maskFilename = ''; ">
+        <li class="superpose--select-list-element" onclick=" maskFilename = ''; ">
           <input class="superpose--select-list-input" id="superpose-img-0" type="radio" name="superpose-img-select" checked/>
           <label class="superpose--select-list-label" for="superpose-img-0">
             <span class="superpose--select-list-empty">No mask</span>
             <img src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="" />
           </label>
         </li>
-        <li class="superpose--select-list-element" onclick=" maskId = '1'; maskFilename = '42'; ">
+        <li class="superpose--select-list-element" onclick=" maskFilename = '42'; ">
           <input class="superpose--select-list-input" id="superpose-img-1" type="radio" name="superpose-img-select" />
           <label class="superpose--select-list-label" for="superpose-img-1">
             <img src="/pub/res/masks/view/42.jpg" alt="No image"/>
           </label>
         </li>
-        <li class="superpose--select-list-element" onclick=" maskId = '2'; maskFilename = 'anime'; ">
+        <li class="superpose--select-list-element" onclick=" maskFilename = 'anime'; ">
           <input class="superpose--select-list-input" id="superpose-img-2" type="radio" name="superpose-img-select" />
           <label class="superpose--select-list-label" for="superpose-img-2">
             <img src="/pub/res/masks/view/anime.jpg" alt="No image"/>
           </label>
         </li>
-        <li class="superpose--select-list-element" onclick=" maskId = '3'; maskFilename = 'brazzers'; ">
+        <li class="superpose--select-list-element" onclick=" maskFilename = 'brazzers'; ">
           <input class="superpose--select-list-input" id="superpose-img-3" type="radio" name="superpose-img-select" />
           <label class="superpose--select-list-label" for="superpose-img-3">
             <img src="/pub/res/masks/view/brazzers.jpg" alt="No image"/>
           </label>
         </li>
-        <li class="superpose--select-list-element" onclick=" maskId = '4'; maskFilename = 'covid'; ">
+        <li class="superpose--select-list-element" onclick=" maskFilename = 'covid'; ">
           <input class="superpose--select-list-input" id="superpose-img-4" type="radio" name="superpose-img-select" />
           <label class="superpose--select-list-label" for="superpose-img-4">
             <img src="/pub/res/masks/view/covid.jpg" alt="No image"/>
@@ -63,31 +63,31 @@
         </li>
       </ul>
       <ul class="superpose--select-list p-0">
-        <li class="superpose--select-list-element" onclick=" maskId = '5'; maskFilename = 'cowboy'; ">
+        <li class="superpose--select-list-element" onclick=" maskFilename = 'cowboy'; ">
           <input class="superpose--select-list-input" id="superpose-img-5" type="radio" name="superpose-img-select" />
           <label class="superpose--select-list-label" for="superpose-img-5">
             <img src="/pub/res/masks/view/cowboy.jpg" alt="No image"/>
           </label>
         </li>
-        <li class="superpose--select-list-element" onclick=" maskId = '6'; maskFilename = 'gun'; ">
+        <li class="superpose--select-list-element" onclick=" maskFilename = 'gun'; ">
           <input class="superpose--select-list-input" id="superpose-img-6" type="radio" name="superpose-img-select" />
           <label class="superpose--select-list-label" for="superpose-img-6">
             <img src="/pub/res/masks/view/gun.jpg" alt="No image"/>
           </label>
         </li>
-        <li class="superpose--select-list-element" onclick=" maskId = '7'; maskFilename = 'jesus'; ">
+        <li class="superpose--select-list-element" onclick=" maskFilename = 'jesus'; ">
           <input class="superpose--select-list-input" id="superpose-img-7" type="radio" name="superpose-img-select" />
           <label class="superpose--select-list-label" for="superpose-img-7">
             <img src="/pub/res/masks/view/jesus.jpg" alt="No image"/>
           </label>
         </li>
-        <li class="superpose--select-list-element" onclick=" maskId = '8'; maskFilename = 'kitty'">
+        <li class="superpose--select-list-element" onclick=" maskFilename = 'kitty'">
           <input class="superpose--select-list-input" id="superpose-img-8" type="radio" name="superpose-img-select" />
           <label class="superpose--select-list-label" for="superpose-img-8">
             <img src="/pub/res/masks/view/kitty.jpg" alt="No image"/>
           </label>
         </li>
-        <li class="superpose--select-list-element" onclick=" maskId = '9'; maskFilename = 'mask'">
+        <li class="superpose--select-list-element" onclick=" maskFilename = 'mask'">
           <input class="superpose--select-list-input" id="superpose-img-9" type="radio" name="superpose-img-select" />
           <label class="superpose--select-list-label" for="superpose-img-9">
             <img src="/pub/res/masks/view/mask.jpg" alt="No image"/>

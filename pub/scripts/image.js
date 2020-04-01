@@ -17,7 +17,8 @@ function convertImageToCanvas(image) {
 
 // TODO: make adding .js on page if needed only
 
-let maskId = '', maskFilename = '';
+let maskFilename = '';
+let maskImg = new Image();
 
 window.addEventListener("DOMContentLoaded", () => {
 
@@ -33,10 +34,6 @@ window.addEventListener("DOMContentLoaded", () => {
         imageLoader = document.getElementById('imageLoader'),
         isCaptured = false;
 
-    // Selected mask ID
-    let maskIdDeprecated,
-        masks = document.getElementsByClassName('superpose--select-list-label');
-
     // Get image from upload
     function handleImage(e) {
         const reader = new FileReader();
@@ -46,6 +43,8 @@ window.addEventListener("DOMContentLoaded", () => {
             img.src = event.target.result;
         };
         reader.readAsDataURL(e.target.files[0]);
+
+        clearTimeout(drawVideoHandler);
         isCaptured = true;
     }
     imageLoader.addEventListener('change', handleImage, false);
@@ -76,20 +75,13 @@ window.addEventListener("DOMContentLoaded", () => {
 
     function draw(video, context, width, height) {
         context.drawImage(video, 0, 0, width, height);
-        drawVideoHandler = setTimeout(draw, 10, video, context, width, height)
-    }
 
-    // Draw mask preview
-    function putMaskToCanvas(maskId) {
-        console.log('looking for mask');
-        let maskImg = new Image();
-        maskImg.src = '/pub/res/masks/src/' + maskFilename + '.png';
+        if (maskFilename !== '') {
+            maskImg.src = '/pub/res/masks/src/'+maskFilename+'.png';
+            context.drawImage(maskImg, 0, 0, width, height);
+        }
 
-        console.log('got mask: ' + maskImg.src);
-
-        context.drawImage(maskImg, 0, 0, 640, 480);
-
-        console.log('mask is drew to the canvas');
+        drawVideoHandler = setTimeout(draw, 1, video, context, width, height)
     }
 
     // Trigger photo take
@@ -97,22 +89,16 @@ window.addEventListener("DOMContentLoaded", () => {
         console.log('snap clicked');
 
         clearTimeout(drawVideoHandler);
-        console.log('clear video');
-
-        console.log('got mask: ' + maskId);
+        console.log('stop video');
 
         if (isCaptured === false) {
             console.log('is not Captured');
-
-            putMaskToCanvas(maskId);
 
             btnsDefault.style.display = 'none';
             btnsTaken.style.display = 'flex';
 
         } else if (isCaptured === true) {
             console.log('is Captured');
-
-            putMaskToCanvas(maskId);
 
             btnsDefault.style.display = 'none';
             btnsTaken.style.display = 'flex';
@@ -122,6 +108,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
     newSnapBtn.addEventListener('click', () => {
         draw(video, context, 640, 480);
+
         btnsDefault.style.display = 'flex';
         btnsTaken.style.display = 'none';
         isCaptured = false;
@@ -131,7 +118,7 @@ window.addEventListener("DOMContentLoaded", () => {
         let imageBase64 = convertCanvasToImage(canvas).src;
 
         // Process uploading
-        ajax('/create/new-upload', `image=${imageBase64}&maskId=${maskId}`, (json) => {
+        ajax('/create/new-upload', `image=${imageBase64}&maskFilename=${maskFilename}`, (json) => {
             if (json) {
                 if (json.status === 'Success') {
                     alert(json.status + ': ' + json.message)
