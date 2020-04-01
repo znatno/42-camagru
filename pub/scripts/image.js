@@ -94,6 +94,8 @@ window.addEventListener("DOMContentLoaded", () => {
         btnsDefault.style.display = 'flex';
         btnsTaken.style.display = 'none';
         isCaptured = false;
+        imageLoader.value = null;
+        imageLoader.innerText = 'Upload photo';
     });
 
     // Save snap to folder and DB
@@ -104,11 +106,17 @@ window.addEventListener("DOMContentLoaded", () => {
         ajax('/create/new-upload', `image=${imageBase64}&maskFilename=${maskFilename}`, (json) => {
             if (json) {
                 if (json.status === 'Success') {
-                    alert(json.status + ': ' + json.message)
+                    alert(json.status + ': ' + json.message);
                 } else {
-                    alert(json.status + ': ' + json.message)
+                    alert(json.status + ': ' + json.message);
                 }
             }
+            draw(video, context);
+            btnsDefault.style.display = 'flex';
+            btnsTaken.style.display = 'none';
+            isCaptured = false;
+            imageLoader.value = null;
+            imageLoader.innerText = 'Upload photo';
         })
 
     });
