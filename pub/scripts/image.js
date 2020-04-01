@@ -4,17 +4,6 @@ function convertCanvasToImage(canvas) {
     return image;
 }
 
-function convertImageToCanvas(image) {
-    const canvas = document.createElement("canvas");
-    canvas.width = image.width;
-    canvas.height = image.height;
-    canvas.getContext("2d").drawImage(image, 0, 0);
-
-    return canvas;
-}
-
-
-
 // TODO: make adding .js on page if needed only
 
 let maskFilename = '';
@@ -42,6 +31,9 @@ window.addEventListener("DOMContentLoaded", () => {
             img.onload = () => { context.drawImage(img, 0, 0); };
             img.src = event.target.result;
         };
+
+        if (e.target.files.length === 0) { return }
+
         reader.readAsDataURL(e.target.files[0]);
 
         clearTimeout(drawVideoHandler);
@@ -51,6 +43,8 @@ window.addEventListener("DOMContentLoaded", () => {
 
     // Show file name in the input
     imageLoader.addEventListener('change', function (e) {
+        if (document.getElementById('imageLoader').files.length === 0) { return }
+
         let fileName = document.getElementById('imageLoader').files[0].name;
         let nextSibling = e.target.nextElementSibling;
         nextSibling.innerText = fileName
