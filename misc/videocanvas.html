@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>test video</title>
+</head>
+<body>
+
+<div style="">
+  <video id="video" width="640" height="480" autoplay hidden></video>
+  <canvas style="display: block; margin: auto;" id="canvas" width="640" height="480"></canvas>
+</div>
+
+<script>
+    let canvas = document.getElementById('canvas'),
+        context = canvas.getContext('2d'),
+        video = document.getElementById('video');
+
+    // Request camera
+    navigator.mediaDevices.getUserMedia({ video: true, audio: false })
+        .then(function(stream) {
+            /* use the stream */
+            video.srcObject = stream;
+            video.play();
+        })
+        .catch(function(err) {
+            /* handle the error */
+            snapBtn.disabled = true;
+        });
+
+    video.addEventListener('play', () => {
+        draw(video, context, 640, 480);
+    }, false);
+    
+    function draw(video, context, width, height) {
+        context.drawImage(video, 0, 0, width, height);
+        setTimeout(draw, 10, video, context, width, height)
+    }
+</script>
+
+</body>
+</html>

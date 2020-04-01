@@ -2,8 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f5d783a5-c1e1-495f-a4fd-2852365bc1d1" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/misc/videocanvas.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/CreateController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/CreateController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/Create.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/Create.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/create/newPost.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/create/newPost.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pub/scripts/image.js" beforeDir="false" afterPath="$PROJECT_DIR$/pub/scripts/image.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -59,6 +62,7 @@
       <list>
         <option value="JavaScript File" />
         <option value="CSS File" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -78,6 +82,7 @@
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="DatabaseDriversLRU" value="mysql" />
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="add_unversioned_files" value="true" />
@@ -155,7 +160,7 @@
       <workItem from="1584622433277" duration="147000" />
       <workItem from="1584622598202" duration="262000" />
       <workItem from="1584622864856" duration="17050000" />
-      <workItem from="1584717050453" duration="88668000" />
+      <workItem from="1584717050453" duration="93738000" />
     </task>
     <servers />
   </component>

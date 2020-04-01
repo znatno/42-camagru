@@ -13,11 +13,11 @@ class CreateController extends Controller {
 
 	public function uploadFileAction() {
 
-		if (isset($_POST['image']) && isset($_POST['maskId'])) {
+		if (isset($_POST['image']) && isset($_POST['maskFilename'])) {
 			$imgBase64 = $_POST['image'];
-			$maskId = $_POST['maskId'];
+			$maskFilename = $_POST['maskFilename'];
 
-			if ($this->model->createImage($imgBase64, $maskId)) {
+			if ($this->model->createImage($imgBase64, $maskFilename)) {
 				$this->view->message("Success", "Image is saved");
 			} else {
 				$this->view->message("Error", (isset($this->model->error) ? $this->model->error : "Please, try again"));

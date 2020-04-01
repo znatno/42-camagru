@@ -17,22 +17,25 @@ function convertImageToCanvas(image) {
 
 // TODO: make adding .js on page if needed only
 
+let maskId = '', maskFilename = '';
+
 window.addEventListener("DOMContentLoaded", () => {
 
     // Grab elements, create settings, etc.
-    const video = document.getElementById('video');
-    const canvas = document.getElementById('canvas');
-    const context = canvas.getContext('2d');
-    const snapBtn = document.getElementById('snap');
-    const newSnapBtn = document.getElementById('new-snap');
-    const saveSnapBtn = document.getElementById('save-snap');
-    const btnsStart = document.getElementById('buttons-start');
-    const btnsTaken = document.getElementById('buttons-taken');
-    const imageLoader = document.getElementById('imageLoader');
+    let video = document.getElementById('video'),
+        canvas = document.getElementById('canvas'),
+        context = canvas.getContext('2d'),
+        snapBtn = document.getElementById('snap'),
+        newSnapBtn = document.getElementById('new-snap'),
+        saveSnapBtn = document.getElementById('save-snap'),
+        btnsDefault = document.getElementById('buttons-start'),
+        btnsTaken = document.getElementById('buttons-taken'),
+        imageLoader = document.getElementById('imageLoader'),
+        isCaptured = false;
 
     // Selected mask ID
-    let maskId;
-    let masks = document.getElementsByClassName('superpose--select-list-label');
+    let maskIdDeprecated,
+        masks = document.getElementsByClassName('superpose--select-list-label');
 
     // Get image from upload
     function handleImage(e) {
@@ -43,8 +46,7 @@ window.addEventListener("DOMContentLoaded", () => {
             img.src = event.target.result;
         };
         reader.readAsDataURL(e.target.files[0]);
-        video.style.display = 'none';
-        canvas.style.display = 'block';
+        isCaptured = true;
     }
     imageLoader.addEventListener('change', handleImage, false);
 
@@ -56,113 +58,77 @@ window.addEventListener("DOMContentLoaded", () => {
     });
 
     // Request camera
-    navigator.mediaDevices.getUserMedia({ video: true })
+    navigator.mediaDevices.getUserMedia({ video: true, audio: false })
         .then(function(stream) {
             /* use the stream */
             video.srcObject = stream;
             video.play();
-
         })
         .catch(function(err) {
             /* handle the error */
             snapBtn.disabled = true;
         });
 
+    let drawVideoHandler;
+    video.addEventListener('play', () => {
+        draw(video, context, 640, 480);
+    }, false);
+
+    function draw(video, context, width, height) {
+        context.drawImage(video, 0, 0, width, height);
+        drawVideoHandler = setTimeout(draw, 10, video, context, width, height)
+    }
+
     // Draw mask preview
     function putMaskToCanvas(maskId) {
-        let filename;
-
-        switch (maskId) {
-            case '1':
-                filename = '42';
-                break;
-            case '2':
-                filename = 'anime';
-                break;
-            case '3':
-                filename = 'brazzers';
-                break;
-            case '4':
-                filename = 'covid';
-                break;
-            case '5':
-                filename = 'cowboy';
-                break;
-            case '6':
-                filename = 'gun';
-                break;
-            case '7':
-                filename = 'jesus';
-                break;
-            case '8':
-                filename = 'kitty';
-                break;
-            case '9':
-                filename = 'mask';
-                break;
-            default:
-                return;
-        }
+        console.log('looking for mask');
         let maskImg = new Image();
-        maskImg.src = '/pub/res/masks/src/' + filename + '.png';
+        maskImg.src = '/pub/res/masks/src/' + maskFilename + '.png';
 
-        console.log(maskId);
-        console.log(maskImg.src);
+        console.log('got mask: ' + maskImg.src);
+
         context.drawImage(maskImg, 0, 0, 640, 480);
+
+        console.log('mask is drew to the canvas');
     }
 
     // Trigger photo take
     snapBtn.addEventListener('click', () => {
-        let videoDisplayStyle = window.getComputedStyle(video).display;
+        console.log('snap clicked');
 
-        // Get mask ID
-        for (let key in masks) {
-            if (window.getComputedStyle(masks[key], ':before').transform === 'matrix(1, 0, 0, 1, 0, 0)') {
-                maskId = key;
-                break;
-            }
-        }
+        clearTimeout(drawVideoHandler);
+        console.log('clear video');
 
-        if (videoDisplayStyle === 'block') {
-            context.drawImage(video, 0, 0, 640, 480);
+        console.log('got mask: ' + maskId);
 
-            // TODO: add mask on canvas
+        if (isCaptured === false) {
+            console.log('is not Captured');
+
             putMaskToCanvas(maskId);
 
-            video.style.display = 'none';
-            canvas.style.display = 'block';
-            btnsStart.style.display = 'none';
+            btnsDefault.style.display = 'none';
             btnsTaken.style.display = 'flex';
 
-        } else if (videoDisplayStyle === 'none') {
+        } else if (isCaptured === true) {
+            console.log('is Captured');
 
-            // TODO: add mask on canvas
             putMaskToCanvas(maskId);
 
-            btnsStart.style.display = 'none';
+            btnsDefault.style.display = 'none';
             btnsTaken.style.display = 'flex';
         }
+
     });
 
     newSnapBtn.addEventListener('click', () => {
-        video.style.display = 'block';
-        canvas.style.display = 'none';
-        btnsStart.style.display = 'flex';
+        draw(video, context, 640, 480);
+        btnsDefault.style.display = 'flex';
         btnsTaken.style.display = 'none';
+        isCaptured = false;
     });
 
     saveSnapBtn.addEventListener('click', () => {
         let imageBase64 = convertCanvasToImage(canvas).src;
-
-
-        /*
-        if (maskId === '0') {
-            alert('Error: no mask selected');
-            return;
-        }
-        */
-
-        // TODO: add mask and show it before saving + upload
 
         // Process uploading
         ajax('/create/new-upload', `image=${imageBase64}&maskId=${maskId}`, (json) => {
