@@ -6,8 +6,9 @@ function convertCanvasToImage(canvas) {
 
 // TODO: make adding .js on page if needed only
 
-let maskFilename = '';
-let maskImg = new Image();
+// Variables that changes onclick() of mask pictures on View
+let maskFilename = '',
+    maskImg = new Image();
 
 window.addEventListener("DOMContentLoaded", () => {
 
@@ -21,34 +22,42 @@ window.addEventListener("DOMContentLoaded", () => {
         btnsDefault = document.getElementById('buttons-start'),
         btnsTaken = document.getElementById('buttons-taken'),
         imageLoader = document.getElementById('imageLoader'),
-        isCaptured = false;
+        isCaptured = false,
+        drawVideoHandler;
 
-    // Get image from upload
+    // Loop for canvas from web camera or uploaded file
+    function draw(src, context, width = 640, height = 480) {
+        context.drawImage(src, 0, 0, width, height);
+        if (maskFilename !== '') {
+            maskImg.src = '/pub/res/masks/src/'+maskFilename+'.png';
+            context.drawImage(maskImg, 0, 0, width, height);
+        }
+        drawVideoHandler = setTimeout(draw, 1, src, context, width, height)
+    }
+
+    // Get image and filename from upload
+    imageLoader.addEventListener('change', handleImage, false);
     function handleImage(e) {
         const reader = new FileReader();
         reader.onload = (event) => {
             const img = new Image();
-            img.onload = () => { context.drawImage(img, 0, 0); };
+            img.onload = () => {
+                // context.drawImage(img, 0, 0);
+                draw(img, context);
+            };
             img.src = event.target.result;
+
         };
-
         if (e.target.files.length === 0) { return }
-
-        reader.readAsDataURL(e.target.files[0]);
-
         clearTimeout(drawVideoHandler);
         isCaptured = true;
+        reader.readAsDataURL(e.target.files[0]);
+        if (e.target.files[0].name.length > 15) {
+            e.target.nextElementSibling.innerText = e.target.files[0].name.substring(0, 15) + '...'
+        } else {
+            e.target.nextElementSibling.innerText = e.target.files[0].name;
+        }
     }
-    imageLoader.addEventListener('change', handleImage, false);
-
-    // Show file name in the input
-    imageLoader.addEventListener('change', function (e) {
-        if (document.getElementById('imageLoader').files.length === 0) { return }
-
-        let fileName = document.getElementById('imageLoader').files[0].name;
-        let nextSibling = e.target.nextElementSibling;
-        nextSibling.innerText = fileName
-    });
 
     // Request camera
     navigator.mediaDevices.getUserMedia({ video: true, audio: false })
@@ -62,52 +71,32 @@ window.addEventListener("DOMContentLoaded", () => {
             snapBtn.disabled = true;
         });
 
-    let drawVideoHandler;
+    // Starts loop if user allowed access for camera
     video.addEventListener('play', () => {
-        draw(video, context, 640, 480);
+        draw(video, context);
     }, false);
-
-    function draw(video, context, width, height) {
-        context.drawImage(video, 0, 0, width, height);
-
-        if (maskFilename !== '') {
-            maskImg.src = '/pub/res/masks/src/'+maskFilename+'.png';
-            context.drawImage(maskImg, 0, 0, width, height);
-        }
-
-        drawVideoHandler = setTimeout(draw, 1, video, context, width, height)
-    }
 
     // Trigger photo take
     snapBtn.addEventListener('click', () => {
-        console.log('snap clicked');
-
         clearTimeout(drawVideoHandler);
-        console.log('stop video');
-
         if (isCaptured === false) {
-            console.log('is not Captured');
-
             btnsDefault.style.display = 'none';
             btnsTaken.style.display = 'flex';
-
         } else if (isCaptured === true) {
-            console.log('is Captured');
-
             btnsDefault.style.display = 'none';
             btnsTaken.style.display = 'flex';
         }
-
     });
 
+    // Clear canvas and start new
     newSnapBtn.addEventListener('click', () => {
-        draw(video, context, 640, 480);
-
+        draw(video, context);
         btnsDefault.style.display = 'flex';
         btnsTaken.style.display = 'none';
         isCaptured = false;
     });
 
+    // Save snap to folder and DB
     saveSnapBtn.addEventListener('click', () => {
         let imageBase64 = convertCanvasToImage(canvas).src;
 
