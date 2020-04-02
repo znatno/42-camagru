@@ -6,21 +6,21 @@
         <div class="control-group form-group">
           <div class="controls">
             <label for="username">Username:</label>
-            <input placeholder="Choose username" type="text" class="form-control" name="username" id="username" minlength="3" required>
+            <input placeholder="Choose username" type="text" class="form-control" name="username" id="username" minlength="3" maxlength="30" required>
             <p class="help-block"></p>
           </div>
         </div>
         <div class="control-group form-group">
           <div class="controls">
             <label for="email">Email:</label>
-            <input placeholder="Enter email" type="email" class="form-control" name="email" id="email" minlength="6" required>
+            <input placeholder="Enter email" type="email" class="form-control" name="email" id="email" minlength="6" maxlength="100" required>
             <p class="help-block"></p>
           </div>
         </div>
         <div class="control-group form-group">
           <div class="controls">
             <label for="password">Password:</label>
-            <input placeholder="Choose password" type="password" class="form-control" name="password" id="password" minlength="8" required>
+            <input placeholder="Choose password" type="password" class="form-control" name="password" id="password" minlength="8" maxlength="100" required>
             <p class="help-block"></p>
           </div>
         </div>

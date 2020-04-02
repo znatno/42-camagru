@@ -25,9 +25,12 @@ class Create extends Model {
 		imagecopy($dest, $src, 0, 0, 0, 0, 640, 480); //have to play with these numbers for it to work for you, etc.
 		header('Content-Type: image/png');
 		$fileName = uniqid('', true) . '.png';
-		$status = imagepng($dest, 'pub/photos/'.$fileName);
+		$path = 'pub/photos/' . $fileName;
+		$status = imagepng($dest, $path);
 		imagedestroy($dest);
 		imagedestroy($src);
+
+		// TODO: add photo to DB
 
 		return $status;
 	}

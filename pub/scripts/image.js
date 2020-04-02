@@ -41,12 +41,8 @@ window.addEventListener("DOMContentLoaded", () => {
         const reader = new FileReader();
         reader.onload = (event) => {
             const img = new Image();
-            img.onload = () => {
-                // context.drawImage(img, 0, 0);
-                draw(img, context);
-            };
+            img.onload = () => { draw(img, context); };
             img.src = event.target.result;
-
         };
         if (e.target.files.length === 0) { return }
         clearTimeout(drawVideoHandler);
@@ -62,12 +58,10 @@ window.addEventListener("DOMContentLoaded", () => {
     // Request camera
     navigator.mediaDevices.getUserMedia({ video: true, audio: false })
         .then(function(stream) {
-            /* use the stream */
             video.srcObject = stream;
             video.play();
         })
         .catch(function(err) {
-            /* handle the error */
             snapBtn.disabled = true;
         });
 
@@ -118,7 +112,6 @@ window.addEventListener("DOMContentLoaded", () => {
             imageLoader.value = null;
             imageLoader.innerText = 'Upload photo';
         })
-
     });
 
 });
