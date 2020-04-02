@@ -4,6 +4,18 @@ function convertCanvasToImage(canvas) {
     return image;
 }
 
+function removeImage(path) {
+    if (confirm('Are you sure you want to delete this image?')) {
+        ajax('/create/remove/', `path=${path.slice(1)}`, (json) => {
+            if (json) {
+                alert(json.status + ': ' + json.message);
+            }
+        })
+    } else {
+        console.log(path);
+    }
+}
+
 // TODO: make adding .js on page if needed only
 
 // Variables that changes onclick() of mask pictures on View
@@ -44,9 +56,13 @@ window.addEventListener("DOMContentLoaded", () => {
             img.onload = () => { draw(img, context); };
             img.src = event.target.result;
         };
+
         if (e.target.files.length === 0) { return }
+
         clearTimeout(drawVideoHandler);
         isCaptured = true;
+        console.log('test');
+        snapBtn.removeAttribute('disabled');
         reader.readAsDataURL(e.target.files[0]);
         if (e.target.files[0].name.length > 15) {
             e.target.nextElementSibling.innerText = e.target.files[0].name.substring(0, 15) + '...'
@@ -63,6 +79,12 @@ window.addEventListener("DOMContentLoaded", () => {
         })
         .catch(function(err) {
             snapBtn.disabled = true;
+            context.fillStyle = "#eee";
+            context.fillRect(0, 0, 640, 480);
+            context.font = "200 28pt SF Pro Display";
+            context.fillStyle = "purple";
+            context.textAlign = "center";
+            context.fillText("Turn on camera or upload photo", canvas.width/2, canvas.height/2);
         });
 
     // Starts loop if user allowed access for camera

@@ -26,6 +26,7 @@ class Create extends Model {
 		header('Content-Type: image/png');
 		$filename = uniqid('', true) . '.png';
 		$path = 'pub/photos/' . $filename;
+		// Saving to path
 		$status = imagepng($dest, $path);
 		imagedestroy($dest);
 		imagedestroy($src);
@@ -49,6 +50,39 @@ class Create extends Model {
 
 		// Return success or error
 		return $status;
+	}
+
+	public function getPreviousTakenImgs() {
+
+		$res = $this->db->columnAllOccurs(
+			'SELECT path FROM `db_ibohun`.`photos` WHERE `user_id` = :user_id ORDER BY `id` DESC',
+			['user_id' => $_SESSION['user']['id']]
+		);
+
+		if ($res) {
+			$prev_pics = "";
+			$pic_id = 0;
+
+			foreach ($res as $path) {
+				$pic_id++;
+				$prev_pics .=
+					"<div class='col-lg-12 mb-4 p-0' id='prev-img-{$pic_id}'>".
+					"<img class='img-thumbnail' src='/{$path}' alt='Not found: {$path}' onclick='removeImage(this.getAttribute(\"src\"));'>".
+					"</div>";
+			}
+			return $prev_pics;
+		}
+		return "No images had taken yet";
+	}
+
+	public function removeImage($path) {
+
+		if (file_exists($path)) {
+			unlink($path);
+			$this->db->query('DELETE FROM db_ibohun.photos WHERE path = :img_path', ['img_path' => $path]);
+			return true;
+		}
+		return false;
 	}
 
 }

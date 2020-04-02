@@ -46,6 +46,15 @@ class Db {
 		return $res->fetchColumn();
 	}
 
+	public function columnAllOccurs($sql, $params = []) {
+		$arr = [];
+		$res = $this->query($sql, $params);
+		while ($data = $res->fetchColumn()) {
+			$arr[] = $data;
+		}
+		return $arr;
+	}
+
 	public function lastInsertId() {
 		return $this->db->lastInsertId();
 	}

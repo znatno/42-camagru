@@ -74,5 +74,9 @@ return [
 		'controller' => 'create',
 		'action' => 'uploadFile'
 	],
+	'create/remove' => [
+		'controller' => 'create',
+		'action' => 'removeImage'
+	],
 
 ];

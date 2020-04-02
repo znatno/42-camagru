@@ -97,15 +97,7 @@
     </div>
     <div class="col-lg-4">
       <h6 class="mb-4">Previous Pictures</h6>
-      <div class="col-lg-12 mb-2 prev-taken-img" id="prev-img-1">
-        First
-      </div>
-      <div class="col-lg-12 mb-2 prev-taken-img" id="prev-img-2">
-        Second
-      </div>
-      <div class="col-lg-12 mb-2 prev-taken-img" id="prev-img-3">
-        Third
-      </div>
+      <?= $prev_pics ?>
     </div>
   </div>
 </div>

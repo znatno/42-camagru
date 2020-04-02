@@ -9,6 +9,7 @@ return [
 	'authorize' => [
 		'newPost',
 		'uploadFile',
+		'removeImage',
 	],
 
 	'guest' => [
