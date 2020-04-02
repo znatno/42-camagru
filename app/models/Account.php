@@ -15,9 +15,9 @@ class Account extends Model {
 	}
 
 	public function validateUsername($username) {
-		$pattern = '/[A-Za-z0-9]{3,15}$/';
+		$pattern = '/^[A-Za-z0-9]{3,24}$/';
 		if (!isset($username) || empty($username) || !preg_match($pattern, $username)) {
-			$this->error = 'Username can consist only numbers and latin letters (min. 3 symbols)';
+			$this->error = 'Username can consist only numbers and latin letters (from 3 to 24 symbols)';
 			return false;
 		}
 		$stmt = $this->db->query('SELECT username FROM db_ibohun.users WHERE username = :username', ['username' => $username]);
@@ -66,7 +66,7 @@ class Account extends Model {
 		}
 		$stmt = $this->db->query('SELECT username FROM db_ibohun.users WHERE username = :username AND confirmed = :confirm', ['username' => $user, 'confirm' => true]);
 		if ($stmt->rowCount() != 1) {
-			$this->error = 'Account isn\'t confirmed. Please, check your email for confirmational link. After confirming try again';
+			$this->error = 'Account isn\'t confirmed. Please, check your email for conformational link. After confirming try again';
 			return false;
 		}
 		return true;

@@ -6,7 +6,7 @@
         <div class="control-group form-group">
           <div class="controls">
             <label for="email">Email:</label>
-            <input type="email" class="form-control" name="email" id="email">
+            <input type="email" class="form-control" name="email" id="email" minlength="6" maxlength="100" required>
             <p class="help-block"></p>
           </div>
         </div>

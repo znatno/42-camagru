@@ -6,7 +6,7 @@
         <div class="control-group form-group">
           <div class="controls">
             <label for="username">Username:</label>
-            <input placeholder="Choose username" type="text" class="form-control" name="username" id="username" minlength="3" maxlength="30" required>
+            <input placeholder="Choose username" type="text" class="form-control" name="username" id="username" minlength="3" maxlength="24" required>
             <p class="help-block"></p>
           </div>
         </div>
