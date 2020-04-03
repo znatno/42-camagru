@@ -7,7 +7,7 @@ return [
 	],
 
 	'authorize' => [
-
+		'changeLike',
 	],
 
 	'guest' => [

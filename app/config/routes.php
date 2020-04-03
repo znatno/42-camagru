@@ -7,6 +7,14 @@ return [
 		'controller' => 'main',
 		'action' => 'index'
 	],
+	'action/like' => [
+		'controller' => 'main',
+		'action' => 'changeLike'
+	],
+	'action/dislike' => [
+		'controller' => 'main',
+		'action' => 'changeLike'
+	],
 
 	// Account Controller
 	'account/login' => [

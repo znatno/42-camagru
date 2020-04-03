@@ -33,15 +33,14 @@ class Create extends Model {
 
 		// Saving to Database
 		if ($status) {
-			$sql = 'INSERT INTO `db_ibohun`.`photos` (id, path, user_id, timestamp, likes, comments)
-				VALUES (:id, :path, :user_id, :timestamp, :likes, :comments)';
+			$sql = 'INSERT INTO db_ibohun.photos (id, username, user_id, path, timestamp)
+				VALUES (:id, :username, :user_id, :path, :timestamp)';
 			$params = [
 				'id' => 0,
-				'path' => $path,
+				'username' => $_SESSION['user']['username'],
 				'user_id' => $_SESSION['user']['id'],
+				'path' => $path,
 				'timestamp' => date('Y-m-d H:i:s'),
-				'likes' => 0,
-				'comments' => 0
 			];
 			$this->db->query($sql, $params);
 		} else {
@@ -55,7 +54,7 @@ class Create extends Model {
 	public function getPreviousTakenImgs() {
 
 		$res = $this->db->columnAllOccurs(
-			'SELECT path FROM `db_ibohun`.`photos` WHERE `user_id` = :user_id ORDER BY `id` DESC',
+			'SELECT path FROM db_ibohun.photos WHERE user_id = :user_id ORDER BY id DESC',
 			['user_id' => $_SESSION['user']['id']]
 		);
 

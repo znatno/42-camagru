@@ -22,13 +22,14 @@ CREATE TABLE users
 CREATE TABLE photos
 (
     `id`                INT UNSIGNED    NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `path`              TEXT            NOT NULL,
+    `username`          VARCHAR(30)     NOT NULL,
     `user_id`           INT UNSIGNED    NOT NULL,
+    `path`              TEXT            NOT NULL,
     `timestamp`         DATETIME        NOT NULL,
-    `likes`             INT UNSIGNED    NOT NULL,
-    `comments`          TEXT            NOT NULL,
+    `likes`             INT UNSIGNED    NOT NULL DEFAULT 0,
+    `comments`          INT UNSIGNED    NOT NULL DEFAULT 0,
 
-    FOREIGN KEY (`user_id`)     REFERENCES users (`id`)     ON DELETE CASCADE
+    FOREIGN KEY (`user_id`)     REFERENCES users (`id`)         ON DELETE CASCADE
 );
 
 CREATE TABLE likes
@@ -36,8 +37,8 @@ CREATE TABLE likes
     `photo_id`          INT UNSIGNED    NOT NULL,
     `user_id`           INT UNSIGNED    NOT NULL,
 
-    FOREIGN KEY (`photo_id`)    REFERENCES photos (`id`)    ON DELETE CASCADE,
-    FOREIGN KEY (`user_id`)     REFERENCES users (`id`)     ON DELETE CASCADE,
+    FOREIGN KEY (`photo_id`)    REFERENCES photos (`id`)        ON DELETE CASCADE,
+    FOREIGN KEY (`user_id`)     REFERENCES users (`id`)         ON DELETE CASCADE,
     PRIMARY KEY (`photo_id`, `user_id`)
 );
 
@@ -48,8 +49,8 @@ CREATE TABLE comments
     `comment`           TEXT            NOT NULL,
     `timestamp`         DATETIME        NOT NULL,
 
-    FOREIGN KEY (`photo_id`)    REFERENCES photos (`id`)    ON DELETE CASCADE,
-    FOREIGN KEY (`user_id`)     REFERENCES users (`id`)     ON DELETE CASCADE,
+    FOREIGN KEY (`photo_id`)    REFERENCES photos (`id`)        ON DELETE CASCADE,
+    FOREIGN KEY (`user_id`)     REFERENCES users (`id`)         ON DELETE CASCADE,
     PRIMARY KEY (`user_id`, `timestamp`)
 );
 

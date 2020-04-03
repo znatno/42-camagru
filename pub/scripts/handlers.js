@@ -54,3 +54,19 @@ function editProfileHandler() {
     });
     return false;
 }
+
+function changeLikeHandler(elem) {
+    let val = elem.nextElementSibling.textContent.valueOf(),
+        photoId = elem.id.slice(5);
+
+    elem.classList.toggle("fa-heart-o");
+    elem.classList.toggle("fa-heart");
+
+    if (elem.classList.contains("fa-heart")) {
+        elem.nextElementSibling.textContent = parseInt(val) + 1;
+        ajax(`/action/like/`, `photoId=${photoId}&action=like`)
+    } else {
+        elem.nextElementSibling.textContent = String(parseInt(val) - 1);
+        ajax(`/action/dislike/`, `photoId=${photoId}&action=dislike`)
+    }
+}

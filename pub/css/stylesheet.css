@@ -102,3 +102,24 @@
     text-align: center;
     color: #999;
 }
+
+/*--- index.php ---*/
+
+/* ... */
+
+/*--> Like */
+
+.fa-heart {
+    color: orangered;
+}
+
+.fa-heart:hover {
+    color: orangered;
+}
+
+.fa-heart-o:hover:before {
+    color: orangered;
+    content: "\f004";
+}
+
+/*--> ... */

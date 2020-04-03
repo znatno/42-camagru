@@ -64,7 +64,7 @@ class Account extends Model {
 			$this->error = 'Wrong password';
 			return false;
 		}
-		$stmt = $this->db->query('SELECT username FROM db_ibohun.users WHERE username = :username AND confirmed = :confirm', ['username' => $user, 'confirm' => true]);
+		$stmt = $this->db->query('SELECT username FROM db_ibohun.users WHERE username = :username AND confirmed = :confirmed', ['username' => $user, 'confirmed' => true]);
 		if ($stmt->rowCount() != 1) {
 			$this->error = 'Account isn\'t confirmed. Please, check your email for conformational link. After confirming try again';
 			return false;
@@ -74,11 +74,11 @@ class Account extends Model {
 
 	public function createUser($username, $email, $password) {
 		$id = 0;
-		$confirm = 0;
+		$confirmed = 0;
 		$password = hash('whirlpool', $password);
 		$this->db->query(
-			'INSERT INTO `db_ibohun`.`users` (id, username, email, password, confirmed) VALUE (:id, :username, :email, :password, :confirm)',
-			['id' => $id, 'username' => $username, 'email' => $email, 'password' => $password, 'confirm' => $confirm]);
+			'INSERT INTO db_ibohun.users (id, username, email, password, confirmed) VALUE (:id, :username, :email, :password, :confirmed)',
+			['id' => $id, 'username' => $username, 'email' => $email, 'password' => $password, 'confirmed' => $confirmed]);
 	}
 
 	public function logInUser($username, $password) {
@@ -90,7 +90,7 @@ class Account extends Model {
 			'id' => $user[0]['id'],
 			'username' => $user[0]['username'],
 			'email' => $user[0]['email'],
-			'confirm' => $user[0]['confirm']
+			'confirmed' => $user[0]['confirmed']
 		];
 	}
 
@@ -103,7 +103,7 @@ class Account extends Model {
 			'id' => $user[0]['id'],
 			'username' => $user[0]['username'],
 			'email' => $user[0]['email'],
-			'confirm' => $user[0]['confirm']
+			'confirmed' => $user[0]['confirmed']
 		];
 	}
 
