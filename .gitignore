@@ -1,3 +1,4 @@
 
 .idea/
-pub/photos/
+!pub/photos/
+pub/photos/*.png
