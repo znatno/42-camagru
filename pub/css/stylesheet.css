@@ -122,4 +122,84 @@
     content: "\f004";
 }
 
-/*--> ... */
+/*--> Comments */
+
+.detail-box {
+    width:320px;
+    border:1px solid #bbb;
+    margin:50px;
+}
+
+.titleBox {
+    background-color:#fdfdfd;
+    padding:10px;
+}
+
+.titleBox label{
+    color:#444;
+    margin:0;
+    display:inline-block;
+}
+
+.comment-box {
+    padding:10px;
+    border-top:1px dotted #bbb;
+}
+
+.comment-box .form-group:first-child, .actionBox .form-group:first-child {
+    width:80%;
+}
+
+.comment-box .form-group:nth-child(2), .actionBox .form-group:nth-child(2) {
+    width:18%;
+}
+
+.actionBox .form-group * {
+    width:100%;
+}
+
+.taskDescription {
+    margin-top: 10px;
+}
+
+.comment-list {
+    padding:0;
+    list-style:none;
+    max-height:200px;
+    overflow:auto;
+}
+
+.comment-list li {
+    margin: 10px 0 0;
+}
+
+.comment-list li > div {
+    display: table-cell;
+}
+
+.commenter-image {
+    width:30px;
+    margin-right:5px;
+    height:100%;
+    float:left;
+}
+
+.commenter-image img {
+    width:100%;
+    border-radius:50%;
+}
+
+.commentText p {
+    margin:0;
+}
+
+.sub-text {
+    color: #aaa;
+    font-family: sans-serif;
+    font-size: 11px;
+}
+
+.actionBox {
+    border-top:1px dotted #bbb;
+    padding:10px;
+}
