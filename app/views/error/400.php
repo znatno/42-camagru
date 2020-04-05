@@ -4,4 +4,4 @@ Invalid submitted data.
 Redirect in a second...
 
 <?php
-	header('Refresh: 2; URL=/', true, 303);
+header('Refresh: 2; URL=/', true, 303);
