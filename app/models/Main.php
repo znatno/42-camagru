@@ -18,6 +18,9 @@ class Main extends Model {
 			);
 			foreach ($photos as $key => $photo) {
 				$photos[$key]['liked'] = in_array($photo['id'], $user_likes) ? 'fa-heart' : 'fa-heart-o';
+
+				// TODO: check for comments and assign to array
+
 			}
 		}
 
@@ -33,7 +36,7 @@ class Main extends Model {
 			return $this->db->query($sql_add_like, ['photo_id' => $photo_id, 'user_id' => $_SESSION['user']['id']])
 				&& $this->db->query($sql_inc_like, ['id' => $photo_id]);
 		}
-		$this->error .= ' some err';
+		$this->error .= ' Error during liking photo';
 		return false;
 	}
 
@@ -46,7 +49,7 @@ class Main extends Model {
 			return $this->db->query($sql_rem_like, ['photo_id' => $photo_id, 'user_id' => $_SESSION['user']['id']])
 				&& $this->db->query($sql_dec_like, ['id' => $photo_id]);
 		}
-		$this->error .= ' some err2';
+		$this->error .= ' Error during disliking photo';
 		return false;
 	}
 
@@ -59,6 +62,30 @@ class Main extends Model {
 		}
 		$this->error = 'no such user or photo: ' . empty($res) . ' | ';
 		return false;
+	}
+
+	public function addComment($photo_id, $text) {
+
+		if ($this->checkUserPhotoExistance($photo_id)) {
+			$sql_comment = 'INSERT INTO db_ibohun.comments (photo_id, user_id, comment, timestamp)
+							 VALUES (:photo_id, :user_id, :comment, :timestamp)';
+			$sql_inc_com = 'UPDATE db_ibohun.photos SET comments = comments + 1 WHERE id = :id';
+			$params = [
+				'photo_id' => $photo_id,
+				'user_id' => $_SESSION['user']['id'],
+				'comment' => $text,
+				'timestamp' => date('Y-m-d H:i:s')
+			];
+
+			return $this->db->query($sql_comment, $params)
+				&& $this->db->query($sql_inc_com, ['id' => $photo_id]);
+		}
+		$this->error = 'Photo was deleted';
+		return false;
+	}
+
+	public function getComments() {
+
 	}
 
 }

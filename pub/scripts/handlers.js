@@ -70,3 +70,16 @@ function changeLikeHandler(elem) {
         ajax(`/action/dislike/`, `photoId=${photoId}&action=dislike`)
     }
 }
+
+function commentHandler(text, photoId) {
+
+    ajax('/action/comment', `text=${text}&photoId=${photoId}`, (json) => {
+        if (json.status === 'Success') {
+            location.reload();
+        } else {
+            alert(json.status + ': ' + json.message)
+        }
+    })
+
+
+}

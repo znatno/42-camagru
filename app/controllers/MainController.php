@@ -37,4 +37,27 @@ class MainController extends Controller {
 		$this->view->message('Error', 'Post is not found');
 	}
 
+	public function addCommentAction() {
+
+		if (isset($_POST['photoId']) && isset($_POST['text'])) {
+			if (!empty($_POST['text'])) {
+				if ($this->model->addComment($_POST['photoId'], $_POST['text'])) {
+					$this->view->message('Success', 'Photo have been commented');
+				}
+				$this->view->message('Error', 'Something went wrong. Contact administrator');
+			}
+			$this->view->message('Error', 'Comment is empty');
+		}
+	}
+
+	public function delCommentAction() {
+
+		if (isset($_POST['photoId']) && isset($_POST['timestamp']) && isset($_POST['username'])) {
+			if ($this->model->delComment($_POST['photoId'], $_POST['text'])) {
+				$this->view->message('Success', 'Comment have been delete');
+			}
+			$this->view->message('Error', 'Something went wrong. Contact administrator');
+		}
+	}
+
 }

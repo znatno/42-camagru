@@ -15,6 +15,14 @@ return [
 		'controller' => 'main',
 		'action' => 'changeLike'
 	],
+	'action/comment' => [
+		'controller' => 'main',
+		'action' => 'addComment'
+	],
+	'action/delete-comment' => [
+		'controller' => 'main',
+		'action' => 'delComment'
+	],
 
 	// Account Controller
 	'account/login' => [

@@ -8,6 +8,8 @@ return [
 
 	'authorize' => [
 		'changeLike',
+		'addComment',
+		'delComment'
 	],
 
 	'guest' => [
