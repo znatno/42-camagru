@@ -8,20 +8,33 @@ class Main extends Model {
 
 	public function getPhotos() {
 
-		$photos = $this->db->row(
-			'SELECT id, path, username, timestamp, likes, comments FROM db_ibohun.photos ORDER BY id DESC'
-		);
+		$sql = 'SELECT id, path, username, timestamp as date, likes, comments FROM db_ibohun.photos ORDER BY id DESC';
+		$photos = $this->db->row($sql);
 
 		if (isset($_SESSION['user'])) {
-			$user_likes = $this->db->columnAllOccurs(
-				'SELECT photo_id FROM db_ibohun.likes WHERE user_id = :user_id', ['user_id' => $_SESSION['user']['id']]
-			);
-			foreach ($photos as $key => $photo) {
+			$sql = 'SELECT photo_id FROM db_ibohun.likes WHERE user_id = :user_id';
+			$user_likes = $this->db->columnAllOccurs($sql, ['user_id' => $_SESSION['user']['id']]);
+		}
+
+		foreach ($photos as $key => $photo) {
+			if (isset($_SESSION['user'])) {
 				$photos[$key]['liked'] = in_array($photo['id'], $user_likes) ? 'fa-heart' : 'fa-heart-o';
-
-				// TODO: check for comments and assign to array
-
 			}
+
+			$sql = 'SELECT photo_id, user_id, comment as text, timestamp as date FROM db_ibohun.comments WHERE photo_id = :photo_id';
+			$comments = $this->db->row($sql, ['photo_id' => $photo['id']]);
+
+			foreach ($comments as $k => $comment) {
+				$sql = 'SELECT username FROM db_ibohun.users WHERE id = :id';
+				$username = $this->db->column($sql, ['id' => $comment['user_id']]);
+				$comments[$k]['username'] = $username;
+				$comments[$k]['date'] = date('M j, Y', strtotime($comment['date']))
+										.' at '.date('H:i', strtotime($comment['date']));
+			}
+
+			$photos[$key]['user-comments'] = $comments;
+			$photos[$key]['date'] = date('M j, Y', strtotime($photos[$key]['date']))
+									.' at '.date('H:i', strtotime($photos[$key]['date']));
 		}
 
 		return $photos;
@@ -73,7 +86,7 @@ class Main extends Model {
 			$params = [
 				'photo_id' => $photo_id,
 				'user_id' => $_SESSION['user']['id'],
-				'comment' => $text,
+				'comment' => htmlspecialchars($text, ENT_QUOTES),
 				'timestamp' => date('Y-m-d H:i:s')
 			];
 
@@ -84,8 +97,14 @@ class Main extends Model {
 		return false;
 	}
 
-	public function getComments() {
+	public function delComment($photo_id, $date, $username) {
 
+		if (isset($_SESSION['user']) && $_SESSION['user']['username'] == $username) {
+
+			$user_id = $this->db->column('SELECT id FROM db_ibohun.users WHERE username = :username', ['username' => $username]);
+
+			$this->db->query('DELETE');
+		}
 	}
 
 }

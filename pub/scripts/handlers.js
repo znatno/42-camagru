@@ -55,24 +55,23 @@ function editProfileHandler() {
     return false;
 }
 
-function changeLikeHandler(elem) {
-    let val = elem.nextElementSibling.textContent.valueOf(),
-        photoId = elem.id.slice(5);
+function changeLikeHandler(e) {
+    let val = e.nextElementSibling.textContent.valueOf(),
+        photoId = e.id.slice(5);
 
-    elem.classList.toggle("fa-heart-o");
-    elem.classList.toggle("fa-heart");
+    e.classList.toggle("fa-heart-o");
+    e.classList.toggle("fa-heart");
 
-    if (elem.classList.contains("fa-heart")) {
-        elem.nextElementSibling.textContent = parseInt(val) + 1;
+    if (e.classList.contains("fa-heart")) {
+        e.nextElementSibling.textContent = parseInt(val) + 1;
         ajax(`/action/like/`, `photoId=${photoId}&action=like`)
     } else {
-        elem.nextElementSibling.textContent = String(parseInt(val) - 1);
+        e.nextElementSibling.textContent = String(parseInt(val) - 1);
         ajax(`/action/dislike/`, `photoId=${photoId}&action=dislike`)
     }
 }
 
 function commentHandler(text, photoId) {
-
     ajax('/action/comment', `text=${text}&photoId=${photoId}`, (json) => {
         if (json.status === 'Success') {
             location.reload();
@@ -80,6 +79,15 @@ function commentHandler(text, photoId) {
             alert(json.status + ': ' + json.message)
         }
     })
+}
 
-
+function deleteCommentHandler(photoId, date, username) {
+    ajax('/action/delete-comment', `date=${date}&photoId=${photoId}&username=${username}`,
+        (json) => {
+        if (json.status === 'Success') {
+            location.reload();
+        } else {
+            alert(json.status + ': ' + json.message)
+        }
+    })
 }
