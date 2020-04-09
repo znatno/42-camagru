@@ -81,13 +81,13 @@ function commentHandler(text, photoId) {
     })
 }
 
-function deleteCommentHandler(photoId, date, username) {
-    ajax('/action/delete-comment', `date=${date}&photoId=${photoId}&username=${username}`,
+function deleteCommentHandler(photoId, timestamp, username) {
+    ajax('/action/delete-comment', `timestamp=${timestamp}&photoId=${photoId}&username=${username}`,
         (json) => {
         if (json.status === 'Success') {
             location.reload();
         } else {
             alert(json.status + ': ' + json.message)
         }
-    })
+    });
 }

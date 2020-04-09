@@ -14,7 +14,7 @@
                         <?php if (isset($_SESSION['user'])): ?>
                             <i onclick="changeLikeHandler(this)" class="fa <?= $photo['liked'] ?>" id="post-<?= $photo['id'] ?>"></i>
 						<?php endif; ?>
-                        <span class="like-number"><?= $photo['likes'] ?></span> like(s)
+                        <span class="like-number"><?= $photo['likes'] ?></span><?= $photo['likes-txt'] ?>
                     </span>
                 </div>
                 <div class="col-md-6 text-center">
@@ -40,7 +40,7 @@
                                     <p class="comment-text"><?= $comment['text'] ?></p>
                                     <span class="date sub-text"><?= $comment['date'] ?></span>
 									<?php if (isset($_SESSION['user']) && $_SESSION['user']['username'] == $comment['username']): ?>
-                                        <button onclick="return deleteCommentHandler("<?= $photo['id'] ?>", "<?= $comment['date'] ?>", "<?= $comment['username'] ?>");" type="button" class="btn btn-outline-danger btn-sm">Delete</button>
+                                        <button onclick="deleteCommentHandler('<?=$photo['id']?>','<?=$comment['timestamp']?>','<?=$comment['username']?>');" type="button" class="btn btn-outline-danger btn-sm">Delete</button>
 									<?php endif; ?>
                                 </div>
                             </li>

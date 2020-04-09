@@ -43,8 +43,8 @@ class MainController extends Controller {
 	}
 
 	public function delCommentAction() {
-		if (isset($_POST['photoId']) && isset($_POST['date']) && isset($_POST['username'])) {
-			if ($this->model->delComment($_POST['photoId'], $_POST['date'], $_POST['username'])) {
+		if (isset($_POST['photoId']) && isset($_POST['timestamp']) && isset($_POST['username'])) {
+			if ($this->model->delComment($_POST['photoId'], $_POST['timestamp'], $_POST['username'])) {
 				$this->view->message('Success', 'Comment have been delete');
 			}
 			$this->view->message('Error', 'Something went wrong. Contact administrator');
