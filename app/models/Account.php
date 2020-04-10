@@ -54,17 +54,17 @@ class Account extends Model {
 	}
 
 	public function checkUserPassword($user, $pass) {
-		$stmt = $this->db->query('SELECT username FROM db_ibohun.users WHERE username = :username', ['username' => $user]);
+		$stmt = $this->db->query('SELECT username FROM db_ibohun.users WHERE username = :username LIMIT 1', ['username' => $user]);
 		if ($stmt->rowCount() == 0) {
 			$this->error = 'User does not exist';
 			return false;
 		}
-		$stmt = $this->db->query('SELECT username FROM db_ibohun.users WHERE username = :username AND password = :password', ['username' => $user, 'password' => $pass]);
+		$stmt = $this->db->query('SELECT username FROM db_ibohun.users WHERE username = :username AND password = :password LIMIT 1', ['username' => $user, 'password' => $pass]);
 		if ($stmt->rowCount() != 1) {
 			$this->error = 'Wrong password';
 			return false;
 		}
-		$stmt = $this->db->query('SELECT username FROM db_ibohun.users WHERE username = :username AND confirmed = :confirmed', ['username' => $user, 'confirmed' => true]);
+		$stmt = $this->db->query('SELECT username FROM db_ibohun.users WHERE username = :username AND confirmed = :confirmed LIMIT 1', ['username' => $user, 'confirmed' => true]);
 		if ($stmt->rowCount() != 1) {
 			$this->error = 'Account isn\'t confirmed. Please, check your email for conformational link. After confirming try again';
 			return false;
@@ -83,14 +83,15 @@ class Account extends Model {
 
 	public function logInUser($username, $password) {
 		$user = $this->db->row(
-			'SELECT * FROM db_ibohun.users WHERE username = :username AND password = :password',
+			'SELECT * FROM db_ibohun.users WHERE username = :username AND password = :password LIMIT 1',
 			['username' => $username, 'password' => $password]);
 
 		$_SESSION['user'] = [
 			'id' => $user[0]['id'],
 			'username' => $user[0]['username'],
 			'email' => $user[0]['email'],
-			'confirmed' => $user[0]['confirmed']
+			'confirmed' => $user[0]['confirmed'],
+			'notify' => $user[0]['notifications']
 		];
 	}
 
@@ -177,6 +178,11 @@ class Account extends Model {
 		if (isset($changed['password']) && !empty($changed['password'])) {
 			$password = hash('whirlpool', $changed['password']);
 			$this->db->query('UPDATE db_ibohun.users SET password = :password WHERE id = :id;', ['password' => $password, 'id' => $id]);
+		}
+		if (isset($changed['notification'])) {
+			$notify = $changed['notification'];
+			return $this->db->query('UPDATE db_ibohun.users SET notifications = :notify WHERE id = :id;', ['notify' => $notify, 'id' => $id]);
+			$_SESSION['user']['notify'] = $notify;
 		}
 	}
 

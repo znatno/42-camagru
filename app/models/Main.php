@@ -88,17 +88,20 @@ class Main extends Model {
 		$user_id = $this->db->column('SELECT user_id FROM db_ibohun.photos WHERE id = :id', ['id' => $photo_id]);
 		$send_notifications = $this->db->column('SELECT notifications FROM db_ibohun.users WHERE id = :id', ['id' => $user_id]);
 
-		if ($send_notifications == true) {
+		// TODO: uncomment when notification setting is ready
+
+		if (/*$send_notifications == true &&*/ $user_id != $_SESSION['user']['id']) {
 			require 'app/lib/mail.php';
 
-			$title = '42 Camagru: Sign Up Confirmation';
+			$title = '42 Camagru: New comment 🆕';
 			$port = $_SERVER['SERVER_PORT'];
 			$host = $_SERVER['HTTP_HOST'];
 			$message = wordwrap("Some of your snaps has been commented. Check it on: http://$host:$port/");
 			$email = $this->db->column('SELECT email FROM db_ibohun.users WHERE id = :id', ['id' => $user_id]);
 
-			sendMail($email, $title, $message);
+			return (sendMail($email, $title, $message));
 		}
+		return true;
 	}
 
 	public function addComment($photo_id, $text) {

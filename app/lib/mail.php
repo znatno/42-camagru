@@ -25,5 +25,5 @@ function sendMail($email, $title, $message) {
 	$header .= iconv_mime_encode("Subject", $mail_subject, $subject_preferences);
 
 	// Send mail
-	mail($mail_to, $mail_subject, $mail_message, $header);
+	return mail($mail_to, $mail_subject, $mail_message, $header);
 }

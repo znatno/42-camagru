@@ -22,7 +22,7 @@
                 <h5 class="mt-4 mb-4">Notifications</h5>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" name="notification" id="notification">
-                    <label class="form-check-label" for="defaultCheck1">Receive notifications about new comments on email</label>
+                    <label class="form-check-label" for="notification">Receive notifications about new comments on email</label>
                     <p class="help-block"></p>
                 </div>
                 <hr />

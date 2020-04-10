@@ -30,9 +30,6 @@
 
 				<?php if (isset($photo['user-comments']) && !empty($photo['user-comments'])): ?>
                     <ul class="comment-list mb-0">
-
-                        <?php // debug($photo['user-comments']); ?>
-
 						<?php foreach ($photo['user-comments'] as $comment): ?>
                             <li class="comment-list-elem mb-1">
                                 <div class="comment-div">

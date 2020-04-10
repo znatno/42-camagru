@@ -163,10 +163,19 @@ class AccountController extends Controller {
 				$this->view->message('Error pass', $this->model->error.' '.$_POST['password']);
 			}
 		}
-		if (!empty($changed)) {
-			$this->model->updateUserProfile($changed);
+		if (isset($_POST['notification']) && !empty($_POST['notification'])
+			&& $_POST['notification'] == "on") {
+			$changed['notification'] = true;
+		} else {
+			$changed['notification'] = false;
+		}
+		if (!empty($changed) && $changed['notification'] != $_SESSION['user']['notify']) {
+			$res = $this->model->updateUserProfile($changed);
+			$this->view->message('Success', $res);
+			$this->view->message('Success', 'Your profile has been updated: '.$res.' : '.$changed['notification']);
 			$this->view->message('Success', 'Your profile has been updated');
 		}
+		$this->view->message('Success', 'No changes to save');
 	}
 
 	/*----------------------------*/

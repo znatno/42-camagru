@@ -36,7 +36,7 @@ class MainController extends Controller {
 				if ($this->model->addComment($_POST['photoId'], $_POST['text'])) {
 					$this->view->message('Success', 'Photo have been commented');
 				}
-				$this->view->message('Error', 'Something went wrong. Contact administrator');
+				$this->view->message('Error', 'Something went wrong. Contact administrator. Err: '.$this->model->error);
 			}
 			$this->view->message('Error', 'Comment is empty');
 		}
