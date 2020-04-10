@@ -88,9 +88,7 @@ class Main extends Model {
 		$user_id = $this->db->column('SELECT user_id FROM db_ibohun.photos WHERE id = :id', ['id' => $photo_id]);
 		$send_notifications = $this->db->column('SELECT notifications FROM db_ibohun.users WHERE id = :id', ['id' => $user_id]);
 
-		// TODO: uncomment when notification setting is ready
-
-		if (/*$send_notifications == true &&*/ $user_id != $_SESSION['user']['id']) {
+		if ($send_notifications == true && $user_id != $_SESSION['user']['id']) {
 			require 'app/lib/mail.php';
 
 			$title = '42 Camagru: New comment 🆕';
