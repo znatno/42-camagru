@@ -181,7 +181,7 @@ class Account extends Model {
 		}
 		if (isset($changed['notification'])) {
 			$notify = $changed['notification'];
-			return $this->db->query('UPDATE db_ibohun.users SET notifications = :notify WHERE id = :id;', ['notify' => $notify, 'id' => $id]);
+			$this->db->query('UPDATE db_ibohun.users SET notifications = :notify WHERE id = :id;', ['notify' => $notify, 'id' => $id]);
 			$_SESSION['user']['notify'] = $notify;
 		}
 	}

@@ -21,7 +21,11 @@
                 </div>
                 <h5 class="mt-4 mb-4">Notifications</h5>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="notification" id="notification">
+					<?php if (!empty($_SESSION['user']['notify'])):?>
+                        <input class="form-check-input" type="checkbox" name="notification" id="notification" checked>
+					<?php else: ?>
+                        <input class="form-check-input" type="checkbox" name="notification" id="notification">
+					<?php endif; ?>
                     <label class="form-check-label" for="notification">Receive notifications about new comments on email</label>
                     <p class="help-block"></p>
                 </div>

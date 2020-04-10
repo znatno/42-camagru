@@ -21,10 +21,6 @@ class Db {
 	}
 
 	public function query($sql, $params = []) {
-
-		// TODO: rm this
-		$this->db->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING );
-
 		$stmt = $this->db->prepare($sql);
 		if (!empty($params)) {
 			foreach ($params as $key => $val) {

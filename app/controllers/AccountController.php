@@ -170,9 +170,7 @@ class AccountController extends Controller {
 			$changed['notification'] = false;
 		}
 		if (!empty($changed) && $changed['notification'] != $_SESSION['user']['notify']) {
-			$res = $this->model->updateUserProfile($changed);
-			$this->view->message('Success', $res);
-			$this->view->message('Success', 'Your profile has been updated: '.$res.' : '.$changed['notification']);
+			$this->model->updateUserProfile($changed);
 			$this->view->message('Success', 'Your profile has been updated');
 		}
 		$this->view->message('Success', 'No changes to save');
