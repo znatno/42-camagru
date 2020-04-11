@@ -11,5 +11,9 @@ unset($files[1]);
 
 // Put all files from directory
 foreach ($files as $file) {
+	if ($_SERVER['REQUEST_URI'] != '/create/new' && $file == 'image.js') {
+		continue;
+	}
 	echo '<script src="/pub/scripts/'.$file.'"></script>';
 }
+

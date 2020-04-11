@@ -4,7 +4,9 @@ function ajaxFormData(relativeUrl, formId, onLoadEnd) {
 
     request.open('POST', getHostname() + relativeUrl);
     request.responseType = 'json';
-    request.onloadend = function() { onLoadEnd(request.response) };
+    if (onLoadEnd) {
+        request.onloadend = () => { onLoadEnd(request.response) };
+    }
     request.send(formData);
 }
 
@@ -14,7 +16,9 @@ function ajax(relativeUrl, params, onLoadEnd) {
     request.open('POST', getHostname() + relativeUrl);
     request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
     request.responseType = 'json';
-    request.onloadend = function() { onLoadEnd(request.response) };
+    if (onLoadEnd) {
+        request.onloadend = () => { onLoadEnd(request.response) };
+    }
     request.send(params);
 }
 

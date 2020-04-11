@@ -22,7 +22,7 @@ class Create extends Model {
 		// Creating Image
 		$src = imagecreatefrompng('pub/res/masks/src/' . $mask_filename . '.png');
 		$dest = imagecreatefromstring($img_data);
-		imagecopy($dest, $src, 0, 0, 0, 0, 640, 480); //have to play with these numbers for it to work for you, etc.
+		imagecopy($dest, $src, 0, 0, 0, 0, 640, 480);
 		header('Content-Type: image/png');
 		$filename = uniqid('', true) . '.png';
 		$path = 'pub/photos/' . $filename;

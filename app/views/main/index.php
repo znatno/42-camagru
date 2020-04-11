@@ -1,6 +1,14 @@
 <div class="container">
     <h1 class="mt-4 mb-4">Main Page</h1>
     <div class="col-lg-8 mb-4 p-0">
+<div class="row">
+    <div class="col-md-6" style="background-color: aqua">
+        <span class="float-md-left">1</span>
+    </div>
+    <div class="col-md-6" style="background-color: palevioletred">
+        <span class="float-md-right">2</span>
+    </div>
+</div>
 
 		<?php foreach ($photos_arr as $photo): ?>
 
