@@ -13,7 +13,6 @@ class Create extends Model {
 			$this->error = 'No mask selected';
 			return false;
 		}
-
 		// Base64 to Image
 		$img_base64 = str_replace('data:image/png;base64,', '', $img_base64);
 		$img_base64 = str_replace(' ', '+', $img_base64);
@@ -30,7 +29,6 @@ class Create extends Model {
 		$status = imagepng($dest, $path);
 		imagedestroy($dest);
 		imagedestroy($src);
-
 		// Saving to Database
 		if ($status) {
 			$sql = 'INSERT INTO db_ibohun.photos (id, username, user_id, path, timestamp)
@@ -46,7 +44,6 @@ class Create extends Model {
 		} else {
 			$this->error = 'Error during saving. Please, try again';
 		}
-
 		// Return success or error
 		return $status;
 	}
