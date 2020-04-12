@@ -6,10 +6,12 @@ use app\core\Model;
 
 class Main extends Model {
 
-	public function getPhotos() {
+	public function getPhotos($page) {
 
-		$sql = 'SELECT id, path, username, timestamp, likes, comments FROM db_ibohun.photos ORDER BY id DESC';
-		$photos = $this->db->row($sql);
+		$offset_num = ($page - 1) * 5;
+		$sql = 'SELECT id, path, username, timestamp, likes, comments FROM db_ibohun.photos
+				ORDER BY id DESC LIMIT 5 OFFSET :offset_num';
+		$photos = $this->db->row($sql, ['offset_num' => $offset_num]);
 
 		if (isset($_SESSION['user'])) {
 			$sql = 'SELECT photo_id FROM db_ibohun.likes WHERE user_id = :user_id';

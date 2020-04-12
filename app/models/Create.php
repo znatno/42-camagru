@@ -13,6 +13,7 @@ class Create extends Model {
 			$this->error = 'No mask selected';
 			return false;
 		}
+
 		// Base64 to Image
 		$img_base64 = str_replace('data:image/png;base64,', '', $img_base64);
 		$img_base64 = str_replace(' ', '+', $img_base64);
@@ -25,10 +26,12 @@ class Create extends Model {
 		header('Content-Type: image/png');
 		$filename = uniqid('', true) . '.png';
 		$path = 'pub/photos/' . $filename;
+
 		// Saving to path
 		$status = imagepng($dest, $path);
 		imagedestroy($dest);
 		imagedestroy($src);
+
 		// Saving to Database
 		if ($status) {
 			$sql = 'INSERT INTO db_ibohun.photos (id, username, user_id, path, timestamp)

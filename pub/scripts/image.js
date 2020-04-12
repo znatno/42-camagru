@@ -16,8 +16,6 @@ function removeImage(path) {
     }
 }
 
-// TODO: make adding .js on page if needed only
-
 // Variables that changes onclick() of mask pictures on View
 let maskFilename = '',
     maskImg = new Image();

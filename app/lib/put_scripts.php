@@ -1,7 +1,5 @@
 <?php
 
-// TODO: check route of page and put only scripts that needed
-
 // Getting all files inside directory. Similar to 'ls -la' in shell
 $files = scandir('pub/scripts/');
 
