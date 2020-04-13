@@ -10,16 +10,16 @@ class MainController extends Controller {
 	public function indexAction() {
 
 		$nb_posts = $this->model->db->column('SELECT COUNT(*) FROM db_ibohun.photos');
-		$nb_pages = $nb_posts / 5;
+		$nb_pages = ceil($nb_posts / 5);
 
 		if (isset($_GET['page'])) {
 			$page = (int) $_GET['page'];
 		}
-		if (!isset($page) || $nb_pages < $page) {
+		if (!isset($page) || $nb_pages < $page || $nb_pages > $page) {
 			$page = 1;
 		}
-		$photos_arr = $this->model->getPhotos($page);
 
+		$photos_arr = $this->model->getPhotos($page);
 		$this->view->render('Main Page', ['photos_arr' => $photos_arr, 'nb_pages' => $nb_pages]);
 	}
 

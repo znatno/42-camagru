@@ -3,7 +3,7 @@
 function sendMail($email, $title, $message) {
 	$encoding = "utf-8";
 	$from_name = '42 Camagru';
-	$from_mail = 'noreply@camagru.com';
+	$from_mail = 'no-reply@camagru.com';
 	$mail_subject = $title;
 	$mail_to = $email;
 	$mail_message = $message;
