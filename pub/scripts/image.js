@@ -20,6 +20,11 @@ function removeImage(path) {
 let maskFilename = '',
     maskImg = new Image();
 
+/*
+    TODO: Superposable images must be selectable and the button allowing to take the picture should be inactive
+          (not clickable) as long as no superposable image has been selected.
+*/
+
 window.addEventListener("DOMContentLoaded", () => {
 
     // Grab elements, create settings, etc.

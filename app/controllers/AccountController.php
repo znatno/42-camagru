@@ -142,8 +142,6 @@ class AccountController extends Controller {
 
 	public function showProfileSaveChangesAction() {
 
-		// TODO: debug
-
 		$changed = [];
 		if ($_SESSION['user']['username'] != $_POST['username']) {
 			if ($this->model->validateUsername($_POST['username'])) {
