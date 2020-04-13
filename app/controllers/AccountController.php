@@ -163,16 +163,16 @@ class AccountController extends Controller {
 			if ($this->model->validatePassword($_POST['password'])) {
 				$changed['password'] = $_POST['password'];
 			} else {
-				$this->view->message('Error pass', $this->model->error.' '.$_POST['password']);
+				$this->view->message('Error pass', $this->model->error);
 			}
 		}
-		if (isset($_POST['notification']) && !empty($_POST['notification'])
-			&& $_POST['notification'] == "on") {
+		if (isset($_POST['notification']) && !empty($_POST['notification']) && $_POST['notification'] == "on") {
 			$changed['notification'] = true;
 		} else {
 			$changed['notification'] = false;
 		}
-		if (!empty($changed) && $changed['notification'] != $_SESSION['user']['notify']) {
+		if (!empty($changed) && (key_exists('username', $changed) || key_exists('email', $changed)
+				|| key_exists('password', $changed) || $changed['notification'] != $_SESSION['user']['notify'])) {
 			$this->model->updateUserProfile($changed);
 			$this->view->message('Success', 'Your profile has been updated');
 		}
