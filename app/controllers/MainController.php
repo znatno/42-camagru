@@ -19,9 +19,6 @@ class MainController extends Controller {
 			$page = 1;
 		}
 
-		debug($page);
-		debug($nb_pages);
-
 		$photos_arr = $this->model->getPhotos($page);
 		$this->view->render('Main Page', ['photos_arr' => $photos_arr, 'nb_pages' => $nb_pages]);
 	}

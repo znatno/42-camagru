@@ -9,7 +9,7 @@ class Main extends Model {
 	public function getPhotos($page) {
 
 		$offset_num = ($page - 1) * 5;
-		$sql = 'SELECT id, path, username, timestamp, likes, comments FROM db_ibohun.photos
+		$sql = 'SELECT id, path, username, user_id, timestamp, likes, comments FROM db_ibohun.photos
 				ORDER BY id DESC LIMIT 5 OFFSET :offset_num';
 		$photos = $this->db->row($sql, ['offset_num' => $offset_num]);
 
@@ -43,6 +43,9 @@ class Main extends Model {
 			} else {
 				$photos[$key]['likes-txt'] = ' likes';
 			}
+
+			$sql = 'SELECT username FROM db_ibohun.users WHERE id = :id';
+			$photos[$key]['username'] = $this->db->column($sql, ['id' => $photo['user_id']]);
 		}
 
 		return $photos;

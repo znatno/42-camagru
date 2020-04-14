@@ -44,8 +44,11 @@ window.addEventListener("DOMContentLoaded", () => {
     function draw(src, context, width = 640, height = 480) {
         context.drawImage(src, 0, 0, width, height);
         if (maskFilename !== '') {
+            snapBtn.disabled = false;
             maskImg.src = '/pub/res/masks/src/'+maskFilename+'.png';
             context.drawImage(maskImg, 0, 0, width, height);
+        } else {
+            snapBtn.disabled = true;
         }
         drawVideoHandler = setTimeout(draw, 1, src, context, width, height)
     }
@@ -119,6 +122,11 @@ window.addEventListener("DOMContentLoaded", () => {
 
     // Save snap to folder and DB
     saveSnapBtn.addEventListener('click', () => {
+        if (maskFilename === '') {
+            alert('Select mask first');
+            return;
+        }
+
         let imageBase64 = convertCanvasToImage(canvas).src;
 
         // Process uploading

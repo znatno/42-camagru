@@ -18,6 +18,7 @@ if (isset($_SESSION['user'])) {
     <link rel="stylesheet" href="/pub/css/stylesheet.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<?php require 'app/lib/put_scripts.php' ?>
+
 </head>
 <body>
 <header>
@@ -30,9 +31,6 @@ if (isset($_SESSION['user'])) {
 
         <div class="navbar-collapse" id="navbar-supported-content">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="/">Gallery</a>
-                </li>
 				<?= $check_post ?>
             </ul>
             <ul class="navbar-nav my-2 my-lg-0">
@@ -42,6 +40,18 @@ if (isset($_SESSION['user'])) {
 
     </nav>
 </header>
+<script type="x-template" id="banner-template">
+    <div class="alert alert-primary" role="alert">
+        Custom Alert
+        <span class="banner-close"></span>
+    </div>
+</script>
+<script type="x-template" id="banner-template-old">
+    <div class="banner banner-top alert-primary active" role="alert">
+        Custom Alert
+        <span class="banner-close"></span>
+    </div>
+</script>
 <main role="main">
 	<?= $content; ?>
     <footer class="container pt-4 my-md-5 pt-md-5 border-top">
