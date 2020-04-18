@@ -1,42 +1,24 @@
-function getBannerTemplate() {
+function showAlert(message, status = "default") {
+    // Get the snackbar DIV & clear classes
+    const x = document.getElementById("snackbar");
+    x.className = "";
 
-    var template = document.querySelector("#banner-template");
-
-    return template.innerHTML;
-
-}
-
-function createFragment(htmlStr) {
-
-    var frag = document.createDocumentFragment(),
-        temp = document.createElement('div');
-
-    temp.innerHTML = htmlStr;
-
-    while (temp.firstChild) {
-        frag.appendChild(temp.firstChild);
+    // Add the "show" class to DIV
+    x.classList.toggle("show");
+    // Apply text
+    x.innerText = message;
+    // Apply status
+    switch (status.toLowerCase()) {
+        case ("error"):
+            x.classList.add("bg-danger");
+            break;
+        case ("success"):
+            x.classList.add("bg-success");
+            break;
+        default:
+            x.classList.add("bg-primary");
     }
 
-    return frag;
-}
-
-function injectTemplate(template) {
-
-    document.body.appendChild(createFragment(template));
-
-}
-
-function putBanner(message) {
-
-    injectTemplate(getBannerTemplate());
-
-    var btnClose = document.querySelector(".banner-close");
-
-    btnClose.addEventListener("click", function (closeEvt) {
-
-        var banner = document.querySelector(".banner");
-
-        banner.parentNode.removeChild(banner);
-
-    });
+    // After 3 seconds, remove the show class from DIV
+    setTimeout(function(){ x.classList.toggle("show"); }, 4000);
 }

@@ -15,8 +15,8 @@ if (isset($_SESSION['user'])) {
 <head>
     <meta charset="utf-8"/>
     <title><?= $title; ?></title>
-    <link rel="stylesheet" href="/pub/css/stylesheet.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link type="text/css" rel="stylesheet" href="/pub/css/stylesheet.css">
+    <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<?php require 'app/lib/put_scripts.php' ?>
 
 </head>
@@ -40,19 +40,8 @@ if (isset($_SESSION['user'])) {
 
     </nav>
 </header>
-<script type="x-template" id="banner-template">
-    <div class="alert alert-primary" role="alert">
-        Custom Alert
-        <span class="banner-close"></span>
-    </div>
-</script>
-<script type="x-template" id="banner-template-old">
-    <div class="banner banner-top alert-primary active" role="alert">
-        Custom Alert
-        <span class="banner-close"></span>
-    </div>
-</script>
 <main role="main">
+    <div id="snackbar">{Put text into the function}</div>
 	<?= $content; ?>
     <footer class="container pt-4 my-md-5 pt-md-5 border-top">
         <p class="float-right"><a href="#">Back to top</a></p>

@@ -74,7 +74,7 @@ class AccountController extends Controller {
 	/*------ Reset Password ------*/
 	public function forgotAction() {
 		if (!empty($_POST['email'])) {
-			if (!$this->model->validateEmail($_POST['email'])) {
+			if (!$this->model->validateEmail($_POST['email']) && $this->model->error == 'Email is already in use') {
 				$this->model->sendResetEmail($_POST['email']);
 				$_SESSION['resetPassword']['secret'] = $this->model->getSecret('send-reset'.$_POST['email']);
 				$_SESSION['resetPassword']['username'] = $this->model->db->column('SELECT username FROM db_ibohun.users WHERE email = :email',

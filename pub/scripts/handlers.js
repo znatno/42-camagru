@@ -3,7 +3,7 @@ function signUpHandler() {
         if (json.status === 'Success') {
             document.forms['signUpForm'].submit()
         } else {
-            alert(json.status + ': ' + json.message)
+            showAlert(json.status + ': ' + json.message)
         }
     });
     return false;
@@ -14,7 +14,7 @@ function logInHandler() {
         if (json.status === 'Success') {
             document.forms['logInForm'].submit();
         } else {
-            alert(json.status + ': ' + json.message);
+            showAlert(json.message, "Error");
         }
     });
     return false;
@@ -25,7 +25,7 @@ function forgotHandler() {
         if (json.status === 'Success') {
             document.forms['forgotForm'].submit()
         } else {
-            alert(json.status + ': ' + json.message)
+            showAlert(json.message, "Error")
         }
     });
     return false;
@@ -36,7 +36,7 @@ function resetPasswordHandler() {
         if (json.status === 'Success') {
             document.forms['resetForm'].submit()
         } else {
-            alert(json.status + ': ' + json.message)
+            showAlert(json.status + ': ' + json.message)
         }
     });
     return false;
@@ -46,9 +46,9 @@ function editProfileHandler() {
     ajaxFormData('/account/profile-save', 'editProfileForm', (json) => {
         if (json) {
             if (json.status === 'Success') {
-                putBanner(json.status + ': ' + json.message)
+                showAlert(json.message, json.status)
             } else {
-                putBanner(json.status + ': ' + json.message)
+                showAlert(json.message, "error")
             }
         }
     });
@@ -76,9 +76,10 @@ function commentHandler(text, photoId) {
         if (json.status === 'Success') {
             location.reload();
         } else {
-            alert(json.status + ': ' + json.message)
+            showAlert(json.status + ': ' + json.message)
         }
-    })
+    });
+    return false;
 }
 
 function deleteCommentHandler(photoId, timestamp, username) {
@@ -87,7 +88,7 @@ function deleteCommentHandler(photoId, timestamp, username) {
         if (json.status === 'Success') {
             location.reload();
         } else {
-            alert(json.status + ': ' + json.message)
+            showAlert(json.status + ': ' + json.message)
         }
     });
 }
