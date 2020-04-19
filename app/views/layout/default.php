@@ -44,7 +44,7 @@ if (isset($_SESSION['user'])) {
     <div id="snackbar">{Put text into the function}</div>
 	<?= $content; ?>
     <footer class="container pt-4 my-md-5 pt-md-5 border-top">
-        <p class="float-right"><a href="#">Back to top</a></p>
+        <p id="to-top-btn" class="float-right"><a href="#">Back to top</a></p>
         <p>© 2020 — 42 Camagru · <a href="https://t.me/znatno" target="_blank">Telegram</a> · <a href="https://github.com/znatno" target="_blank">GitHub</a></p>
     </footer>
 </main>

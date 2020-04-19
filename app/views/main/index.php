@@ -1,6 +1,7 @@
 <div class="container">
-    <h1 class="mt-4 mb-4">Main Page</h1>
-    <div class="col-lg-8 mb-4 p-0">
+    <h1 class="mt-4">Gallery</h1>
+	<?= (isset($p_num) ? $p_num : "") ?>
+    <div class="col-lg-8 mt-4 mb-4 p-0">
 
 		<?php foreach ($photos_arr as $photo): ?>
 
@@ -68,6 +69,7 @@
         </div>
 
 		<?php endforeach; ?>
+		<?= (isset($p_num) ? $p_num : "") ?>
         <nav aria-label="Page navigation example">
             <ul class="pagination">
 				<?php for ($i = 1; $i <= $nb_pages; $i++): ?>

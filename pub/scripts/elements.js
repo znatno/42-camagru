@@ -22,3 +22,13 @@ function showAlert(message, status = "default") {
     // After 3 seconds, remove the show class from DIV
     setTimeout(function(){ x.classList.toggle("show"); }, 4000);
 }
+
+// Back to top in the footer
+window.addEventListener("DOMContentLoaded", () => {
+    let contentHeight = document.getElementsByTagName("body")[0].clientHeight;
+    let contentRelativeHeight = contentHeight / window.innerHeight;
+
+    if (contentRelativeHeight <= 1) {
+        document.getElementById("to-top-btn").style.display = "none";
+    }
+});

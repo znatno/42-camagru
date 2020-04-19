@@ -8,11 +8,9 @@ function removeImage(path) {
     if (confirm('Are you sure you want to delete this image?')) {
         ajax('/create/remove/', `path=${path.slice(1)}`, (json) => {
             if (json) {
-                alert(json.status + ': ' + json.message);
+                showAlert(json.message, json.status);
             }
         })
-    } else {
-        console.log(path);
     }
 }
 
@@ -67,9 +65,9 @@ window.addEventListener("DOMContentLoaded", () => {
 
         clearTimeout(drawVideoHandler);
         isCaptured = true;
-        console.log('test');
         snapBtn.removeAttribute('disabled');
         reader.readAsDataURL(e.target.files[0]);
+
         if (e.target.files[0].name.length > 15) {
             e.target.nextElementSibling.innerText = e.target.files[0].name.substring(0, 15) + '...'
         } else {
@@ -77,6 +75,7 @@ window.addEventListener("DOMContentLoaded", () => {
         }
     }
 
+    alert("3");
     // Request camera
     navigator.mediaDevices.getUserMedia({ video: true, audio: false })
         .then(function(stream) {
@@ -100,6 +99,8 @@ window.addEventListener("DOMContentLoaded", () => {
 
     // Trigger photo take
     snapBtn.addEventListener('click', () => {
+        alert("123");
+
         clearTimeout(drawVideoHandler);
         if (isCaptured === false) {
             btnsDefault.style.display = 'none';
@@ -123,7 +124,7 @@ window.addEventListener("DOMContentLoaded", () => {
     // Save snap to folder and DB
     saveSnapBtn.addEventListener('click', () => {
         if (maskFilename === '') {
-            alert('Select mask first');
+            showAlert('Please, select mask');
             return;
         }
 
@@ -133,9 +134,9 @@ window.addEventListener("DOMContentLoaded", () => {
         ajax('/create/new-upload', `image=${imageBase64}&maskFilename=${maskFilename}`, (json) => {
             if (json) {
                 if (json.status === 'Success') {
-                    alert(json.status + ': ' + json.message);
+                    showAlert(json.message, json.status);
                 } else {
-                    alert(json.status + ': ' + json.message);
+                    showAlert(json.message, json.status);
                 }
             }
             draw(video, context);

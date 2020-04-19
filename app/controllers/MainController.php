@@ -10,17 +10,20 @@ class MainController extends Controller {
 	public function indexAction() {
 
 		$nb_posts = $this->model->db->column('SELECT COUNT(*) FROM db_ibohun.photos');
-		$nb_pages = ceil($nb_posts / 5);
+		$vars['nb_pages'] = ceil($nb_posts / 5);
 
 		if (isset($_GET['page'])) {
 			$page = (int) $_GET['page'];
 		}
-		if (!isset($page) || $nb_pages < $page || $page < 1) {
+		if (!isset($page) || $vars['nb_pages'] < $page || $page < 1) {
 			$page = 1;
 		}
+		if ($page != 1) {
+			$vars['p_num'] = "<h6>Page $page</h6>";
+		}
 
-		$photos_arr = $this->model->getPhotos($page);
-		$this->view->render('Main Page', ['photos_arr' => $photos_arr, 'nb_pages' => $nb_pages]);
+		$vars['photos_arr'] = $this->model->getPhotos($page);
+		$this->view->render('Main Page', $vars);
 	}
 
 	public function changeLikeAction() {
