@@ -30,8 +30,8 @@
             <hr>
             <h6 class="mt-4">Select mask menu</h6>
             <ul class="superpose--select-list p-0">
-                <li class="superpose--select-list-element" onclick=" maskFilename = ''; ">
-                    <input class="superpose--select-list-input" id="superpose-img-0" type="radio" name="superpose-img-select" checked/>
+                <li class="superpose--select-list-element" onclick=" maskFilename = 'no'; ">
+                    <input class="superpose--select-list-input" id="superpose-img-0" type="radio" name="superpose-img-select"/>
                     <label class="superpose--select-list-label" for="superpose-img-0">
                         <span class="superpose--select-list-empty">No mask</span>
                         <img src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="" />

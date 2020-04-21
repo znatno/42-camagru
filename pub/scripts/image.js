@@ -75,7 +75,6 @@ window.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    alert("3");
     // Request camera
     navigator.mediaDevices.getUserMedia({ video: true, audio: false })
         .then(function(stream) {
@@ -99,8 +98,6 @@ window.addEventListener("DOMContentLoaded", () => {
 
     // Trigger photo take
     snapBtn.addEventListener('click', () => {
-        alert("123");
-
         clearTimeout(drawVideoHandler);
         if (isCaptured === false) {
             btnsDefault.style.display = 'none';

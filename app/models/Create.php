@@ -20,9 +20,11 @@ class Create extends Model {
 		$img_data = base64_decode($img_base64);
 
 		// Creating Image
-		$src = imagecreatefrompng('pub/res/masks/src/' . $mask_filename . '.png');
 		$dest = imagecreatefromstring($img_data);
-		imagecopy($dest, $src, 0, 0, 0, 0, 640, 480);
+		if ($mask_filename != "no") {
+			$src = imagecreatefrompng('pub/res/masks/src/' . $mask_filename . '.png');
+			imagecopy($dest, $src, 0, 0, 0, 0, 640, 480);
+		}
 		header('Content-Type: image/png');
 		$filename = uniqid('', true) . '.png';
 		$path = 'pub/photos/' . $filename;
@@ -30,7 +32,9 @@ class Create extends Model {
 		// Saving to path
 		$status = imagepng($dest, $path);
 		imagedestroy($dest);
-		imagedestroy($src);
+		if ($mask_filename != "no") {
+			imagedestroy($src);
+		}
 
 		// Saving to Database
 		if ($status) {
