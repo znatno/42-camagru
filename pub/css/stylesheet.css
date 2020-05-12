@@ -1,5 +1,78 @@
 @import url("https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css");
 
+/* fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100&display=swap');
+
+body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-weight: normal;
+    background-color: #F7F7FA;
+}
+
+/* header */
+.nav {
+    height: 76px;
+    left: 0;
+    top: 0;
+
+    background: #FFFFFF;
+    box-shadow: 0 0 16px rgba(0, 0, 0, 0.1);
+    align-content: center;
+}
+
+.nav-wrapper {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.nav-links {
+    margin-left: 16px;
+    margin-top: auto;
+    margin-bottom: auto;
+    display: flex;
+    align-content: center;
+
+}
+
+.nav-links__item {
+    margin-right: 32px;
+    align-content: center;
+    color: #555770;
+}
+
+/* sign up */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*--- newPost.php ---*/
 
 #video {

@@ -2,11 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f5d783a5-c1e1-495f-a4fd-2852365bc1d1" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/pub/res/img/logo.svg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/Create.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/Create.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/create/newPost.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/create/newPost.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/error/403.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/error/403.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pub/scripts/image.js" beforeDir="false" afterPath="$PROJECT_DIR$/pub/scripts/image.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/layout/default.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/layout/default.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pub/css/stylesheet.css" beforeDir="false" afterPath="$PROJECT_DIR$/pub/css/stylesheet.css" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -77,6 +76,9 @@
     </expand>
     <select />
   </component>
+  <component name="FavoritesManager">
+    <favorites_list name="42-camagru" />
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -114,13 +116,14 @@
     <property name="settings.editor.selected.configurable" value="preferences.sourceCode.HTML" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/app/views/account" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/pub/res/img" />
       <recent name="$PROJECT_DIR$/pub/res" />
       <recent name="$PROJECT_DIR$/pub/scripts" />
       <recent name="$PROJECT_DIR$" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/views/account" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -199,7 +202,8 @@
       <workItem from="1585909561068" duration="17733000" />
       <workItem from="1585959719892" duration="27104000" />
       <workItem from="1586474337664" duration="39019000" />
-      <workItem from="1587510318584" duration="523000" />
+      <workItem from="1587510318584" duration="2901000" />
+      <workItem from="1589141119340" duration="4049000" />
     </task>
     <servers />
   </component>
